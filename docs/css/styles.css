@@ -455,7 +455,7 @@ body[data-state="invalid"] #situation {
 }
 
 /* Pop out from behind the cloud after the home screen fades */
-body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"], [data-state="result"]) .immortal {
+body[data-scene="stage"] .immortal {
   opacity: 1;
   transform: translateY(0) scale(1);
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s, opacity 0.15s ease 0.25s;
@@ -545,8 +545,37 @@ body[data-state="reacting"] #immortal svg {
   40% { transform: translateY(-14px); }
 }
 
+/* Reaching into the sleeve: the left arm swings up beside his head,
+   then a small plaque slides slowly up out of the cuff */
+#immortal #sleeve {
+  transform-origin: 96px 214px; /* shoulder */
+  transition: transform 0.4s ease;
+}
+
+body:is([data-state="reacting"], [data-state="retrieving"], [data-state="presenting"]) #immortal #sleeve {
+  transform: rotate(170deg);
+  transition: transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+#immortal #plaque {
+  opacity: 0;
+  transform: translateY(8px) scale(0.7);
+  transform-origin: 41px 143px;
+  transition: transform 0.7s cubic-bezier(0.25, 0.8, 0.3, 1), opacity 0.25s ease;
+}
+
+body[data-state="retrieving"] #immortal #plaque {
+  opacity: 1;
+  transform: translateY(-48px);
+}
+
+/* Hand-off: the page-level plaque takes over, so the small one vanishes at once */
+body:is([data-state="presenting"], [data-state="revealing"], [data-state="result"]) #immortal #plaque {
+  transition: none;
+}
+
 /* ===== Home ↔ stage switching ===== */
-body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"], [data-state="result"]) .home {
+body[data-scene="stage"] .home {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0s linear 0.25s;
@@ -562,7 +591,7 @@ body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting
   pointer-events: none;
 }
 
-body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"], [data-state="result"]) .stage {
+body[data-scene="stage"] .stage {
   visibility: visible;
   pointer-events: auto;
 }
@@ -617,40 +646,155 @@ body:is([data-state="thinking"], [data-state="reacting"]) .thinking-bubble {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  transform: scale(0.95);
+  gap: 20px;
+  padding-top: 8px;
 }
 
-body[data-state="result"] .result {
+/* The plaque appears instantly at the sleeve (JS flies it to here), so no fade */
+body:is([data-state="presenting"], [data-state="revealing"], [data-state="result"]) .result {
   opacity: 1;
   visibility: visible;
-  transform: none;
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s;
+  transition: none;
 }
 
-.result-card {
+/* ===== Plaque ===== */
+.plaque {
+  --wood-dark: #7a4a22;
+  --wood: #b77a3f;
+  --wood-light: #e8c690;
+  --engrave: #5a3417;
+  position: relative;
   width: 100%;
-  padding: 18px 20px;
-  border: 3px solid var(--color-gold);
-  border-radius: var(--radius);
-  background: var(--color-surface);
-  box-shadow: 0 4px 0 var(--color-border);
+  perspective: 900px;
 }
 
-.result-card:focus {
+.plaque:focus {
   outline: none;
 }
 
-.result-label {
-  margin: 0 0 6px;
-  font-size: 0.875rem;
-  color: var(--color-ink-soft);
+.plaque-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  /* Front faces the user by default; stage states before the flip turn it around */
 }
 
-.result-text {
-  margin: 0;
-  font-size: 1.25rem;
+body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"], [data-state="retrieving"], [data-state="presenting"]) .plaque-inner {
+  transform: rotateY(180deg);
+}
+
+/* The horizontal flip */
+body[data-state="revealing"] .plaque-inner {
+  transform: rotateY(0deg);
+  transition: transform 0.5s cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.plaque-face {
+  border: 6px solid var(--wood-dark);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 0 0 3px var(--color-gold),
+    0 6px 0 #5b3517,
+    0 10px 24px rgba(59, 42, 74, 0.25);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Front: light wood with engraved text. It sets the plaque's size. */
+.plaque-front {
+  position: relative;
+  min-height: 150px;
+  padding: 18px 22px 22px;
+  text-align: center;
+  background:
+    repeating-linear-gradient(
+      100deg,
+      rgba(122, 74, 34, 0.07) 0 2px,
+      transparent 2px 11px
+    ),
+    linear-gradient(to bottom, var(--wood-light), #dcb57c);
+}
+
+/* Back: darker wood with a cloud medallion, no text */
+.plaque-back {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: rotateY(180deg);
+  background:
+    repeating-linear-gradient(
+      100deg,
+      rgba(0, 0, 0, 0.08) 0 2px,
+      transparent 2px 12px
+    ),
+    linear-gradient(to bottom, var(--wood), #9a6331);
+}
+
+.plaque-back svg {
+  width: 72px;
+  height: 72px;
+}
+
+.plaque-label {
+  margin: 0 0 10px;
+  font-size: 0.875rem;
   font-weight: 700;
+  color: var(--wood-dark);
+}
+
+/* Engraved look: dark text, light edge below, shadow edge above */
+.plaque-text {
+  margin: 0;
+  font-family: "Kaiti TC", "STKaiti", "BiauKai", "DFKai-SB", "KaiTi", var(--font);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--engrave);
+  text-shadow:
+    0 1px 0 rgba(255, 244, 220, 0.8),
+    0 -1px 0 rgba(60, 30, 10, 0.35);
+  overflow-wrap: anywhere;
+}
+
+.plaque-text:lang(en) {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* Longer excuses: shrink the text a little, then the plaque grows taller */
+.plaque-text[data-size="medium"] { font-size: 1.25rem; }
+.plaque-text[data-size="long"] { font-size: 1.1rem; }
+
+/* Golden glow once the excuse is revealed */
+.plaque::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 22px;
+  box-shadow: 0 0 28px 8px rgba(240, 193, 75, 0.75);
+  opacity: 0;
+  pointer-events: none;
+}
+
+body[data-state="result"] .plaque::after {
+  animation: plaque-glow 1.2s ease-out forwards;
+}
+
+@keyframes plaque-glow {
+  0% { opacity: 0; transform: scale(0.96); }
+  30% { opacity: 1; transform: scale(1.02); }
+  100% { opacity: 0.35; transform: scale(1); }
+}
+
+.back-button {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+}
+
+body[data-state="result"] .back-button {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease 0.2s, visibility 0s;
 }
 
 .back-button {
@@ -694,7 +838,7 @@ body[data-state="result"] .result {
   height: 26px;
 }
 
-body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"]) .skip-button {
+body[data-scene="stage"]:not([data-state="result"]) .skip-button {
   opacity: 1;
   visibility: visible;
   transition: opacity 0.25s ease, visibility 0s;
@@ -732,7 +876,7 @@ body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting
   .koi-y { transform: translateY(calc(var(--cloud-h) * 0.15)); }
 
   .immortal,
-  body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"], [data-state="result"]) .immortal,
+  body[data-scene="stage"] .immortal,
   #immortal g,
   .thinking-bubble,
   .result,
@@ -742,7 +886,12 @@ body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting
   }
 
   .immortal,
-  body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"], [data-state="result"]) .immortal {
+  body[data-scene="stage"] .immortal {
     transition: opacity 0.3s ease;
+  }
+
+  /* No flight or flip: the finished plaque simply fades in */
+  body[data-state="result"] .result {
+    transition: opacity 0.4s ease, visibility 0s;
   }
 }

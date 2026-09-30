@@ -17,7 +17,15 @@ const langToggle = document.getElementById('lang-toggle');
 const immortal = document.getElementById('immortal');
 const skipButton = document.getElementById('skip-button');
 const backButton = document.getElementById('back-button');
-const resultCard = document.getElementById('result-card');
+const plaque = document.getElementById('result-plaque');
+const plaqueText = document.getElementById('plaque-text');
+
+// Text length (characters) above which the plaque text steps down a size.
+// English words are longer, so English gets higher limits.
+const PLAQUE_SIZE_LIMITS = {
+  'zh-HK': { medium: 24, long: 48 },
+  en: { medium: 60, long: 120 },
+};
 
 // Remember which message is showing, so it can be re-translated on language switch.
 let messageKey = null;
@@ -33,6 +41,12 @@ function updateCounter() {
   counter.hidden = length < COUNTER_FROM;
   counter.textContent = t('home.counter', { count: length, max: MAX_LENGTH });
   counter.dataset.nearLimit = String(length >= MAX_LENGTH - 10);
+}
+
+function sizePlaqueText() {
+  const limits = PLAQUE_SIZE_LIMITS[getLang()] || PLAQUE_SIZE_LIMITS.en;
+  const length = plaqueText.textContent.length;
+  plaqueText.dataset.size = length > limits.long ? 'long' : length > limits.medium ? 'medium' : 'short';
 }
 
 function readSavedStyle() {
@@ -91,7 +105,8 @@ function onSubmit(event) {
   showMessage(null);
   input.blur(); // closes the phone keyboard so the stage is visible
   setState({ situation });
-  playAskSequence({ onResult: () => resultCard.focus() });
+  sizePlaqueText();
+  playAskSequence({ onResult: () => plaque.focus() });
 }
 
 function onBack() {
@@ -106,6 +121,7 @@ async function onLangToggle() {
   try {
     await setLang(nextLang, { remember: true });
     updateCounter();
+    sizePlaqueText();
     if (messageKey) message.textContent = t(messageKey);
   } catch (error) {
     console.error(error);

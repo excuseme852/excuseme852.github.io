@@ -22,10 +22,11 @@
 
   <!-- Left sleeve resting on the lap (the plaque comes out of here in Phase 5) -->
   <g id="sleeve">
-    <path d="M92 214 C 64 240, 60 286, 88 300 C 112 310, 138 298, 140 280 C 124 276, 108 262, 104 240 Z" fill="#8d62c4" stroke="#4a2c6e" stroke-width="3"/>
-    <path d="M88 300 C 112 310, 138 298, 140 280" fill="none" stroke="#f0c14b" stroke-width="5"/>
-    <circle cx="136" cy="288" r="11" fill="#f6c9a8" stroke="#c98d6b" stroke-width="2"/>
-    <g id="plaque" opacity="0"></g>
+    <!-- Straight bell sleeve along one axis (shoulder 96,214 → hand 138,294),
+         so it stays a straight arm when CSS rotates it up -->
+    <path d="M108 208 L 156 273 Q 137 292 110 297 L 84 221 Q 90 210 108 208 Z" fill="#8d62c4" stroke="#4a2c6e" stroke-width="3"/>
+    <path d="M156 273 Q 137 292 110 297" fill="none" stroke="#f0c14b" stroke-width="5"/>
+    <circle cx="138" cy="294" r="11" fill="#f6c9a8" stroke="#c98d6b" stroke-width="2"/>
   </g>
 
   <!-- Head: face, eyes, brows, beard, moustache, mouth -->
@@ -60,6 +61,14 @@
 
     <path d="M137 166 Q 150 184 163 166 Z" fill="#9b3344"/>
     <path d="M150 158 C 136 148, 114 150, 104 166 C 120 172, 138 168, 150 162 C 162 168, 180 172, 196 166 C 186 150, 164 148, 150 158 Z" fill="#fff" stroke="#d8d0c4" stroke-width="2"/>
+  </g>
+
+  <!-- Small plaque (back side). Sits hidden at the cuff of the *raised* left sleeve
+       (beside the head); CSS slides it up out of the cuff. -->
+  <g id="plaque">
+    <rect x="25" y="121" width="32" height="44" rx="4" fill="#b77a3f" stroke="#7a4a22" stroke-width="3"/>
+    <rect x="29" y="125" width="24" height="36" rx="2" fill="none" stroke="#f0c14b" stroke-width="1.5"/>
+    <circle cx="41" cy="143" r="7" fill="none" stroke="#f0c14b" stroke-width="2"/>
   </g>
 
   <!-- Right hand holding the staff (in front) -->

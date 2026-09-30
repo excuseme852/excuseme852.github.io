@@ -78,9 +78,21 @@
       <p class="thinking-bubble" data-i18n="stage.thinking"></p>
 
       <div class="result">
-        <div id="result-card" class="result-card" tabindex="-1">
-          <p class="result-label" data-i18n="stage.resultLabel"></p>
-          <p class="result-text" data-i18n="sample.excuse"></p>
+        <div id="result-plaque" class="plaque" tabindex="-1" role="group" data-i18n-aria-label="stage.plaqueLabel">
+          <div class="plaque-inner">
+            <div class="plaque-face plaque-front">
+              <p class="plaque-label" data-i18n="stage.resultLabel"></p>
+              <p id="plaque-text" class="plaque-text" data-i18n="sample.excuse"></p>
+            </div>
+            <div class="plaque-face plaque-back" aria-hidden="true">
+              <svg viewBox="0 0 72 72" focusable="false">
+                <circle cx="36" cy="36" r="31" fill="none" stroke="#f0c14b" stroke-width="4"/>
+                <circle cx="36" cy="36" r="24" fill="none" stroke="#f0c14b" stroke-width="1.5" opacity="0.6"/>
+                <path d="M20 42 C 20 30, 36 30, 36 40 C 36 47, 27 47, 27 41 M36 40 C 36 28, 54 28, 54 40 C 54 47, 45 47, 45 41"
+                      fill="none" stroke="#f0c14b" stroke-width="3.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
         </div>
         <button id="back-button" class="back-button" type="button" data-i18n="stage.back"></button>
       </div>

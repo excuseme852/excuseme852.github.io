@@ -5,11 +5,11 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 ## Current phase
 
-**Phase 5 — Plaque** (not started)
+**Phase 6 — Excuse library structure + first content** (not started)
 
 ## Next step
 
-Plan Phase 5 (spec Section 12): plaque from the `#sleeve` layer, `#plaque` placeholder group already exists in `assets/immortal.svg`; replaces the plain result card.
+Plan Phase 6 (spec Section 17): `categories.json` + excuse JSON structure, first 2–3 categories plus `general`, one category at a time for Cantonese review.
 
 ## Phase checklist
 
@@ -17,7 +17,7 @@ Plan Phase 5 (spec Section 12): plaque from the `#sleeve` layer, `#plaque` place
 - [x] 2. Project setup & first deployment (Hello page live on GitHub Pages)
 - [x] 3. Home screen + localization
 - [x] 4. Immortal (placeholder SVG, appear/thinking, sample excuse)
-- [ ] 5. Plaque (retrieve, move, flip, reveal, tap to skip, reduced motion)
+- [x] 5. Plaque (retrieve, move, flip, reveal, tap to skip, reduced motion)
 - [ ] 6. Excuse library structure + first content
 - [ ] 7. Excuse engine + dev test page
 - [ ] 8. Connect engine to the reveal
@@ -47,6 +47,10 @@ Plan Phase 5 (spec Section 12): plaque from the `#sleeve` layer, `#plaque` place
 - Asking: home fades out, the immortal pops up from behind the cloud with a puff. Skip = round arrow button bottom-right during the performance.
 - Result screen has a permanent 「← 改過個情況」 / "← Change the story" button that returns home with the text kept.
 - Temporary sample excuse lives in locales (`sample.excuse`); remove it in Phase 8.
+- Plaque: wooden (light-wood front with engraved text, darker back with gold cloud medallion). Font: system 楷書 stack (Kaiti TC / STKaiti / BiauKai / DFKai-SB / KaiTi), Georgia for English; no web font download.
+- Sequence timing (full motion): appear 0.6s → think 1.5–2.0s → react + raise left arm beside head 0.5s → plaque slides out of the raised sleeve 0.8s → fly to centre 0.45s → flip 0.5s ≈ 4.35–4.85s. Creator asked for a slower, clearer retrieval, accepting a bit over the spec's ~4s (skip arrow is always available). The flight uses the Web Animations API (start point depends on screen size); everything else is CSS driven by `data-state`.
+- `state.js` also sets `body[data-scene="home|stage"]` so CSS doesn't list every stage state.
+- Plaque text size steps down by length (`data-size`, limits in `main.js`); Phase 8 should size by the excuse's language and set `lang` on `#plaque-text`.
 
 ## Open questions
 

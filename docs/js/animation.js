@@ -1,19 +1,22 @@
 // Immortal performance sequence.
 // This module only decides *when* each state starts; CSS decides how it looks.
-//   appearing → thinking → reacting → result
+//   appearing → thinking → reacting → retrieving → presenting → revealing → result
+// The one exception is the plaque's flight from the sleeve to the centre: its start
+// point depends on screen size, so it uses the Web Animations API.
 
 import { setState } from './state.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-// Milliseconds. appear = home fade-out + immortal pop.
+// Milliseconds. appear = home fade-out + immortal pop. A step of 0 is skipped.
 const TIMING = {
-  full: { appear: 750, thinkMin: 1500, thinkMax: 2500, react: 400 },
-  reduced: { appear: 300, thinkMin: 700, thinkMax: 900, react: 0 },
+  full: { appear: 600, thinkMin: 1500, thinkMax: 2000, react: 500, retrieve: 800, present: 450, reveal: 500 },
+  reduced: { appear: 300, thinkMin: 700, thinkMax: 900, react: 0, retrieve: 0, present: 0, reveal: 0 },
 };
 
 let timers = [];
 let onResultCallback = null;
+let flight = null;
 
 function later(ms, fn) {
   timers.push(setTimeout(fn, ms));
@@ -24,10 +27,39 @@ function clearTimers() {
   timers = [];
 }
 
+function cancelFlight() {
+  flight?.cancel();
+  flight = null;
+}
+
 function showResult() {
   clearTimers();
+  cancelFlight();
   setState({ status: 'result' });
   onResultCallback?.();
+}
+
+// Flies the page plaque from the small plaque in the sleeve to its place in the centre.
+function presentPlaque(duration) {
+  const source = document.querySelector('#immortal #plaque');
+  const plaque = document.querySelector('.plaque');
+  const from = source?.getBoundingClientRect(); // measure before the small one hides
+  setState({ status: 'presenting' });
+  if (!from || !from.width || !plaque?.animate) return;
+
+  const to = plaque.getBoundingClientRect();
+  const dx = from.left + from.width / 2 - (to.left + to.width / 2);
+  const dy = from.top + from.height / 2 - (to.top + to.height / 2);
+  const scaleX = from.width / to.width;
+  const scaleY = from.height / to.height;
+
+  flight = plaque.animate(
+    [
+      { transform: `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})` },
+      { transform: 'none' },
+    ],
+    { duration, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' },
+  );
 }
 
 // Inlines the immortal SVG so its layers (head, eyes, beard...) can be animated by CSS.
@@ -69,16 +101,27 @@ export function startKoiSwimming() {
 
 export function playAskSequence({ onResult } = {}) {
   clearTimers();
+  cancelFlight();
   onResultCallback = onResult;
   const timing = reducedMotion.matches ? TIMING.reduced : TIMING.full;
   const think = timing.thinkMin + Math.random() * (timing.thinkMax - timing.thinkMin);
 
+  // Each step: [how long the previous step lasts, what starts next]
+  const steps = [
+    [timing.appear, () => setState({ status: 'thinking' })],
+    [think, timing.react && (() => setState({ status: 'reacting' }))],
+    [timing.react, timing.retrieve && (() => setState({ status: 'retrieving' }))],
+    [timing.retrieve, timing.present && (() => presentPlaque(timing.present))],
+    [timing.present, timing.reveal && (() => setState({ status: 'revealing' }))],
+    [timing.reveal, showResult],
+  ];
+
   setState({ status: 'appearing' });
-  later(timing.appear, () => setState({ status: 'thinking' }));
-  if (timing.react > 0) {
-    later(timing.appear + think, () => setState({ status: 'reacting' }));
+  let at = 0;
+  for (const [wait, start] of steps) {
+    at += wait;
+    if (start) later(at, start);
   }
-  later(timing.appear + think + timing.react, showResult);
 }
 
 export function skipToResult() {
@@ -87,5 +130,6 @@ export function skipToResult() {
 
 export function stopSequence() {
   clearTimers();
+  cancelFlight();
   onResultCallback = null;
 }
