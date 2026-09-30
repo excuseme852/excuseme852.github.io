@@ -43,7 +43,7 @@ Plan Phase 5 (spec Section 12): plaque from the `#sleeve` layer, `#plaque` place
 - Reference image stays local only: `spec/reference/immortal-reference.jpeg` is ignored via `.gitignore` (whole `spec/reference/` folder) and never committed. This overrides the spec's "in the repo" wording. Use it for Phase 11 from the local folder.
 - Input limit is **100 characters** (counter appears from 50). Overrides the spec's ~300 (Section 13.2).
 - Submit button label: 「問大仙」 / "Ask the Immortal". Home prompt: 「到底發生過什麼事」 / "Hey yo what’s up" (creator's wording). English label for the 💀 style is "Insane" (internal id stays `ridiculous`).
-- Scene (creator's request): home already shows a floating cloud, starlight beams + falling sparkles from the top, and two koi circling the cloud (passing in front of and behind it). This overrides the spec's "no complex koi animation"; it is CSS-only (transform/opacity, plus a discrete z-index switch).
+- Scene (creator's request): home already shows a floating cloud, starlight beams + falling sparkles from the top, and three koi circling the cloud (passing in front of and behind it) at randomly changing speeds. This overrides the spec's "no complex koi animation"; the orbit is CSS (transform/opacity, plus a discrete z-index switch) and `startKoiSwimming()` in `animation.js` only varies playbackRate.
 - Asking: home fades out, the immortal pops up from behind the cloud with a puff. Skip = round arrow button bottom-right during the performance.
 - Result screen has a permanent 「← 改過個情況」 / "← Change the story" button that returns home with the text kept.
 - Temporary sample excuse lives in locales (`sample.excuse`); remove it in Phase 8.

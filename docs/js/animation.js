@@ -41,6 +41,32 @@ export async function loadImmortal(container) {
   }
 }
 
+// Koi drift between lazy and fast swimming. CSS runs the orbit; this only changes
+// its speed. All animations of one koi share the same rate, so they stay in sync.
+export function startKoiSwimming() {
+  if (reducedMotion.matches) return;
+  document.querySelectorAll('.koi-track').forEach((track) => {
+    const animations = track.getAnimations?.({ subtree: true }) ?? [];
+    if (!animations.length) return;
+
+    let rate = 1;
+    let target = 1;
+    const pickTarget = () => {
+      target = 0.4 + Math.random() * 1.8; // 0.4× (lazy) to 2.2× (dash)
+      setTimeout(pickTarget, 2000 + Math.random() * 3000);
+    };
+    pickTarget();
+
+    // Ease toward the target so speed changes feel like swimming, not jumping.
+    setInterval(() => {
+      rate += (target - rate) * 0.1;
+      animations.forEach((animation) => {
+        animation.playbackRate = rate;
+      });
+    }, 100);
+  });
+}
+
 export function playAskSequence({ onResult } = {}) {
   clearTimers();
   onResultCallback = onResult;

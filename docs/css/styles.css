@@ -370,8 +370,13 @@ body[data-state="invalid"] #situation {
   animation-delay: var(--koi-delay);
 }
 
+/* Three koi spaced evenly around the 20s loop */
 .koi-track--second {
-  --koi-delay: -10s;
+  --koi-delay: -6.67s;
+}
+
+.koi-track--third {
+  --koi-delay: -13.33s;
 }
 
 .koi-x {
@@ -395,6 +400,11 @@ body[data-state="invalid"] #situation {
 .koi-track--second .koi {
   width: 44px;
   margin: -11px 0 0 -22px;
+}
+
+.koi-track--third .koi {
+  width: 50px;
+  margin: -12.5px 0 0 -25px;
 }
 
 @keyframes koi-x {
@@ -718,6 +728,7 @@ body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting
   .koi-track { z-index: 3; }
   .koi-x { transform: translateX(calc(var(--cloud-w) * 0.36)); }
   .koi-track--second .koi-x { transform: translateX(calc(var(--cloud-w) * -0.4)); }
+  .koi-track--third .koi-x { transform: translateX(calc(var(--cloud-w) * -0.05)); }
   .koi-y { transform: translateY(calc(var(--cloud-h) * 0.15)); }
 
   .immortal,

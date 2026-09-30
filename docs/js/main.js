@@ -2,7 +2,7 @@
 
 import { detectLang, setLang, getLang, t } from './i18n.js';
 import { state, setState } from './state.js';
-import { loadImmortal, playAskSequence, skipToResult, stopSequence } from './animation.js';
+import { loadImmortal, playAskSequence, skipToResult, stopSequence, startKoiSwimming } from './animation.js';
 
 const MAX_LENGTH = 100;
 const COUNTER_FROM = 50; // show the counter once input reaches this length
@@ -133,6 +133,7 @@ async function init() {
 
   updateCounter();
   setState({ status: input.value.trim() ? 'input' : 'idle' });
+  startKoiSwimming();
 
   input.addEventListener('input', onInput);
   form.addEventListener('change', onStyleChange);
