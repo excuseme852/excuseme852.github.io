@@ -15,8 +15,17 @@
     "placeholder": "Dodging a reunion? Late again? Spill it…",
     "styleLegend": "Pick a style",
     "submit": "Ask the Immortal",
-    "counter": "{count} / {max}",
-    "tempReceived": "The immortal heard you! (He shows up in the next stage.)"
+    "counter": "{count} / {max}"
+  },
+  "stage": {
+    "immortalLabel": "A cartoon immortal sitting on a cloud",
+    "thinking": "The immortal is thinking...",
+    "skip": "Skip to the excuse",
+    "resultLabel": "The immortal hands you this:",
+    "back": "← Change the story"
+  },
+  "sample": {
+    "excuse": "So sorry — my grandma's koi is turning three today and I'm on cake duty."
   },
   "style": {
     "polite": "😇 Polite",

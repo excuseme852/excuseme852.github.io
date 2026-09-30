@@ -2,6 +2,7 @@
 
 import { detectLang, setLang, getLang, t } from './i18n.js';
 import { state, setState } from './state.js';
+import { loadImmortal, playAskSequence, skipToResult, stopSequence } from './animation.js';
 
 const MAX_LENGTH = 100;
 const COUNTER_FROM = 50; // show the counter once input reaches this length
@@ -13,6 +14,10 @@ const input = document.getElementById('situation');
 const counter = document.getElementById('char-counter');
 const message = document.getElementById('form-message');
 const langToggle = document.getElementById('lang-toggle');
+const immortal = document.getElementById('immortal');
+const skipButton = document.getElementById('skip-button');
+const backButton = document.getElementById('back-button');
+const resultCard = document.getElementById('result-card');
 
 // Remember which message is showing, so it can be re-translated on language switch.
 let messageKey = null;
@@ -56,7 +61,7 @@ function restoreStyle() {
 function onInput() {
   updateCounter();
   const hasText = input.value.trim().length > 0;
-  if (state.status === 'invalid' || state.status === 'submitted') showMessage(null);
+  if (state.status === 'invalid') showMessage(null);
   setState({ status: hasText ? 'input' : 'idle' });
 }
 
@@ -83,10 +88,16 @@ function onSubmit(event) {
     return;
   }
 
-  // Temporary until Phase 4: the immortal is not on stage yet.
-  setState({ status: 'submitted', situation });
-  showMessage('home.tempReceived', 'info');
-  console.info('Ask the immortal:', { situation: state.situation, style: state.style });
+  showMessage(null);
+  input.blur(); // closes the phone keyboard so the stage is visible
+  setState({ situation });
+  playAskSequence({ onResult: () => resultCard.focus() });
+}
+
+function onBack() {
+  stopSequence();
+  setState({ status: input.value.trim() ? 'input' : 'idle' });
+  input.focus();
 }
 
 async function onLangToggle() {
@@ -106,6 +117,7 @@ async function onLangToggle() {
 async function init() {
   input.maxLength = MAX_LENGTH;
   restoreStyle();
+  loadImmortal(immortal);
 
   try {
     await setLang(detectLang());
@@ -126,6 +138,8 @@ async function init() {
   form.addEventListener('change', onStyleChange);
   form.addEventListener('submit', onSubmit);
   langToggle.addEventListener('click', onLangToggle);
+  skipButton.addEventListener('click', skipToResult);
+  backButton.addEventListener('click', onBack);
 }
 
 init();

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 40">
+  <!-- Koi facing right -->
+  <path d="M22 20 L 3 7 C 9 16, 9 24, 3 33 Z" fill="#f28c4b" stroke="#c4502a" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M34 10 C 40 2, 50 2, 54 9 Z" fill="#f28c4b" stroke="#c4502a" stroke-width="1.5" stroke-linejoin="round"/>
+  <ellipse cx="44" cy="20" rx="25" ry="11" fill="#ef6a3a" stroke="#c4502a" stroke-width="1.5"/>
+  <path d="M30 14 C 36 12, 42 16, 40 22 C 36 26, 30 24, 30 14 Z" fill="#fff4e6"/>
+  <path d="M46 26 C 50 32, 42 36, 40 30 Z" fill="#f28c4b" stroke="#c4502a" stroke-width="1.2"/>
+  <circle cx="60" cy="17" r="2.6" fill="#3b2a4a"/>
+  <path d="M68 22 C 72 24, 74 28, 72 30" fill="none" stroke="#c4502a" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

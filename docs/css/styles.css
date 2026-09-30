@@ -15,6 +15,13 @@
   --radius-pill: 999px;
   --tap: 44px;
 
+  --color-sky: #e6d9f4;
+  --color-light: rgba(255, 244, 205, 0.85);
+
+  /* Scene size: the cloud scales with the screen, capped on desktop */
+  --cloud-w: min(100vw, 460px);
+  --cloud-h: calc(var(--cloud-w) * 0.4);
+
   --font: system-ui, -apple-system, "PingFang HK", "Microsoft JhengHei", "Noto Sans HK", sans-serif;
 }
 
@@ -58,8 +65,10 @@ textarea {
     calc(16px + env(safe-area-inset-right))
     calc(24px + env(safe-area-inset-bottom))
     calc(16px + env(safe-area-inset-left));
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: auto 1fr;
   transition: opacity 0.2s ease;
 }
 
@@ -90,11 +99,13 @@ body[data-state="loading"] .app {
 }
 
 .home {
-  flex: 1;
+  grid-area: 2 / 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
+  padding-bottom: calc(var(--cloud-h) * 0.55); /* keep the form above the cloud */
+  transition: opacity 0.25s ease, visibility 0s linear 0s;
 }
 
 .app-title {
@@ -260,12 +271,467 @@ body[data-state="invalid"] #situation {
   outline-offset: 2px;
 }
 
-/* ===== Reduced motion ===== */
+/* ===== Background scene ===== */
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--color-sky) 0%, var(--color-bg) 55%);
+}
+
+/* Starlight beams shining down onto the cloud */
+.ray {
+  position: absolute;
+  top: -5%;
+  width: 70px;
+  height: 85vh;
+  transform-origin: top center;
+  background: linear-gradient(to right, transparent, var(--color-light), transparent);
+  -webkit-mask-image: linear-gradient(to bottom, #000 10%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 10%, transparent 100%);
+  animation: ray-glow 5s ease-in-out infinite alternate;
+}
+
+.ray:nth-child(1) { left: 12%; transform: rotate(-16deg); animation-delay: -1s; }
+.ray:nth-child(2) { left: 34%; width: 90px; transform: rotate(-5deg); animation-delay: -3s; }
+.ray:nth-child(3) { left: 56%; transform: rotate(6deg); animation-delay: -2s; }
+.ray:nth-child(4) { left: 76%; width: 55px; transform: rotate(17deg); animation-delay: -4s; }
+
+@keyframes ray-glow {
+  from { opacity: 0.3; }
+  to { opacity: 0.85; }
+}
+
+/* Twinkling stars drifting down */
+.spark {
+  position: absolute;
+  top: 2%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px 3px rgba(255, 226, 150, 0.9);
+  opacity: 0;
+  animation: spark-fall 6s linear infinite;
+}
+
+.spark:nth-of-type(1) { left: 18%; animation-delay: 0s; }
+.spark:nth-of-type(2) { left: 32%; animation-delay: -2.2s; animation-duration: 7s; }
+.spark:nth-of-type(3) { left: 47%; animation-delay: -4.1s; }
+.spark:nth-of-type(4) { left: 60%; animation-delay: -1.3s; animation-duration: 5.5s; }
+.spark:nth-of-type(5) { left: 72%; animation-delay: -3.4s; animation-duration: 6.5s; }
+.spark:nth-of-type(6) { left: 85%; animation-delay: -5s; }
+
+@keyframes spark-fall {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  15% { opacity: 1; }
+  80% { opacity: 0.7; }
+  100% { transform: translateY(62vh) scale(1); opacity: 0; }
+}
+
+/* Cloud + everything sitting on it bobs gently together */
+.cloud-group {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom) - var(--cloud-h) * 0.12);
+  width: var(--cloud-w);
+  height: var(--cloud-h);
+  margin-inline: auto;
+  animation: cloud-bob 4s ease-in-out infinite alternate;
+}
+
+@keyframes cloud-bob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
+.cloud {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+/* Koi swimming in an ellipse around the cloud.
+   x and y oscillate a quarter-cycle apart; depth switches the koi
+   in front of the cloud (front half) and behind it (back half). */
+.koi-track {
+  --koi-delay: 0s;
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 0;
+  height: 0;
+  animation: koi-depth 20s linear infinite;
+  animation-delay: var(--koi-delay);
+}
+
+.koi-track--second {
+  --koi-delay: -10s;
+}
+
+.koi-x {
+  animation: koi-x 10s ease-in-out infinite alternate;
+  animation-delay: var(--koi-delay);
+}
+
+.koi-y {
+  animation: koi-y 10s ease-in-out infinite alternate;
+  animation-delay: calc(var(--koi-delay) - 5s);
+}
+
+.koi {
+  display: block;
+  width: 56px;
+  margin: -14px 0 0 -28px;
+  animation: koi-face 20s linear infinite;
+  animation-delay: var(--koi-delay);
+}
+
+.koi-track--second .koi {
+  width: 44px;
+  margin: -11px 0 0 -22px;
+}
+
+@keyframes koi-x {
+  from { transform: translateX(calc(var(--cloud-w) * -0.5)); }
+  to { transform: translateX(calc(var(--cloud-w) * 0.5)); }
+}
+
+@keyframes koi-y {
+  from { transform: translateY(calc(var(--cloud-h) * -0.45)); }
+  to { transform: translateY(calc(var(--cloud-h) * 0.3)); }
+}
+
+@keyframes koi-face {
+  0%, 49.9% { transform: scaleX(1); }
+  50%, 100% { transform: scaleX(-1); }
+}
+
+@keyframes koi-depth {
+  0%, 49.9% { z-index: 3; }
+  50%, 100% { z-index: 0; }
+}
+
+/* ===== Immortal ===== */
+.immortal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 40%;
+  z-index: 1; /* behind the cloud */
+  width: min(70vw, 300px, 40dvh);
+  margin-inline: auto;
+  aspect-ratio: 300 / 340;
+  opacity: 0;
+  transform: translateY(45%) scale(0.6);
+  transition: transform 0.3s ease-in, opacity 0.2s ease;
+}
+
+.immortal svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Every layer transforms around a point given in SVG (viewBox) units */
+.immortal svg g {
+  transform-box: view-box;
+}
+
+/* Pop out from behind the cloud after the home screen fades */
+body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"], [data-state="result"]) .immortal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s, opacity 0.15s ease 0.25s;
+}
+
+/* "Poof" puff at the moment he appears */
+.puff {
+  position: absolute;
+  left: 50%;
+  top: 22%;
+  z-index: 2;
+}
+
+.puff span {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  border-radius: 50%;
+  background: #fffaf0;
+  opacity: 0;
+}
+
+body[data-state="appearing"] .puff span {
+  animation: puff 0.6s ease-out 0.25s both;
+}
+
+body[data-state="appearing"] .puff span:nth-child(1) { --puff-x: -70px; }
+body[data-state="appearing"] .puff span:nth-child(2) { --puff-x: 0px; }
+body[data-state="appearing"] .puff span:nth-child(3) { --puff-x: 70px; }
+
+@keyframes puff {
+  from { transform: translate(0, 0) scale(0.3); opacity: 0.95; }
+  to { transform: translate(var(--puff-x), -30px) scale(1.6); opacity: 0; }
+}
+
+/* Idle blink */
+#immortal #eyes {
+  transform-origin: 150px 122px;
+  animation: blink 4s infinite;
+}
+
+@keyframes blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+
+#immortal #head,
+#immortal #pupils,
+#immortal #brows,
+#immortal #beard {
+  transition: transform 0.3s ease;
+}
+
+#immortal #head { transform-origin: 150px 190px; }
+#immortal #beard { transform-origin: 150px 150px; }
+
+/* Thinking: head tilts, eyes look up, beard sways */
+body:is([data-state="thinking"], [data-state="reacting"]) #immortal #head {
+  transform: rotate(-7deg);
+}
+
+body[data-state="thinking"] #immortal #pupils {
+  transform: translate(4px, -5px);
+}
+
+body[data-state="thinking"] #immortal #beard {
+  animation: beard-sway 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes beard-sway {
+  from { transform: rotate(-3deg); }
+  to { transform: rotate(3deg); }
+}
+
+/* Reacting: brows lift and he hops — "got it!" */
+body[data-state="reacting"] #immortal #brows {
+  transform: translateY(-7px);
+}
+
+body[data-state="reacting"] #immortal svg {
+  animation: hop 0.4s ease-out;
+}
+
+@keyframes hop {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-14px); }
+}
+
+/* ===== Home ↔ stage switching ===== */
+body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"], [data-state="result"]) .home {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+}
+
+.stage {
+  grid-area: 2 / 1;
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  padding-top: 8px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"], [data-state="result"]) .stage {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Thinking bubble and result share the same top slot */
+.thinking-bubble,
+.result {
+  grid-area: 1 / 1;
+}
+
+.thinking-bubble,
+.result,
+.skip-button {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+}
+
+.thinking-bubble {
+  position: relative;
+  align-self: start;
+  margin: 12px 0 0;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: 0 3px 0 var(--color-border);
+  font-weight: 700;
+  transform: translateY(6px);
+}
+
+.thinking-bubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  background: var(--color-surface);
+  transform: rotate(45deg);
+}
+
+body:is([data-state="thinking"], [data-state="reacting"]) .thinking-bubble {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s;
+}
+
+.result {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transform: scale(0.95);
+}
+
+body[data-state="result"] .result {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s;
+}
+
+.result-card {
+  width: 100%;
+  padding: 18px 20px;
+  border: 3px solid var(--color-gold);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: 0 4px 0 var(--color-border);
+}
+
+.result-card:focus {
+  outline: none;
+}
+
+.result-label {
+  margin: 0 0 6px;
+  font-size: 0.875rem;
+  color: var(--color-ink-soft);
+}
+
+.result-text {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.back-button {
+  min-height: var(--tap);
+  padding: 0 20px;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.back-button:focus-visible,
+.skip-button:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Skip arrow, bottom-right, while the immortal performs */
+.skip-button {
+  position: fixed;
+  right: calc(16px + env(safe-area-inset-right));
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  box-shadow: 0 4px 0 var(--color-accent-dark);
+  cursor: pointer;
+}
+
+.skip-button svg {
+  width: 26px;
+  height: 26px;
+}
+
+body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"]) .skip-button {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s ease, visibility 0s;
+  animation: nudge 1s ease-in-out infinite alternate;
+}
+
+@keyframes nudge {
+  from { transform: translateX(0); }
+  to { transform: translateX(5px); }
+}
+
+/* ===== Reduced motion: simple fades, nothing drifts ===== */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
+  .ray,
+  .spark,
+  .cloud-group,
+  .koi-track,
+  .koi-x,
+  .koi-y,
+  .koi,
+  .puff span,
+  .skip-button,
+  #immortal svg,
+  #immortal #eyes,
+  #immortal #beard {
+    animation: none !important;
+  }
+
+  .spark { display: none; }
+  .ray { opacity: 0.6; }
+  .koi-track { z-index: 3; }
+  .koi-x { transform: translateX(calc(var(--cloud-w) * 0.36)); }
+  .koi-track--second .koi-x { transform: translateX(calc(var(--cloud-w) * -0.4)); }
+  .koi-y { transform: translateY(calc(var(--cloud-h) * 0.15)); }
+
+  .immortal,
+  body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"], [data-state="result"]) .immortal,
+  #immortal g,
+  .thinking-bubble,
+  .result,
+  .style-chip,
+  .ask-button {
+    transform: none !important;
+  }
+
+  .immortal,
+  body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"], [data-state="result"]) .immortal {
+    transition: opacity 0.3s ease;
   }
 }

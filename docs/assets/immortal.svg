@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" aria-hidden="true" focusable="false">
+  <!-- Placeholder immortal (Phase 4). Layers are named so they can animate separately.
+       Final artwork replaces this file in Phase 11. -->
+
+  <!-- Staff with gourd (behind the body) -->
+  <g id="staff">
+    <path d="M246 70 C 240 150, 238 240, 236 335" fill="none" stroke="#7a4a2a" stroke-width="10" stroke-linecap="round"/>
+    <path d="M246 72 C 250 52, 272 50, 274 66 C 276 80, 258 82, 258 70" fill="none" stroke="#7a4a2a" stroke-width="9" stroke-linecap="round"/>
+    <line x1="266" y1="78" x2="266" y2="92" stroke="#c0392b" stroke-width="3"/>
+    <circle cx="266" cy="100" r="9" fill="#e8a33d" stroke="#a8652a" stroke-width="2"/>
+    <circle cx="266" cy="121" r="14" fill="#e8a33d" stroke="#a8652a" stroke-width="2"/>
+    <path d="M266 135 L 262 156 M266 135 L 270 156" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Body: robe, belt, sash -->
+  <g id="body">
+    <path d="M70 340 C 62 262, 84 204, 116 190 L 184 190 C 216 204, 238 262, 230 340 Z" fill="#7b4fb0" stroke="#4a2c6e" stroke-width="3"/>
+    <path d="M78 318 C 120 330, 180 330, 222 318" fill="none" stroke="#f0c14b" stroke-width="6"/>
+    <rect x="96" y="246" width="108" height="16" rx="6" fill="#4a2c6e" stroke="#f0c14b" stroke-width="3"/>
+    <path d="M136 262 L 164 262 L 168 330 L 150 342 L 132 330 Z" fill="#2f7f86" stroke="#f0c14b" stroke-width="3"/>
+  </g>
+
+  <!-- Left sleeve resting on the lap (the plaque comes out of here in Phase 5) -->
+  <g id="sleeve">
+    <path d="M92 214 C 64 240, 60 286, 88 300 C 112 310, 138 298, 140 280 C 124 276, 108 262, 104 240 Z" fill="#8d62c4" stroke="#4a2c6e" stroke-width="3"/>
+    <path d="M88 300 C 112 310, 138 298, 140 280" fill="none" stroke="#f0c14b" stroke-width="5"/>
+    <circle cx="136" cy="288" r="11" fill="#f6c9a8" stroke="#c98d6b" stroke-width="2"/>
+    <g id="plaque" opacity="0"></g>
+  </g>
+
+  <!-- Head: face, eyes, brows, beard, moustache, mouth -->
+  <g id="head">
+    <circle cx="90" cy="124" r="12" fill="#f3b995" stroke="#c98d6b" stroke-width="2"/>
+    <circle cx="210" cy="124" r="12" fill="#f3b995" stroke="#c98d6b" stroke-width="2"/>
+    <circle cx="150" cy="118" r="62" fill="#f6c9a8" stroke="#c98d6b" stroke-width="3"/>
+    <ellipse cx="128" cy="78" rx="18" ry="9" fill="#fff" opacity="0.45" transform="rotate(-20 128 78)"/>
+    <ellipse cx="116" cy="140" rx="10" ry="6" fill="#f28c8c" opacity="0.55"/>
+    <ellipse cx="184" cy="140" rx="10" ry="6" fill="#f28c8c" opacity="0.55"/>
+
+    <g id="eyes">
+      <g id="pupils">
+        <ellipse cx="128" cy="122" rx="6" ry="8" fill="#3b2a4a"/>
+        <ellipse cx="172" cy="122" rx="6" ry="8" fill="#3b2a4a"/>
+        <circle cx="130" cy="118" r="2" fill="#fff"/>
+        <circle cx="174" cy="118" r="2" fill="#fff"/>
+      </g>
+    </g>
+
+    <g id="brows">
+      <path d="M110 108 C 116 96, 134 94, 142 104 C 132 102, 120 104, 110 108 Z" fill="#fff" stroke="#d8d0c4" stroke-width="2"/>
+      <path d="M190 108 C 184 96, 166 94, 158 104 C 168 102, 180 104, 190 108 Z" fill="#fff" stroke="#d8d0c4" stroke-width="2"/>
+    </g>
+
+    <circle cx="150" cy="138" r="8" fill="#eba98a"/>
+
+    <g id="beard">
+      <path d="M104 146 C 96 200, 118 262, 150 306 C 182 262, 204 200, 196 146 C 180 170, 120 170, 104 146 Z" fill="#fff" stroke="#d8d0c4" stroke-width="3"/>
+      <path d="M130 190 C 132 220, 140 250, 148 278 M170 190 C 168 220, 160 250, 152 278" fill="none" stroke="#e4ddd2" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <path d="M137 166 Q 150 184 163 166 Z" fill="#9b3344"/>
+    <path d="M150 158 C 136 148, 114 150, 104 166 C 120 172, 138 168, 150 162 C 162 168, 180 172, 196 166 C 186 150, 164 148, 150 158 Z" fill="#fff" stroke="#d8d0c4" stroke-width="2"/>
+  </g>
+
+  <!-- Right hand holding the staff (in front) -->
+  <g id="arm">
+    <path d="M196 206 C 222 214, 240 232, 246 252 C 236 262, 220 262, 212 254 C 206 240, 200 228, 190 222 Z" fill="#8d62c4" stroke="#4a2c6e" stroke-width="3"/>
+    <circle cx="238" cy="236" r="12" fill="#f6c9a8" stroke="#c98d6b" stroke-width="2"/>
+  </g>
+</svg>

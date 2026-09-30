@@ -5,18 +5,18 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 ## Current phase
 
-**Phase 4 — Immortal** (not started)
+**Phase 5 — Plaque** (not started)
 
 ## Next step
 
-Plan Phase 4 (spec Sections 10–11, 15): placeholder immortal SVG, appear + thinking states, sample excuse. Replaces the temporary 「大仙收到」 message (`home.tempReceived`).
+Plan Phase 5 (spec Section 12): plaque from the `#sleeve` layer, `#plaque` placeholder group already exists in `assets/immortal.svg`; replaces the plain result card.
 
 ## Phase checklist
 
 - [x] 1. Environment check
 - [x] 2. Project setup & first deployment (Hello page live on GitHub Pages)
 - [x] 3. Home screen + localization
-- [ ] 4. Immortal (placeholder SVG, appear/thinking, sample excuse)
+- [x] 4. Immortal (placeholder SVG, appear/thinking, sample excuse)
 - [ ] 5. Plaque (retrieve, move, flip, reveal, tap to skip, reduced motion)
 - [ ] 6. Excuse library structure + first content
 - [ ] 7. Excuse engine + dev test page
@@ -43,7 +43,10 @@ Plan Phase 4 (spec Sections 10–11, 15): placeholder immortal SVG, appear + thi
 - Reference image stays local only: `spec/reference/immortal-reference.jpeg` is ignored via `.gitignore` (whole `spec/reference/` folder) and never committed. This overrides the spec's "in the repo" wording. Use it for Phase 11 from the local folder.
 - Input limit is **100 characters** (counter appears from 50). Overrides the spec's ~300 (Section 13.2).
 - Submit button label: 「問大仙」 / "Ask the Immortal". Home prompt: 「到底發生過什麼事」 / "Hey yo what’s up" (creator's wording). English label for the 💀 style is "Insane" (internal id stays `ridiculous`).
-- Phase 3 submit shows a temporary localized message (`home.tempReceived`); remove it in Phase 4.
+- Scene (creator's request): home already shows a floating cloud, starlight beams + falling sparkles from the top, and two koi circling the cloud (passing in front of and behind it). This overrides the spec's "no complex koi animation"; it is CSS-only (transform/opacity, plus a discrete z-index switch).
+- Asking: home fades out, the immortal pops up from behind the cloud with a puff. Skip = round arrow button bottom-right during the performance.
+- Result screen has a permanent 「← 改過個情況」 / "← Change the story" button that returns home with the text kept.
+- Temporary sample excuse lives in locales (`sample.excuse`); remove it in Phase 8.
 
 ## Open questions
 

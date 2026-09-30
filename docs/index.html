@@ -9,6 +9,26 @@
   <script type="module" src="./js/main.js"></script>
 </head>
 <body data-state="loading">
+  <!-- Background scene: starlight, floating cloud, koi, and the immortal hiding behind the cloud -->
+  <div class="scene">
+    <div class="rays" aria-hidden="true">
+      <span class="ray"></span><span class="ray"></span><span class="ray"></span><span class="ray"></span>
+      <span class="spark"></span><span class="spark"></span><span class="spark"></span>
+      <span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    </div>
+    <div class="cloud-group">
+      <div id="immortal" class="immortal" role="img" data-i18n-aria-label="stage.immortalLabel"></div>
+      <div class="puff" aria-hidden="true"><span></span><span></span><span></span></div>
+      <img class="cloud" src="./assets/cloud.svg" alt="">
+      <div class="koi-track" aria-hidden="true">
+        <div class="koi-x"><div class="koi-y"><img class="koi" src="./assets/koi.svg" alt=""></div></div>
+      </div>
+      <div class="koi-track koi-track--second" aria-hidden="true">
+        <div class="koi-x"><div class="koi-y"><img class="koi" src="./assets/koi.svg" alt=""></div></div>
+      </div>
+    </div>
+  </div>
+
   <div class="app">
     <header class="topbar">
       <button id="lang-toggle" class="lang-toggle" type="button"
@@ -50,6 +70,24 @@
         <button type="submit" class="ask-button" data-i18n="home.submit"></button>
       </form>
     </main>
+
+    <section class="stage" aria-live="polite">
+      <p class="thinking-bubble" data-i18n="stage.thinking"></p>
+
+      <div class="result">
+        <div id="result-card" class="result-card" tabindex="-1">
+          <p class="result-label" data-i18n="stage.resultLabel"></p>
+          <p class="result-text" data-i18n="sample.excuse"></p>
+        </div>
+        <button id="back-button" class="back-button" type="button" data-i18n="stage.back"></button>
+      </div>
+
+      <button id="skip-button" class="skip-button" type="button" data-i18n-aria-label="stage.skip">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M5 12h13M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </section>
   </div>
 </body>
 </html>

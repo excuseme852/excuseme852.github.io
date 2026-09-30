@@ -15,8 +15,17 @@
     "placeholder": "例如：唔想去舊同學聚會、今朝又遲到……",
     "styleLegend": "揀個風格",
     "submit": "問大仙",
-    "counter": "{count} / {max}",
-    "tempReceived": "大仙收到！（下一階段先會出場）"
+    "counter": "{count} / {max}"
+  },
+  "stage": {
+    "immortalLabel": "卡通大仙坐喺雲上面",
+    "thinking": "仙人正在思考……",
+    "skip": "跳去結果",
+    "resultLabel": "大仙賜你一個藉口：",
+    "back": "← 改過個情況"
+  },
+  "sample": {
+    "excuse": "唔好意思，我阿婆養嗰條錦鯉今日生日，我要返去幫手切蛋糕。"
   },
   "style": {
     "polite": "😇 禮貌",

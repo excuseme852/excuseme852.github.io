@@ -3,7 +3,9 @@
 // so CSS can react to state changes.
 
 export const state = {
-  status: 'loading', // loading | idle | input | invalid | submitted
+  // Home:  loading | idle | input | invalid
+  // Stage: appearing | thinking | reacting | result
+  status: 'loading',
   situation: '',
   style: 'polite',
 };
