@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "title": "Excuse Me · Ask the Immortal for an Excuse",
+    "description": "Tell the immortal what happened, pick a style, and he'll pull the perfect excuse from his sleeve."
+  },
+  "app": {
+    "title": "Excuse Me"
+  },
+  "lang": {
+    "toggle": "中文",
+    "toggleLabel": "Switch to Chinese"
+  },
+  "home": {
+    "prompt": "Hey yo what’s up",
+    "placeholder": "Dodging a reunion? Late again? Spill it…",
+    "styleLegend": "Pick a style",
+    "submit": "Ask the Immortal",
+    "counter": "{count} / {max}",
+    "tempReceived": "The immortal heard you! (He shows up in the next stage.)"
+  },
+  "style": {
+    "polite": "😇 Polite",
+    "funny": "😂 Funny",
+    "ridiculous": "💀 Insane"
+  },
+  "validation": {
+    "empty": "Even the immortal has no idea what happened 😂",
+    "tooLong": "Whoa, that's a whole saga. Mind keeping it shorter?"
+  }
+}

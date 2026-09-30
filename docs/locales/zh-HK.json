@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "title": "藉口生成器 · 問大仙攞個好藉口",
+    "description": "講低你遇到咩事，揀個風格，大仙即刻由袖入面抽塊牌畀你一個藉口。"
+  },
+  "app": {
+    "title": "藉口生成器"
+  },
+  "lang": {
+    "toggle": "EN",
+    "toggleLabel": "切換至英文"
+  },
+  "home": {
+    "prompt": "到底發生過什麼事",
+    "placeholder": "例如：唔想去舊同學聚會、今朝又遲到……",
+    "styleLegend": "揀個風格",
+    "submit": "問大仙",
+    "counter": "{count} / {max}",
+    "tempReceived": "大仙收到！（下一階段先會出場）"
+  },
+  "style": {
+    "polite": "😇 禮貌",
+    "funny": "😂 搞笑",
+    "ridiculous": "💀 離譜"
+  },
+  "validation": {
+    "empty": "仙人都唔知道發生咩事喎 😂",
+    "tooLong": "大仙睇到眼花喇，講短啲得唔得？"
+  }
+}

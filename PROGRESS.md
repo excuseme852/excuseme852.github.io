@@ -5,17 +5,17 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 ## Current phase
 
-**Phase 3 — Home screen + localization** (not started)
+**Phase 4 — Immortal** (not started)
 
 ## Next step
 
-Plan Phase 3 (spec Sections 6, 8.2, 13.1–13.2, 19): layout, situation input, style selector, submit button, language toggle, `i18n.js` + `locales/zh-HK.json` / `en.json`, empty-input and length validation. Replaces the Hello page.
+Plan Phase 4 (spec Sections 10–11, 15): placeholder immortal SVG, appear + thinking states, sample excuse. Replaces the temporary 「大仙收到」 message (`home.tempReceived`).
 
 ## Phase checklist
 
 - [x] 1. Environment check
 - [x] 2. Project setup & first deployment (Hello page live on GitHub Pages)
-- [ ] 3. Home screen + localization
+- [x] 3. Home screen + localization
 - [ ] 4. Immortal (placeholder SVG, appear/thinking, sample excuse)
 - [ ] 5. Plaque (retrieve, move, flip, reveal, tap to skip, reduced motion)
 - [ ] 6. Excuse library structure + first content
@@ -40,6 +40,9 @@ Plan Phase 3 (spec Sections 6, 8.2, 13.1–13.2, 19): layout, situation input, s
 - Deployed: remote `origin` = github.com/excuseme852/excuseme852.github.io; Pages serves `main` / `/docs`; live and verified on a phone.
 - Commit email: GitHub noreply address (personal email stays private).
 - Reference image stays local only: `spec/reference/immortal-reference.jpeg` is ignored via `.gitignore` (whole `spec/reference/` folder) and never committed. This overrides the spec's "in the repo" wording. Use it for Phase 11 from the local folder.
+- Input limit is **100 characters** (counter appears from 50). Overrides the spec's ~300 (Section 13.2).
+- Submit button label: 「問大仙」 / "Ask the Immortal". Home prompt: 「到底發生過什麼事」 / "Hey yo what’s up" (creator's wording). English label for the 💀 style is "Insane" (internal id stays `ridiculous`).
+- Phase 3 submit shows a temporary localized message (`home.tempReceived`); remove it in Phase 4.
 
 ## Open questions
 

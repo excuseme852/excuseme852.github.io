@@ -1,0 +1,271 @@
+/* ===== Design tokens ===== */
+:root {
+  --color-bg: #f6ecd6;
+  --color-surface: #fffaf0;
+  --color-ink: #3b2a4a;
+  --color-ink-soft: #6e5f7a;
+  --color-accent: #6b3fa0;
+  --color-accent-dark: #52307c;
+  --color-gold: #e8a33d;
+  --color-border: #d9c7a3;
+  --color-error: #b3261e;
+  --color-info: #2e7d4f;
+
+  --radius: 16px;
+  --radius-pill: 999px;
+  --tap: 44px;
+
+  --font: system-ui, -apple-system, "PingFang HK", "Microsoft JhengHei", "Noto Sans HK", sans-serif;
+}
+
+/* ===== Base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.5;
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* ===== Layout: phone-width column, centered on larger screens ===== */
+.app {
+  max-width: 480px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding:
+    calc(12px + env(safe-area-inset-top))
+    calc(16px + env(safe-area-inset-right))
+    calc(24px + env(safe-area-inset-bottom))
+    calc(16px + env(safe-area-inset-left));
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.2s ease;
+}
+
+/* Hide the UI until the locale has loaded, to avoid a flash of empty labels. */
+body[data-state="loading"] .app {
+  opacity: 0;
+}
+
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lang-toggle {
+  min-width: var(--tap);
+  min-height: var(--tap);
+  padding: 0 14px;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lang-toggle:disabled {
+  opacity: 0.5;
+}
+
+.home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 2rem;
+  text-align: center;
+  color: var(--color-accent);
+}
+
+/* ===== Form ===== */
+.ask-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.prompt {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+#situation {
+  display: block;
+  width: 100%;
+  min-height: 120px;
+  padding: 14px;
+  font-size: 1rem; /* 16px minimum: prevents iOS zoom on focus */
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  resize: vertical;
+}
+
+#situation::placeholder {
+  color: var(--color-ink-soft);
+  opacity: 0.8;
+}
+
+#situation:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+body[data-state="invalid"] #situation {
+  border-color: var(--color-error);
+}
+
+.char-counter {
+  margin: 4px 4px 0;
+  text-align: right;
+  font-size: 0.875rem;
+  color: var(--color-ink-soft);
+}
+
+.char-counter[data-near-limit="true"] {
+  color: var(--color-error);
+  font-weight: 700;
+}
+
+/* ===== Style selector ===== */
+.styles {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.styles-legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.style-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.style-option {
+  position: relative;
+}
+
+/* Visually hidden but still keyboard- and screen-reader-accessible */
+.style-option input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.style-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  height: 100%;
+  padding: 8px 6px;
+  text-align: center;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.style-option input:checked + .style-chip {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+.style-option input:focus-visible + .style-chip {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.style-chip:active {
+  transform: scale(0.96);
+}
+
+/* ===== Message & submit ===== */
+.form-message {
+  min-height: 1.5em;
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+}
+
+.form-message[data-kind="error"] {
+  color: var(--color-error);
+}
+
+.form-message[data-kind="info"] {
+  color: var(--color-info);
+}
+
+.ask-button {
+  min-height: 56px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  box-shadow: 0 4px 0 var(--color-accent-dark);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.ask-button:active {
+  transform: translateY(3px);
+}
+
+.ask-button:focus-visible,
+.lang-toggle:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
