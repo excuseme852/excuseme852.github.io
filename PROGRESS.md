@@ -39,7 +39,7 @@ Plan Phase 4 (spec Sections 10–11, 15): placeholder immortal SVG, appear + thi
 - Environment: Git 2.56 (default branch `main`), Cursor + Live Server, Chrome, Claude Code.
 - Deployed: remote `origin` = github.com/excuseme852/excuseme852.github.io; Pages serves `main` / `/docs`; live and verified on a phone.
 - Commit email: GitHub noreply address (personal email stays private).
-- Branching: day-to-day work happens on `dev` and is pushed there as a backup (Pages ignores it). Merge `dev` into `main` only when the creator says it is ready to go public (~80% done). Phase 3 home screen is already live on `main`.
+- Branching: work directly on `main`. After each phase is committed, push to `main` so the live site updates (creator chose this over a `dev` branch).
 - Reference image stays local only: `spec/reference/immortal-reference.jpeg` is ignored via `.gitignore` (whole `spec/reference/` folder) and never committed. This overrides the spec's "in the repo" wording. Use it for Phase 11 from the local folder.
 - Input limit is **100 characters** (counter appears from 50). Overrides the spec's ~300 (Section 13.2).
 - Submit button label: 「問大仙」 / "Ask the Immortal". Home prompt: 「到底發生過什麼事」 / "Hey yo what’s up" (creator's wording). English label for the 💀 style is "Insane" (internal id stays `ridiculous`).
