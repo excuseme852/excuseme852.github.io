@@ -1,0 +1,14 @@
+# Private character reference image (kept local only, never published)
+/reference.jpeg
+spec/reference/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# macOS
+.DS_Store
+
+# Editor / local tool settings
+.vscode/
+.claude/settings.local.json
