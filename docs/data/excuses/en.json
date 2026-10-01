@@ -2,7 +2,38 @@
   "version": 1,
   "lang": "en",
   "excuses": {
-    "social_meal": { "polite": [], "funny": [], "ridiculous": [] },
+    "social_meal": {
+      "polite": [
+        "Thanks so much for the invite! I've already got something planned, so I won't be able to make it this time.",
+        "I've got a deadline that week, so I need to keep my schedule pretty light. Hope you all have a great time!",
+        "I've got a few things going on at home right now, so I'll have to sit this one out. Let's catch up another time.",
+        "I promised a friend I'd help them out that evening, so I won't be able to make it this time.",
+        "It's been a really busy stretch lately, and I could use a quiet night to recharge. Hope you have an amazing time!",
+        "I'm trying to keep my spending under control this month, so I'm taking a break from going out for a bit.",
+        "I've got an early start the next morning, so I probably shouldn't stay out late. I'll catch you next time!",
+        "My schedule's a bit packed lately, and I don't want to show up only to leave early. I'll have to pass this time."
+      ],
+      "funny": [
+        "My wallet has officially filed a complaint about my social calendar. I have to respect its wishes.",
+        "My social battery is at about 2%, and the charger is my couch.",
+        "I've already committed to a very serious relationship with my pajamas tonight.",
+        "My cat has booked a one-on-one meeting with me, and apparently rescheduling is not an option.",
+        "Netflix and I have a long-standing appointment tonight, and I've been putting it off all week.",
+        "My couch has been asking for quality time, and I feel like I owe it to the relationship.",
+        "I was going to come out, but my bed made a very convincing counteroffer.",
+        "I only have enough small talk left for one conversation, and I need to save it for an emergency."
+      ],
+      "ridiculous": [
+        "I promised my houseplants a family meeting that night, and they've been very clear about attendance.",
+        "My last brain cell is on annual leave, and I'm not allowed out without it.",
+        "I've been chosen to guard my fridge from the leftovers uprising. Humanity is counting on me.",
+        "My horoscope said leaving the house this week would result in a deeply embarrassing encounter with a pigeon. I'm not taking the risk.",
+        "I'm legally dead inside and the paperwork hasn't cleared yet, so I can't attend social events.",
+        "My toaster has developed a trust issue with me, and tonight we've agreed to work through it.",
+        "The universe sent me a warning to stay home tonight. It didn't explain why, but I'm not going to argue with the universe.",
+        "My refrigerator and I are currently negotiating a peace treaty over some very old leftovers. I can't leave the house during negotiations."
+      ]
+    },
     "work": { "polite": [], "funny": [], "ridiculous": [] },
     "late": { "polite": [], "funny": [], "ridiculous": [] },
     "general": { "polite": [], "funny": [], "ridiculous": [] }
