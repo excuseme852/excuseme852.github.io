@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "lang": "en",
+  "excuses": {
+    "social_meal": { "polite": [], "funny": [], "ridiculous": [] },
+    "work": { "polite": [], "funny": [], "ridiculous": [] },
+    "late": { "polite": [], "funny": [], "ridiculous": [] },
+    "general": { "polite": [], "funny": [], "ridiculous": [] }
+  },
+  "decline": [
+    "I can't help make an excuse for this one. Some things are better handled honestly.",
+    "Sorry, no excuses for this kind of thing. If you're in a tough spot, talking to someone you trust really helps.",
+    "The immortal only does everyday excuses. This one deserves a real conversation."
+  ],
+  "victim": [
+    "It sounds like someone is making you feel unsafe. Your safety comes first — call 999 if you're in danger, or reach out to someone you trust."
+  ],
+  "support": [
+    "It sounds like things are really heavy right now. You don't have to carry this alone — you can call The Samaritans Hong Kong on 2896 0000 (24 hours), or reach out to someone you trust."
+  ],
+  "exhausted": [
+    "The immortal's run out of fresh ideas… here's a rerun!",
+    "His sleeve's empty — reshuffling the plaques!",
+    "Even immortals repeat themselves eventually."
+  ]
+}

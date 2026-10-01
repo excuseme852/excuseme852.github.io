@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "matching": [
+    "1. Avoid overly broad keywords that commonly appear in unrelated sentences.",
+    "2. Prefer specific phrases over single generic words.",
+    "3. When a keyword has known false positives, use phrase exclusions (exclude) or mark it as weak (weakKeywords).",
+    "4. If multiple categories match, choose the strongest match, not just list order.",
+    "5. general is the fallback when no sufficiently relevant category is detected.",
+    "Scoring: each keyword hit = 2 points, each weakKeywords hit = 1 point. Matching ignores upper/lower case; English keywords match whole words only.",
+    "exclude: phrases removed from the input before this category is scored (e.g. 'due date' for date).",
+    "yieldsTo: if any listed category also scores, this category steps aside (e.g. health yields to work).",
+    "Highest score wins. Tie: the category whose matched keywords are longer (more specific) wins. Still tied: listed first wins. Zero points: general."
+  ],
+  "categories": [
+    {
+      "id": "late",
+      "keywords": ["遲到", "遲咗", "趕唔切", "瞓過龍", "塞車", "late", "overslept", "traffic", "delayed", "running late", "late for"]
+    },
+    {
+      "id": "reply_message",
+      "keywords": ["唔覆", "已讀不回", "訊息", "個group", "reply", "replied", "text back", "left on read", "message", "group chat"]
+    },
+    {
+      "id": "borrow_lend",
+      "keywords": ["借錢", "借車", "還錢", "欠錢", "lend", "borrow", "owe", "loan"]
+    },
+    {
+      "id": "date",
+      "keywords": ["拍拖", "約會", "相睇", "男朋友", "女朋友", "date", "dating", "go on a date", "Tinder", "crush", "boyfriend", "girlfriend"],
+      "exclude": ["due date", "deadline"]
+    },
+    {
+      "id": "family",
+      "keywords": ["屋企", "阿媽", "老豆", "父母", "親戚", "團年", "mum", "mom", "dad", "parents", "family", "relatives"]
+    },
+    {
+      "id": "exercise",
+      "keywords": ["做gym", "行山", "打波", "游水", "跑步", "瑜伽", "gym", "hiking", "sports", "swimming", "running", "yoga"],
+      "exclude": ["running late"]
+    },
+    {
+      "id": "study",
+      "keywords": ["功課", "考試", "補習", "論文", "上堂", "返學", "homework", "exam", "tutoring", "essay", "class", "school", "study"]
+    },
+    {
+      "id": "favor",
+      "keywords": ["幫手", "搬屋", "接送", "湊仔", "幫人做嘢", "favor", "help out", "help me move", "moving", "pick up", "drop off", "babysit"]
+    },
+    {
+      "id": "social_meal",
+      "keywords": ["聚會", "生日", "飯局", "食飯", "聚舊", "唱K", "party", "birthday", "dinner", "gathering", "karaoke"]
+    },
+    {
+      "id": "work",
+      "keywords": ["返工", "老闆", "同事", "OT", "開OT", "加班", "放工", "返公司", "work", "boss", "coworker", "overtime", "shift", "workplace"]
+    },
+    {
+      "id": "health",
+      "keywords": ["唔舒服", "頭痛", "肚痛", "發燒", "睇醫生", "覆診", "sick", "not feeling well", "headache", "stomachache", "fever", "doctor"],
+      "weakKeywords": ["病", "攰", "tired", "appointment"],
+      "yieldsTo": ["work"]
+    }
+  ],
+  "safety": {
+    "purpose": "Refuse when the user wants an excuse that helps carry out, hide, or evade consequences for serious illegal, violent, harmful, fraudulent or abusive behaviour. Keywords are signals; context decides.",
+    "rules": [
+      "1. A keyword alone never decides. Check the context cues below.",
+      "2. negationCues within 15 characters before a signal cancel that signal (e.g. 'I don't want to fake a document').",
+      "3. victimCues within 15 characters before a signal, or the word 'me' within 15 characters after it, mean the user is the victim: show the victim message (no excuse, no joke), not a refusal.",
+      "4. strong signals refuse on their own (after rules 2-3).",
+      "5. weak signals refuse only if the input also contains an intentCue and no discussionCue (talking about a film, news, a class... is not wrongdoing).",
+      "6. Refusals and victim messages are always serious; never use the funny or ridiculous style."
+    ],
+    "intentCues": [
+      "幫我", "點樣", "點先可以", "藉口", "瞞住", "唔俾人知", "唔畀人知", "唔被人發現", "我想", "我要", "我啱啱", "我琴日", "我打算", "計劃",
+      "cover up", "cover for", "get away with", "hide it", "so no one knows", "without getting caught", "help me", "how do i", "how to", "i want to", "i need to", "i'm going to", "i just", "i plan to", "excuse for"
+    ],
+    "discussionCues": [
+      "套戲", "部戲", "嘅戲", "睇完", "睇緊", "電影", "新聞", "套劇", "紀錄片", "小說", "上堂講", "報導",
+      "movie", "film", "documentary", "news", "article", "podcast", "tv show", "series", "novel", "lecture about"
+    ],
+    "negationCues": [
+      "唔想", "唔會", "唔好", "唔再", "停止", "唔應該", "冇",
+      "don't want to", "do not want to", "won't", "will not", "never", "stop", "shouldn't", "not going to", "refuse to"
+    ],
+    "victimCues": [
+      "俾人", "畀人", "被", "有人",
+      "someone", "somebody", "i'm being", "i am being"
+    ],
+    "categories": [
+      {
+        "id": "fraud",
+        "strong": ["呃保險", "騙保", "呃人錢", "騙錢", "insurance fraud", "commit fraud", "scam someone", "scam for money", "deceive someone for money"],
+        "weak": ["詐騙"]
+      },
+      {
+        "id": "forgery_impersonation",
+        "strong": ["偽造文件", "假病假紙", "假證件", "fake a document", "fake sick note", "fake a sick note", "fake doctor's note", "fake a doctor's note", "forge a", "forged", "forgery", "fake id", "pretend to be a police officer", "pretend to be a cop"],
+        "weak": ["冒認", "扮警察", "impersonate"]
+      },
+      {
+        "id": "legal_evasion",
+        "strong": ["呃差佬", "騙差佬", "lie to the police", "deceive the police", "evade the police", "evade police", "launder money"],
+        "weak": ["逃稅", "洗黑錢", "tax evasion", "money laundering"]
+      },
+      {
+        "id": "theft",
+        "strong": ["偷錢", "入屋偷嘢", "steal money", "help me steal", "shoplift", "shoplifting", "break into a house"],
+        "weak": ["打劫", "偷嘢", "爆竊", "robbery", "burglary"]
+      },
+      {
+        "id": "violence",
+        "strong": ["打傷人", "落毒", "殺咗人", "想殺死佢", "kill someone", "attack someone", "beat someone up", "seriously injure someone", "poison someone"],
+        "weak": ["打人", "襲擊", "assault"]
+      },
+      {
+        "id": "stalking_harassment",
+        "strong": ["stalk someone", "secretly photograph someone"],
+        "weak": ["跟蹤", "監視", "偷拍", "騷擾", "跟住佢", "stalk", "stalking", "harass", "harassing", "monitor someone", "track someone"]
+      },
+      {
+        "id": "threats_extortion",
+        "strong": ["勒索佢", "黑mail佢", "blackmail him", "blackmail her", "blackmail someone"],
+        "weak": ["勒索", "黑mail", "恐嚇", "綁架", "extort", "blackmail", "threaten", "kidnap"]
+      },
+      {
+        "id": "cybercrime",
+        "strong": ["入侵帳戶", "偷密碼", "盜帳戶", "整釣魚網站", "hack an account", "hack into", "steal a password", "steal an account", "fake login", "phishing site"],
+        "weak": ["駭客", "釣魚網站", "phishing"]
+      },
+      {
+        "id": "bribery",
+        "strong": ["行賄", "買通", "pay off an official", "bribe an official"],
+        "weak": ["賄賂", "bribe", "bribery"]
+      },
+      {
+        "id": "sexual_violence",
+        "strong": ["性侵", "強姦", "非自願性行為", "sexual assault", "rape", "non-consensual sex"],
+        "weak": []
+      },
+      {
+        "id": "other_harm",
+        "strong": ["縱火", "放火燒", "整炸彈", "放炸彈", "make a bomb", "plant a bomb", "arson", "explosives", "endanger someone", "seriously harm someone"],
+        "weak": ["傷害他人", "危害他人", "炸彈"]
+      }
+    ]
+  },
+  "support": [
+    "自殺", "自殘", "傷害自己", "唔想活", "唔想生存", "結束生命", "了結自己",
+    "kill myself", "end my life", "hurt myself", "suicide", "self harm", "self-harm", "don't want to live"
+  ]
+}
