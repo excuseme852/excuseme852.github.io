@@ -145,8 +145,30 @@
       }
     ]
   },
-  "support": [
-    "自殺", "自殘", "傷害自己", "唔想活", "唔想生存", "結束生命", "了結自己",
-    "kill myself", "end my life", "hurt myself", "suicide", "self harm", "self-harm", "don't want to live"
-  ]
+  "support": {
+    "purpose": "If the user appears to have suicidal or self-harm thoughts, or does not want to live: no excuse, no refusal message. Show a caring support message with crisis resources.",
+    "rules": [
+      "1. Checked first, before safety and before category matching.",
+      "2. Never generate an excuse, never use the funny or ridiculous style, never use the immortal's refusal messages.",
+      "3. Calm, caring, non-judgmental. No shaming, blaming, lecturing or jokes.",
+      "4. Only the specific triggers below count. 想死 / want to die alone never trigger (攰到想死, 悶到想死, 忙到想死 are everyday hyperbole).",
+      "5. If a trigger matches and an urgentCue is also present, use the urgent message (999 first).",
+      "6. Separate from the safety refusal flow."
+    ],
+    "categories": [
+      {
+        "id": "crisis_support",
+        "triggers": [
+          "自殺", "自殘", "唔想活", "不想活", "不想活下去", "唔想再活落去", "唔想活落去", "想結束生命",
+          "suicide", "suicidal", "self-harm", "self harm", "hurting myself", "want to hurt myself", "hurt myself on purpose", "don't want to live", "don't want to be alive", "don't want to go on", "end my life"
+        ],
+        "exclude": ["唔想活動", "不想活動", "唔想活躍", "不想活躍"]
+      }
+    ],
+    "excludedStandalone": ["想死", "want to die"],
+    "urgentCues": [
+      "而家", "即刻", "今晚", "準備", "已經食咗", "已經割", "就快",
+      "right now", "tonight", "about to", "going to do it", "already took", "already cut"
+    ]
+  }
 }
