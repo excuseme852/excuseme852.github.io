@@ -5,11 +5,11 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 ## Current phase
 
-**Phase 6 — Excuse library structure + first content** (in progress: step A done)
+**Phase 7 — Excuse engine + dev test page** (not started)
 
 ## Next step
 
-Step A done (data files, keywords, safety/support/victim/decline/exhausted). Next: write `social_meal` (15 zh + 15 en), show as tables in chat, creator reviews, then save + commit. Then `work`, `late`, `general`. Push to `main` when all four are approved.
+Plan Phase 7 (spec Section 16): `docs/js/engine.js` implementing the data-driven rules recorded below (crisis support → safety → category scoring with weak keywords / exclude / yieldsTo → no-repeat pick, fallback to `general` for categories without excuses), plus `docs/dev/engine-test.html` with the prototype test sentences (15 category, 26 safety, 14 support). Library now: social_meal, work, late, general — 8 per style in both languages (192 excuses, ~32 KB data).
 
 ## Phase checklist
 
@@ -18,7 +18,7 @@ Step A done (data files, keywords, safety/support/victim/decline/exhausted). Nex
 - [x] 3. Home screen + localization
 - [x] 4. Immortal (placeholder SVG, appear/thinking, sample excuse)
 - [x] 5. Plaque (retrieve, move, flip, reveal, tap to skip, reduced motion)
-- [ ] 6. Excuse library structure + first content
+- [x] 6. Excuse library structure + first content
 - [ ] 7. Excuse engine + dev test page
 - [ ] 8. Connect engine to the reveal
 - [ ] 9. Copy / Generate Another / Share

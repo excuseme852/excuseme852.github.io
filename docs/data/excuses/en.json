@@ -83,7 +83,7 @@
         "Google Maps has been telling me I'm five minutes away for the last twenty minutes.",
         "The lift and I disagreed on how many floors it needed to stop at. It won.",
         "My cat was sitting on my shoes, and I'm not brave enough to ask him to move.",
-        "\"On my way\" is less a location and more of a mindset right now.",
+        "Every traffic light on my way here seems to be personally against me. I think I've been stopped by all of them.",
         "I got to the stop right after the bus left. We technically met, just not for very long.",
         "I left the house in slippers and only noticed at the station. Fashion has delayed me."
       ],
@@ -98,7 +98,38 @@
         "I took a shortcut through a parallel universe. It was not, in fact, shorter."
       ]
     },
-    "general": { "polite": [], "funny": [], "ridiculous": [] }
+    "general": {
+      "polite": [
+        "I've already got something on, so I can't this time. Maybe next time!",
+        "I've got a lot on my plate right now, and I don't want to say yes and do a half-hearted job.",
+        "I'm running a bit low on energy lately, so I'm taking it easy for now. Hope you understand!",
+        "There's some stuff going on at home that I need to deal with, so I'll have to pass for now.",
+        "Can I have a bit of time to think it over? I don't want to commit before I'm sure.",
+        "Money's a bit tight at the moment, so I'll sit this one out. Sorry!",
+        "I already promised someone else, and I don't want to go back on my word.",
+        "Thanks for thinking of me! I'm keeping some time for myself right now, so it's a no from me this time."
+      ],
+      "funny": [
+        "My customer service department is closed for the day. Please try again tomorrow.",
+        "My calendar says I'm fully booked. Admittedly, most of the bookings just say \"nap\".",
+        "My life progress bar is still stuck on \"get out of bed\". Everything else is locked for now.",
+        "My legs have requested a day off from walking, and I like to respect their boundaries.",
+        "My brain has switched to autopilot today. Please don't ask me to make any major decisions.",
+        "I've decided to start practising saying no, and congratulations, you're my first customer.",
+        "I've interacted with enough humans for one day. I'm considering becoming a houseplant.",
+        "I held a meeting with myself, and the motion to skip this passed unanimously."
+      ],
+      "ridiculous": [
+        "My luck has called in sick today and asked me not to move until it gets back.",
+        "I've been told aliens are picking me up today, and I'd hate to miss them.",
+        "My washing machine has declared independence, and I need to stay home for diplomatic talks.",
+        "I've entered life's power-saving mode. Breathing is on, everything else is paused.",
+        "My shadow refused to come out with me today, and I'm not going anywhere without backup.",
+        "My horoscope, my feng shui and my fortune cookie all agree for once: do nothing.",
+        "A mosquito has declared war on me, and I can't leave the battlefield until there's a winner.",
+        "I've just realised I'm an NPC, and I wasn't programmed for this quest."
+      ]
+    }
   },
   "decline": [
     "I can't help make an excuse for this one. Some things are better handled honestly.",
