@@ -66,7 +66,38 @@
         "My office access card has started rejecting me on principle. I think it's trying to tell me something."
       ]
     },
-    "late": { "polite": [], "funny": [], "ridiculous": [] },
+    "late": {
+      "polite": [
+        "Sorry, there's a delay on the train. I'm on my way and should be about 15 minutes late.",
+        "My previous meeting ran over. I'm heading out now and I'll be there as soon as I can!",
+        "Something came up at home just as I was leaving. I'm on my way now, sorry for the wait!",
+        "I underestimated how long the trip would take. I'm about 10 minutes away, so feel free to start without me.",
+        "I've somehow taken the wrong exit and I'm doubling back. Give me a few more minutes!",
+        "My alarm didn't go off this morning. I'm out the door now and moving fast.",
+        "The rain's slowed everything down out here. I'm running a bit behind, so go ahead and order.",
+        "I got halfway there and realised I'd forgotten something, so I had to turn back. Sorry!"
+      ],
+      "funny": [
+        "My alarm and I are going through something. It decided not to speak to me this morning.",
+        "I'm already on my way, spiritually. Physically, I'm still looking for my other sock.",
+        "Google Maps has been telling me I'm five minutes away for the last twenty minutes.",
+        "The lift and I disagreed on how many floors it needed to stop at. It won.",
+        "My cat was sitting on my shoes, and I'm not brave enough to ask him to move.",
+        "\"On my way\" is less a location and more of a mindset right now.",
+        "I got to the stop right after the bus left. We technically met, just not for very long.",
+        "I left the house in slippers and only noticed at the station. Fashion has delayed me."
+      ],
+      "ridiculous": [
+        "A pigeon stopped me outside my building and demanded to see some ID. I didn't want any trouble.",
+        "My bus decided to go on holiday halfway through the route. I'm not entirely sure where I am now.",
+        "I stepped out the door and fell into a minor time warp. For me, it's still yesterday.",
+        "My willpower is still loading in bed. It's been stuck at 99% for forty minutes.",
+        "My front door locked me in and said I could only leave if I answered three riddles.",
+        "My punctuality officially retired last year. All I have left is a very sincere apology.",
+        "I got stuck on an escalator going the wrong way and refused to admit defeat for far too long.",
+        "I took a shortcut through a parallel universe. It was not, in fact, shorter."
+      ]
+    },
     "general": { "polite": [], "funny": [], "ridiculous": [] }
   },
   "decline": [
