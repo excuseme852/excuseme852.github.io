@@ -34,7 +34,38 @@
         "I've been asked to be the official witness at my microwave's vow renewal. I can't let it down."
       ]
     },
-    "work": { "polite": [], "funny": [], "ridiculous": [] },
+    "work": {
+      "polite": [
+        "I've already got plans after work tonight, so I won't be able to stay late. I'll pick this up first thing tomorrow.",
+        "I'm juggling a few deadlines right now, so I'd like to focus on the current priorities first. Could we push this back a little?",
+        "I've had a few really long days in a row, so I'm logging off on time tonight to recharge. I'll be sharper tomorrow.",
+        "Something's come up at home that I need to take care of this evening. I'll follow up as soon as I can tomorrow.",
+        "I've got a class tonight that I've already paid for, so I need to head out on time.",
+        "I've got a meeting clash at that time. Would it work to move it, or I can catch up from the notes afterward.",
+        "I've got a dentist appointment I booked weeks ago, so I need to leave on time today.",
+        "My commute is pretty long, and getting home too late is difficult, so I need to head out on time tonight."
+      ],
+      "funny": [
+        "My brain clocked out at six and didn't tell me. I'm basically a very polite screensaver now.",
+        "I've closed enough tabs today. One of them was my patience, and I don't think I can reopen it.",
+        "I've used up today's quota of \"sounds good!\" and I can't risk saying what I actually think.",
+        "I'm three days into my \"leave on time\" era and I'm not ready to break the streak.",
+        "My coffee wore off an hour ago. Anything I produce now is legally decaf.",
+        "I've used up my daily allowance of pretending to be excited about meetings.",
+        "The spreadsheet and I need some space. We've agreed to spend the evening apart.",
+        "My work-life balance is currently 90/10, and tonight I'm fighting for the 10."
+      ],
+      "ridiculous": [
+        "My personality ran out at lunch, and the restock isn't due until tomorrow morning.",
+        "The printer is holding my documents hostage, and its only demand is that I leave the building.",
+        "I've been at my desk so long the cleaners have started dusting me.",
+        "I've broken up with my KPIs. They said they never want to see me again, and I respect that.",
+        "My chair has moulded to my exact shape. If I sit any longer, we'll legally be one entity.",
+        "My calendar booked fourteen meetings today, became self-aware, and has taken control of my evening.",
+        "My liver has threatened to resign if I pull another late night, and I can't afford a replacement.",
+        "My office access card has started rejecting me on principle. I think it's trying to tell me something."
+      ]
+    },
     "late": { "polite": [], "funny": [], "ridiculous": [] },
     "general": { "polite": [], "funny": [], "ridiculous": [] }
   },
