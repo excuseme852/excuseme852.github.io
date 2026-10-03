@@ -20,6 +20,7 @@
       <div id="immortal" class="immortal" role="img" data-i18n-aria-label="stage.immortalLabel"></div>
       <div class="puff" aria-hidden="true"><span></span><span></span><span></span></div>
       <img class="cloud" src="./assets/cloud.svg" alt="">
+      <div class="thought" aria-hidden="true"><span id="thought-text" class="thought-text"></span></div>
       <div class="koi-track" aria-hidden="true">
         <div class="koi-x"><div class="koi-y"><img class="koi" src="./assets/koi.svg" alt=""></div></div>
       </div>
@@ -50,6 +51,11 @@
           <p id="char-counter" class="char-counter" aria-live="polite" hidden></p>
         </div>
 
+        <fieldset id="topics" class="topics" hidden>
+          <legend class="styles-legend" data-i18n="home.topicLegend"></legend>
+          <div id="topic-options" class="topic-options"></div>
+        </fieldset>
+
         <fieldset class="styles">
           <legend class="styles-legend" data-i18n="home.styleLegend"></legend>
           <div class="style-options">
@@ -75,14 +81,14 @@
     </main>
 
     <section class="stage" aria-live="polite">
-      <p class="thinking-bubble" data-i18n="stage.thinking"></p>
+      <p id="thinking-bubble" class="thinking-bubble"></p>
 
       <div class="result">
         <div id="result-plaque" class="plaque" tabindex="-1" role="group" data-i18n-aria-label="stage.plaqueLabel">
           <div class="plaque-inner">
             <div class="plaque-face plaque-front">
-              <p class="plaque-label" data-i18n="stage.resultLabel"></p>
-              <p id="plaque-text" class="plaque-text" data-i18n="sample.excuse"></p>
+              <p id="plaque-label" class="plaque-label" data-i18n="stage.resultLabel"></p>
+              <p id="plaque-text" class="plaque-text"></p>
             </div>
             <div class="plaque-face plaque-back" aria-hidden="true">
               <svg viewBox="0 0 72 72" focusable="false">

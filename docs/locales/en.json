@@ -13,20 +13,32 @@
   "home": {
     "prompt": "Hey yo what’s up",
     "placeholder": "Dodging a reunion? Late again? Spill it…",
+    "topicLegend": "Topic",
     "styleLegend": "Pick a style",
     "submit": "Ask the Immortal",
-    "counter": "{count} / {max}"
+    "counter": "{count} / {max}",
+    "thoughtGuess": "{topic}?",
+    "thoughtPicked": "{topic}!"
+  },
+  "topic": {
+    "social_meal": "🍻 Social",
+    "work": "💼 Work",
+    "late": "⏰ Late",
+    "general": "✨ Other"
   },
   "stage": {
     "immortalLabel": "A cartoon immortal sitting on a cloud",
     "thinking": "The immortal is thinking...",
+    "thinkingTopic": "{topic}… 🤔",
     "skip": "Skip to the excuse",
     "resultLabel": "The immortal hands you this:",
+    "seriousLabel": "A serious word from the immortal:",
+    "refusedLabel": "⚠️ The immortal won't help with this one",
     "plaqueLabel": "A plaque engraved with your excuse",
     "back": "← Change the story"
   },
-  "sample": {
-    "excuse": "So sorry — my grandma's koi is turning three today and I'm on cake duty."
+  "errors": {
+    "libraryLoad": "The heavenly scrolls won't open right now. Please try again in a moment."
   },
   "style": {
     "polite": "😇 Polite",

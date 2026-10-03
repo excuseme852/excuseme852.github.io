@@ -49,6 +49,16 @@ export async function setLang(lang, { remember = false } = {}) {
   if (remember) saveLang(lang);
 }
 
+// Keys of a group in the current locale, in file order: keysOf('topic') → ['social_meal', …]
+export function keysOf(group) {
+  const value = group.split('.').reduce((obj, part) => obj?.[part], strings);
+  return value && typeof value === 'object' ? Object.keys(value) : [];
+}
+
+export function hasKey(key) {
+  return typeof key.split('.').reduce((obj, part) => obj?.[part], strings) === 'string';
+}
+
 // t('home.counter', { count: 3, max: 100 }) → "3 / 100"
 export function t(key, vars) {
   const value = key.split('.').reduce((obj, part) => obj?.[part], strings);

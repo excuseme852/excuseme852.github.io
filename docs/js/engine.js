@@ -11,6 +11,7 @@ const DATA_FILES = {
 };
 
 const FALLBACK_CATEGORY = 'general';
+const STYLES = ['polite', 'funny', 'ridiculous'];
 const FALLBACK_LANG = 'en';
 const DEFAULT_STYLE = 'polite';
 const CONTEXT_WINDOW = 15; // characters checked before/after a safety signal
@@ -153,16 +154,68 @@ function checkSafety(text) {
         const before = groupText.slice(Math.max(0, start - CONTEXT_WINDOW), start);
         const after = groupText.slice(end, end + CONTEXT_WINDOW);
         if (containsCue(before, safety.negationCues)) continue;
-        const aimedAtUser = /(^|[^a-z])me([^a-z]|$)/.test(after) || (!isAscii(keyword) && after.startsWith('我'));
-        if (containsCue(before, safety.victimCues) || aimedAtUser) {
+        if (isAimedAtUser(keyword, before, after, safety)) {
           victim = victim || { group: group.id, keyword };
           continue;
         }
         if (strong || weakSignalsCount) return { kind: 'refused', group: group.id, keyword };
       }
     }
+
+    // Combos: the parts must appear in this order (偷 … 錢, kill … my mom). A part may be a
+    // list meaning "any of these". Treated as strong. Context is judged around the first
+    // part; a hit aimed at the user makes it a victim case instead.
+    // A combo is a list of parts, or { parts, within } where `within` caps the characters
+    // allowed between one part and the next (kill … my mom, not "kill" 40 words earlier).
+    for (const combo of group.combos || []) {
+      const parts = Array.isArray(combo) ? combo : combo.parts;
+      const within = Array.isArray(combo) ? Infinity : combo.within ?? Infinity;
+      const label = parts.map((part) => (Array.isArray(part) ? part[0] + '…' : part)).join(' + ');
+      let refuse = false;
+      for (const first of findAny(groupText, parts[0])) {
+        if (!restInOrder(groupText, parts.slice(1), first.end, within)) continue;
+        const before = groupText.slice(Math.max(0, first.start - CONTEXT_WINDOW), first.start);
+        const after = groupText.slice(first.end, first.end + CONTEXT_WINDOW);
+        if (containsCue(before, safety.negationCues)) continue;
+        if (isAimedAtUser(first.keyword, before, after, safety)) {
+          victim = victim || { group: group.id, keyword: label };
+          refuse = false;
+          break;
+        }
+        refuse = true;
+      }
+      if (refuse) return { kind: 'refused', group: group.id, keyword: label };
+    }
   }
   return victim ? { kind: 'victim', ...victim } : null;
+}
+
+// Hits for a combo part: one keyword, or a list meaning "any of these".
+function findAny(text, part) {
+  const options = Array.isArray(part) ? part : [part];
+  return options
+    .flatMap((keyword) => findAll(text, keyword).map((hit) => ({ ...hit, keyword })))
+    .sort((a, b) => a.start - b.start);
+}
+
+// True when each remaining part appears, one after another, starting at `from`,
+// with at most `within` characters between consecutive parts.
+function restInOrder(text, parts, from, within = Infinity) {
+  let position = from;
+  for (const part of parts) {
+    const next = findAny(text, part).find((hit) => hit.start >= position && hit.start - position <= within);
+    if (!next) return false;
+    position = next.end;
+  }
+  return true;
+}
+
+// The user is on the receiving end: a victim cue just before the signal, "me" just
+// after it, or (Chinese) 我 within two characters after it (騷擾我, 偷咗我).
+function isAimedAtUser(keyword, before, after, safety) {
+  if (containsCue(before, safety.victimCues)) return true;
+  if (/(^|[^a-z])me([^a-z]|$)/.test(after)) return true;
+  return !isAscii(keyword) && after.slice(0, 2).includes('我');
 }
 
 function matchCategory(text) {
@@ -225,6 +278,16 @@ function excusePool(lang, category, style) {
 }
 
 // ---------- Public API ----------
+
+// Categories that have excuses in every style and every language (general last).
+// The home screen shows a topic button only for these.
+export function availableCategories() {
+  if (!library) return [];
+  const ids = [...library.categories.categories.map((category) => category.id), FALLBACK_CATEGORY];
+  return ids.filter((id) =>
+    Object.values(library.excuses).every((file) => STYLES.every((style) => file.excuses?.[id]?.[style]?.length)),
+  );
+}
 
 const isKnownCategory = (id) =>
   id === FALLBACK_CATEGORY || library.categories.categories.some((category) => category.id === id);

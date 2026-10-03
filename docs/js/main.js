@@ -2,7 +2,11 @@
 
 import { detectLang, setLang, getLang, t } from './i18n.js';
 import { state, setState } from './state.js';
-import { loadImmortal, playAskSequence, skipToResult, stopSequence, startKoiSwimming } from './animation.js';
+import {
+  loadImmortal, playAskSequence, showCalmResult, skipToResult, stopSequence, startKoiSwimming, hidePeek,
+} from './animation.js';
+import { loadLibrary, analyze, generateExcuse } from './engine.js';
+import { initTopics, topicLabel } from './topics.js';
 
 const MAX_LENGTH = 100;
 const COUNTER_FROM = 50; // show the counter once input reaches this length
@@ -18,7 +22,30 @@ const immortal = document.getElementById('immortal');
 const skipButton = document.getElementById('skip-button');
 const backButton = document.getElementById('back-button');
 const plaque = document.getElementById('result-plaque');
+const plaqueLabel = document.getElementById('plaque-label');
 const plaqueText = document.getElementById('plaque-text');
+const thinkingBubble = document.getElementById('thinking-bubble');
+const topicsFieldset = document.getElementById('topics');
+const topicOptions = document.getElementById('topic-options');
+const askButton = form.querySelector('.ask-button');
+const cloud = document.querySelector('.cloud');
+
+// How each engine result is presented (see state.tone).
+const TONE_BY_KIND = {
+  excuse: 'normal',
+  refused: 'serious',
+  victim: 'calm',
+  support: 'calm',
+  supportUrgent: 'calm',
+};
+
+// Phone numbers in support messages become tap-to-call links.
+const PHONE_PATTERN = /\b(?:999|\d{4} \d{4})\b/g;
+
+// Excuses already shown this session, per language|category|style (spec 13.4: no repeats).
+const shown = new Map();
+
+let libraryPromise = null;
 
 // Text length (characters) above which the plaque text steps down a size.
 // English words are longer, so English gets higher limits.
@@ -43,10 +70,82 @@ function updateCounter() {
   counter.dataset.nearLimit = String(length >= MAX_LENGTH - 10);
 }
 
-function sizePlaqueText() {
-  const limits = PLAQUE_SIZE_LIMITS[getLang()] || PLAQUE_SIZE_LIMITS.en;
+function sizePlaqueText(lang) {
+  const limits = PLAQUE_SIZE_LIMITS[lang] || PLAQUE_SIZE_LIMITS.en;
   const length = plaqueText.textContent.length;
   plaqueText.dataset.size = length > limits.long ? 'long' : length > limits.medium ? 'medium' : 'short';
+}
+
+// Loads the excuse library once; if it failed, the next call tries again.
+function ensureLibrary() {
+  if (!libraryPromise) {
+    libraryPromise = loadLibrary().catch((error) => {
+      libraryPromise = null;
+      throw error;
+    });
+  }
+  return libraryPromise;
+}
+
+function setUpTopics() {
+  initTopics({
+    fieldset: topicsFieldset,
+    container: topicOptions,
+    input,
+    askButton,
+    cloud,
+    onChange: clearInvalid,
+  });
+}
+
+function clearInvalid() {
+  if (state.status !== 'invalid') return;
+  showMessage(null);
+  setState({ status: input.value.trim() ? 'input' : 'idle' });
+}
+
+// Picks an excuse that hasn't been shown yet for this language / category / style.
+function pickExcuse(situation) {
+  const options = { situation, style: state.style, uiLang: getLang(), category: state.topic };
+  const preview = analyze(options);
+  const key = `${preview.lang}|${preview.category}|${state.style}`;
+  const previous = shown.get(key) || [];
+  const result = generateExcuse({ ...options, previous });
+  if (result.kind === 'excuse') {
+    shown.set(key, result.exhausted ? [result.excuse] : [...previous, result.excuse]);
+  }
+  return result;
+}
+
+function withPhoneLinks(text) {
+  const parts = [];
+  let last = 0;
+  for (const match of text.matchAll(PHONE_PATTERN)) {
+    parts.push(text.slice(last, match.index));
+    const link = document.createElement('a');
+    link.href = `tel:${match[0].replace(/\s/g, '')}`;
+    link.textContent = match[0];
+    parts.push(link);
+    last = match.index + match[0].length;
+  }
+  parts.push(text.slice(last));
+  return parts;
+}
+
+function renderPlaque(result) {
+  const labelKey = { excuse: 'stage.resultLabel', refused: 'stage.refusedLabel' }[result.kind] || 'stage.seriousLabel';
+  plaqueLabel.dataset.i18n = labelKey;
+  plaqueLabel.textContent = t(labelKey);
+  plaqueText.lang = result.lang;
+  plaqueText.replaceChildren(...(result.kind === 'excuse' ? [result.excuse] : withPhoneLinks(result.excuse)));
+  sizePlaqueText(result.lang);
+}
+
+// "💼 返工……🤔" while thinking, when the topic has a label (not for 其他 / general).
+function setThinkingText(result) {
+  const topic = result.kind === 'excuse' ? state.topic || result.category : null;
+  const label = topic && topic !== 'general' ? topicLabel(topic) : '';
+  thinkingBubble.textContent = label ? t('stage.thinkingTopic', { topic: label }) : t('stage.thinking');
 }
 
 function readSavedStyle() {
@@ -77,6 +176,7 @@ function onInput() {
   const hasText = input.value.trim().length > 0;
   if (state.status === 'invalid') showMessage(null);
   setState({ status: hasText ? 'input' : 'idle' });
+  hidePeek();
 }
 
 function onStyleChange(event) {
@@ -85,11 +185,12 @@ function onStyleChange(event) {
   saveStyle(event.target.value);
 }
 
-function onSubmit(event) {
+async function onSubmit(event) {
   event.preventDefault();
   const situation = input.value.trim();
 
-  if (!situation) {
+  // Text is optional once a topic is picked.
+  if (!situation && !state.topic) {
     setState({ status: 'invalid' });
     showMessage('validation.empty', 'error');
     input.focus();
@@ -103,15 +204,30 @@ function onSubmit(event) {
   }
 
   showMessage(null);
+  let result;
+  try {
+    await ensureLibrary();
+    setUpTopics();
+    result = pickExcuse(situation);
+  } catch (error) {
+    console.error(error);
+    setState({ status: 'invalid' });
+    showMessage('errors.libraryLoad', 'error');
+    return;
+  }
+
   input.blur(); // closes the phone keyboard so the stage is visible
-  setState({ situation });
-  sizePlaqueText();
-  playAskSequence({ onResult: () => plaque.focus() });
+  setState({ situation, tone: TONE_BY_KIND[result.kind] || 'normal' });
+  renderPlaque(result);
+  setThinkingText(result);
+  const onResult = () => plaque.focus();
+  if (state.tone === 'calm') showCalmResult({ onResult });
+  else playAskSequence({ onResult, quick: state.tone === 'serious' }); // refusals think briefly
 }
 
 function onBack() {
   stopSequence();
-  setState({ status: input.value.trim() ? 'input' : 'idle' });
+  setState({ status: input.value.trim() ? 'input' : 'idle', tone: 'normal' });
   input.focus();
 }
 
@@ -121,7 +237,6 @@ async function onLangToggle() {
   try {
     await setLang(nextLang, { remember: true });
     updateCounter();
-    sizePlaqueText();
     if (messageKey) message.textContent = t(messageKey);
   } catch (error) {
     console.error(error);
@@ -150,6 +265,9 @@ async function init() {
   updateCounter();
   setState({ status: input.value.trim() ? 'input' : 'idle' });
   startKoiSwimming();
+
+  // Load excuses in the background once the first screen is up (spec 8.4).
+  ensureLibrary().then(setUpTopics).catch((error) => console.error(error));
 
   input.addEventListener('input', onInput);
   form.addEventListener('change', onStyleChange);

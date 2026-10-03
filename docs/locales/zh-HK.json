@@ -13,20 +13,32 @@
   "home": {
     "prompt": "到底發生過什麼事",
     "placeholder": "例如：唔想去舊同學聚會、今朝又遲到……",
+    "topicLegend": "主題",
     "styleLegend": "揀個風格",
     "submit": "問大仙",
-    "counter": "{count} / {max}"
+    "counter": "{count} / {max}",
+    "thoughtGuess": "{topic}？",
+    "thoughtPicked": "{topic}！"
+  },
+  "topic": {
+    "social_meal": "🍻 聚會",
+    "work": "💼 返工",
+    "late": "⏰ 遲到",
+    "general": "✨ 其他"
   },
   "stage": {
     "immortalLabel": "卡通大仙坐喺雲上面",
     "thinking": "仙人正在思考……",
+    "thinkingTopic": "{topic}……🤔",
     "skip": "跳去結果",
     "resultLabel": "大仙賜你一個藉口：",
+    "seriousLabel": "大仙想認真同你講：",
+    "refusedLabel": "⚠️ 大仙唔幫呢個忙",
     "plaqueLabel": "刻住藉口嘅牌匾",
     "back": "← 改過個情況"
   },
-  "sample": {
-    "excuse": "唔好意思，我阿婆養嗰條錦鯉今日生日，我要返去幫手切蛋糕。"
+  "errors": {
+    "libraryLoad": "天書暫時打唔開，請等陣再試。"
   },
   "style": {
     "polite": "😇 禮貌",

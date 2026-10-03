@@ -14,6 +14,10 @@ const TIMING = {
   reduced: { appear: 300, thinkMin: 700, thinkMax: 900, react: 0, retrieve: 0, present: 0, reveal: 0 },
 };
 
+// Refusals: shorter thinking, slightly longer reaction for the "no" head shake.
+const QUICK_THINK = 900;
+const QUICK_REACT = 700;
+
 let timers = [];
 let onResultCallback = null;
 let flight = null;
@@ -99,12 +103,17 @@ export function startKoiSwimming() {
   });
 }
 
-export function playAskSequence({ onResult } = {}) {
+// `quick`: shorter thinking (used for refusals: he doesn't need to ponder those).
+export function playAskSequence({ onResult, quick = false } = {}) {
   clearTimers();
   cancelFlight();
+  hidePeek();
   onResultCallback = onResult;
-  const timing = reducedMotion.matches ? TIMING.reduced : TIMING.full;
-  const think = timing.thinkMin + Math.random() * (timing.thinkMax - timing.thinkMin);
+  const base = reducedMotion.matches ? TIMING.reduced : TIMING.full;
+  const timing = quick && base.react ? { ...base, react: QUICK_REACT } : base;
+  const think = quick
+    ? QUICK_THINK
+    : timing.thinkMin + Math.random() * (timing.thinkMax - timing.thinkMin);
 
   // Each step: [how long the previous step lasts, what starts next]
   const steps = [
@@ -122,6 +131,36 @@ export function playAskSequence({ onResult } = {}) {
     at += wait;
     if (start) later(at, start);
   }
+}
+
+// Crisis / victim messages: no performance at all, just show the message calmly.
+export function showCalmResult({ onResult } = {}) {
+  clearTimers();
+  cancelFlight();
+  hidePeek();
+  onResultCallback = onResult;
+  showResult();
+}
+
+// ---------- Home-screen peek ----------
+// The immortal pokes his head over the cloud with a thought bubble, then hides.
+
+const PEEK_HOLD = 4000;
+let peekTimer = null;
+
+// `hold`: ms before he hides again, or null to stay until hidePeek() is called.
+export function peek(text, { hold = PEEK_HOLD } = {}) {
+  if (reducedMotion.matches || document.body.dataset.scene !== 'home') return false;
+  document.getElementById('thought-text').textContent = text;
+  document.body.dataset.peek = 'on';
+  clearTimeout(peekTimer);
+  if (hold !== null) peekTimer = setTimeout(hidePeek, hold);
+  return true;
+}
+
+export function hidePeek() {
+  clearTimeout(peekTimer);
+  delete document.body.dataset.peek;
 }
 
 export function skipToResult() {

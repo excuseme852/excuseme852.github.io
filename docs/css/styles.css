@@ -102,8 +102,8 @@ body[data-state="loading"] .app {
   grid-area: 2 / 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 20px;
+  justify-content: flex-start; /* free space collects above the cloud for the peeking head */
+  gap: 16px;
   padding-bottom: calc(var(--cloud-h) * 0.55); /* keep the form above the cloud */
   transition: opacity 0.25s ease, visibility 0s linear 0s;
 }
@@ -341,6 +341,16 @@ body[data-state="invalid"] #situation {
   height: var(--cloud-h);
   margin-inline: auto;
   animation: cloud-bob 4s ease-in-out infinite alternate;
+}
+
+/* Home screen: sink the cloud (set by topics.js) so the immortal has room to peek.
+   `translate` stacks with the bobbing `transform`. */
+body[data-scene="home"] .cloud-group {
+  translate: 0 var(--cloud-sink, 0px);
+}
+
+.cloud-group {
+  transition: translate 0.5s ease;
 }
 
 @keyframes cloud-bob {
@@ -850,11 +860,244 @@ body[data-scene="stage"]:not([data-state="result"]) .skip-button {
   to { transform: translateX(5px); }
 }
 
+/* ===== Topic buttons ===== */
+.topics {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Equal-width grid: 4 per row on phones, wraps as more topics are added */
+.topic-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 6px;
+}
+
+.topic-chip {
+  min-height: var(--tap);
+  padding: 6px 4px;
+  font-size: 0.9375rem;
+  white-space: nowrap;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+/* Dashed = the immortal's guess; filled = the user's pick */
+.topic-chip[data-state="suggested"] {
+  border-style: dashed;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.topic-chip[data-state="picked"] {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.topic-chip:active {
+  transform: scale(0.96);
+}
+
+.topic-chip:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Shorter screens (most phones, laptops): tighten the home screen so the Ask button
+   stays on screen and the immortal has room to peek over the cloud */
+@media (max-height: 800px) {
+  .home,
+  .ask-form {
+    gap: 10px;
+  }
+
+  .app-title {
+    font-size: 1.6rem;
+  }
+
+  #situation {
+    min-height: 84px;
+  }
+}
+
+/* ===== Home-screen peek: head over the cloud + thought bubble ===== */
+/* Just the top of his head and his eyes over the cloud edge */
+body[data-scene="home"][data-peek="on"] .immortal {
+  opacity: 1;
+  transform: translateY(38%);
+  transition: transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.2s ease;
+}
+
+/* No staff (or the hand holding it) while peeking; they appear with the full pop-up */
+#immortal #staff,
+#immortal #arm {
+  transition: opacity 0.2s ease;
+}
+
+body[data-scene="home"] #immortal #staff,
+body[data-scene="home"] #immortal #arm {
+  opacity: 0;
+}
+
+.thought {
+  position: absolute;
+  left: calc(50% + 48px);
+  bottom: 90%; /* beside his head, just over the cloud's edge */
+  z-index: 3;
+  padding: 8px 14px;
+  border: 2px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface);
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(10px) scale(0.8);
+  transform-origin: bottom left;
+  transition: opacity 0.2s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+/* Little bubbles trailing down towards his head */
+.thought::before,
+.thought::after {
+  content: "";
+  position: absolute;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-surface);
+}
+
+.thought::before {
+  left: -6px;
+  bottom: -10px;
+  width: 12px;
+  height: 12px;
+}
+
+.thought::after {
+  left: -16px;
+  bottom: -20px;
+  width: 7px;
+  height: 7px;
+}
+
+body[data-scene="home"][data-peek="on"] .thought {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.25s ease 0.3s, transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1) 0.3s;
+}
+
+/* ===== Serious & calm results ===== */
+/* serious = safety refusal (show plays, no glow); calm = crisis / victim (no show) */
+body:not([data-tone="normal"]) .plaque::after {
+  animation: none;
+  opacity: 0;
+}
+
+body:not([data-tone="normal"]) .plaque-text {
+  font-family: var(--font);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-shadow: none;
+}
+
+/* Refusal: grey stone instead of wood, red warning label */
+body[data-tone="serious"] .plaque {
+  --wood-dark: #5f5a55;
+  --engrave: #3a3633;
+}
+
+body[data-tone="serious"] .plaque-face {
+  box-shadow:
+    inset 0 0 0 3px #a9a39b,
+    0 6px 0 #4a4642,
+    0 10px 24px rgba(59, 42, 74, 0.25);
+}
+
+body[data-tone="serious"] .plaque-front {
+  background: linear-gradient(to bottom, #e3e0da, #c9c4bc);
+}
+
+body[data-tone="serious"] .plaque-back {
+  background: linear-gradient(to bottom, #9b968f, #7d7871);
+}
+
+body[data-tone="serious"] .plaque-back svg,
+body[data-tone="serious"] #immortal #plaque {
+  filter: grayscale(1);
+}
+
+body[data-tone="serious"] .plaque-label {
+  color: var(--color-error);
+  font-size: 1rem;
+}
+
+/* He shakes his head "no" (left–right) instead of hopping with raised brows.
+   The eyes swing a little further than the head, so it reads as turning. */
+body[data-tone="serious"][data-state="reacting"] #immortal svg {
+  animation: none;
+}
+
+body[data-tone="serious"][data-state="reacting"] #immortal #brows {
+  transform: none;
+}
+
+body[data-tone="serious"][data-state="reacting"] #immortal #head {
+  animation: head-no 0.7s ease-in-out;
+}
+
+body[data-tone="serious"][data-state="reacting"] #immortal #pupils {
+  animation: eyes-no 0.7s ease-in-out;
+}
+
+@keyframes head-no {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-7px); }
+  40% { transform: translateX(7px); }
+  65% { transform: translateX(-6px); }
+  85% { transform: translateX(4px); }
+}
+
+@keyframes eyes-no {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  65% { transform: translateX(-3px); }
+  85% { transform: translateX(2px); }
+}
+
+body[data-scene="stage"][data-tone="calm"] .immortal {
+  opacity: 0;
+  transform: translateY(45%) scale(0.6);
+}
+
+body[data-tone="calm"][data-state="result"] .result {
+  transition: opacity 0.4s ease, visibility 0s;
+}
+
+/* Tap-to-call numbers: bigger hit area without changing the line height */
+.plaque-text a {
+  display: inline-block;
+  padding: 8px 4px;
+  margin: -8px 0;
+  color: var(--color-accent);
+  font-weight: 800;
+  text-decoration: underline;
+}
+
 /* ===== Reduced motion: simple fades, nothing drifts ===== */
 @media (prefers-reduced-motion: reduce) {
   .ray,
   .spark,
   .cloud-group,
+  #immortal #head,
+  #immortal #pupils,
   .koi-track,
   .koi-x,
   .koi-y,
@@ -889,6 +1132,9 @@ body[data-scene="stage"]:not([data-state="result"]) .skip-button {
   body[data-scene="stage"] .immortal {
     transition: opacity 0.3s ease;
   }
+
+  /* No peeking head or thought bubble */
+  .thought { display: none; }
 
   /* No flight or flip: the finished plaque simply fades in */
   body[data-state="result"] .result {

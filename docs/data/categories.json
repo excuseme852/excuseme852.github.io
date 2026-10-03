@@ -81,11 +81,12 @@
     "rules": [
       "1. A keyword alone never decides. Check the context cues below.",
       "2. negationCues within 15 characters before a signal cancel that signal (e.g. 'I don't want to fake a document').",
-      "3. The user is the victim (show the victim message: no excuse, no joke, no refusal) when: a victimCue is within 15 characters before a signal; or 'me' is within 15 characters after it; or a Chinese signal is directly followed by 我 (騷擾我, 跟蹤我); or a victimPhrase matches.",
+      "3. The user is the victim (show the victim message: no excuse, no joke, no refusal) when: a victimCue is within 15 characters before a signal; or 'me' is within 15 characters after it; or 我 is within 2 characters after a Chinese signal (騷擾我, 偷咗我); or a victimPhrase matches.",
       "4. strong signals refuse on their own (after rules 2-3).",
       "5. weak signals refuse only if the input also contains an intentCue and no discussionCue (talking about a film, news, a class... is not wrongdoing).",
       "6. Refusals and victim messages are always serious; never use the funny or ridiculous style.",
-      "7. A safety category's exclude phrases are removed before its signals are checked (e.g. 'threatened to fire me' is an everyday work situation, not extortion)."
+      "7. A safety category's exclude phrases are removed before its signals are checked (e.g. 'threatened to fire me' is an everyday work situation, not extortion).",
+      "8. combos: the words must appear in this order (偷 … 錢, kill … my mom), so 'my mom will kill me' does not match. A part written as a list means any one of those words. Written as { within, parts }, at most `within` characters may sit between consecutive parts (殺 … 阿媽 within 6). Combos count as strong signals; rules 2-3 are checked around the first word. Use exclude to keep everyday words safe (偷懶, 殺價)."
     ],
     "intentCues": [
       "幫我", "點樣", "點先可以", "藉口", "瞞住", "唔俾人知", "唔畀人知", "唔被人發現", "我想", "我要", "我啱啱", "我琴日", "我打算", "計劃",
@@ -126,13 +127,37 @@
       },
       {
         "id": "theft",
-        "strong": ["偷錢", "入屋偷嘢", "steal money", "help me steal", "shoplift", "shoplifting", "break into a house"],
-        "weak": ["打劫", "偷嘢", "爆竊", "robbery", "burglary", "steal"]
+        "strong": ["偷錢", "入屋偷嘢", "steal money", "help me steal", "shoplift", "shoplifting", "break into a house", "steal from", "stole from", "stealing from"],
+        "weak": ["打劫", "偷嘢", "爆竊", "robbery", "burglary", "steal"],
+        "combos": [
+          ["偷", "錢"], ["偷", "銀包"], ["偷", "信用卡"], ["偷", "八達通"],
+          ["拎咗", "錢", "冇問"], ["攞咗", "錢", "冇問"],
+          ["i stole", "money"], ["i stole", "cash"], ["i stole", "wallet"],
+          ["i took", "without asking"], ["i took", "without permission"]
+        ],
+        "exclude": ["小偷", "偷懶", "偷食", "偷睇", "偷笑", "偷偷", "偷雞", "偷步", "偷閒", "偷聽"]
       },
       {
         "id": "violence",
         "strong": ["打傷人", "落毒", "殺咗人", "想殺死佢", "打咗同事", "打咗佢一拳", "kill someone", "punched my", "punched someone", "punched him", "punched her", "attack someone", "beat someone up", "seriously injure someone", "poison someone"],
-        "weak": ["打人", "襲擊", "assault"]
+        "weak": ["打人", "襲擊", "assault"],
+        "combos": [
+          {
+            "within": 10,
+            "parts": [
+              ["kill", "murder", "stab", "poison", "strangle"],
+              ["my mom", "my mum", "my mother", "my dad", "my father", "my parents", "my wife", "my husband", "my girlfriend", "my boyfriend", "my brother", "my sister", "my son", "my daughter", "my baby", "my boss", "my coworker", "my colleague", "my friend", "my teacher", "my neighbour", "my neighbor", "my roommate", "my ex", "him", "her", "them", "someone", "somebody", "everyone"]
+            ]
+          },
+          {
+            "within": 6,
+            "parts": [
+              ["殺", "毒死"],
+              ["阿媽", "阿爸", "老豆", "老母", "媽媽", "爸爸", "媽咪", "爹哋", "佢", "老婆", "老公", "男朋友", "女朋友", "細佬", "家姐", "阿哥", "細妹", "老闆", "老細", "同事", "朋友", "鄰居", "老師", "前度"]
+            ]
+          }
+        ],
+        "exclude": ["殺價", "殺時間", "殺手鐧"]
       },
       {
         "id": "stalking_harassment",
