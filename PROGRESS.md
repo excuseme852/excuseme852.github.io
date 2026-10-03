@@ -5,11 +5,11 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 ## Current phase
 
-**Phase 7 — Excuse engine + dev test page** (not started)
+**Phase 8 — Connect engine to the reveal + topic buttons** (not started)
 
 ## Next step
 
-Plan Phase 7 (spec Section 16): `docs/js/engine.js` implementing the data-driven rules recorded below (crisis support → safety → category scoring with weak keywords / exclude / yieldsTo → no-repeat pick, fallback to `general` for categories without excuses), plus `docs/dev/engine-test.html` with the prototype test sentences (15 category, 26 safety, 14 support). Library now: social_meal, work, late, general — 8 per style in both languages (192 excuses, ~32 KB data).
+Plan Phase 8 = connect engine to the plaque (`loadLibrary()` in the background after first render, `generateExcuse()` on ask, set `lang` on `#plaque-text`, show `kind` messages seriously, remove `sample.excuse`) **plus the optional topic buttons** on the home screen (see decision below). Library now: social_meal, work, late, general — 8 per style in both languages (192 excuses, ~32 KB data).
 
 ## Phase checklist
 
@@ -19,7 +19,7 @@ Plan Phase 7 (spec Section 16): `docs/js/engine.js` implementing the data-driven
 - [x] 4. Immortal (placeholder SVG, appear/thinking, sample excuse)
 - [x] 5. Plaque (retrieve, move, flip, reveal, tap to skip, reduced motion)
 - [x] 6. Excuse library structure + first content
-- [ ] 7. Excuse engine + dev test page
+- [x] 7. Excuse engine + dev test page
 - [ ] 8. Connect engine to the reveal
 - [ ] 9. Copy / Generate Another / Share
 - [ ] 10. Thinking messages & errors
@@ -61,6 +61,12 @@ Plan Phase 7 (spec Section 16): `docs/js/engine.js` implementing the data-driven
 - Content principle (creator, fixed): within a category, every excuse must be a different *idea*, not reworded text. E.g. `social_meal` covers prior plans / work / family / helping a friend / rest / money / early start / time. Aim for 8 per style (above the MVP 5). 💀 should be "absurd with a clear picture", not random; deadpan and absurd, and not every line needs to be dark.
 - 😇 polite lines should read like a real WhatsApp message, not a polished, fully written-out excuse (creator's late-category edits).
 - Quality anchors (creator's favourites, use as the tone reference for new categories): 😇 「唔好意思呀，嗰日我早已經約咗人，真係走唔開，下次我再約你！」 😂 「我個社交電量淨返 3%，再出街可能會直接自動關機。」 💀 「我同我嘅拖延症簽咗合約，佢話我一出門就算違約，我賠唔起呀。」
+- Engine (`docs/js/engine.js`): `loadLibrary()` + `generateExcuse({ situation, style, uiLang, previous })` → `{ excuse, lang, category, refused, exhausted, kind }`. `kind` (approved addition) = excuse | refused | victim | support | supportUrgent; `refused` is true whenever no excuse is given. `category` is the *matched* category even when excuses come from `general` because that category has none yet. `analyze()` explains a decision without picking (used by the test page).
+- Dev test page `docs/dev/engine-test.html` (public but noindex, English-only dev tool, not linked from the app). Test sentences live in `docs/dev/engine-test-cases.json`; the creator can add cases there. 163/163 passing on 2026-10-03.
+- Real-world batch 1 (100 unseen sentences, 2026-10-03): first run 61/100. Fixes approved by creator: crisis trigger "don't want to go on" → "…go on living / …go on anymore" (it matched "go on a date"), plus excludes for "don't want to live with/in/here/there"; new support triggers (生存冇意義, 唔想再撐…); victimPhrases + "Chinese signal followed by 我" = victim; safety categories may have `exclude` (e.g. "threatened to fire me" is not extortion); more fraud/hit-and-run/account-intrusion signals; engine accepts English endings (-s/-es/-ed/-d/-ing, doubled last letter) and ignores spaces next to Chinese characters; who/where words (同事, coworker, class, mum, mom, dad, cousin, 公司) are weak keywords; `health` yieldsTo `late` too; many keywords added (老細, 頂更, 同學會, 拜年, whatsapp, meeting, assignment, flu…). Expectation changed for one case: "my cousin's wedding" → social_meal (event beats person). Note: batch 1 now passes because rules were tuned on it; a fresh unseen batch is the honest accuracy check.
+- Real-world batch 2 (100 unseen, 2026-10-03): first run 32/100 on-topic. Of the 68 misses: 52 fell back to `general` (still a usable excuse), 8 wrong category, 8 serious (safety/victim/crisis). Honest conclusion: keyword matching tops out around 60–75% on-topic; true understanding would need AI (spec Section 27, future, costs money). Serious 8 fixed and approved (想消失 / want to disappear → support; 對我毛手毛腳, "at my work uninvited" → victim; 假收據, 偷改成績, punched my, 散播佢嘅私人相, "messages without her knowing" → refuse), each with a guard sentence so it doesn't over-trigger. Batch 2 added to the test file (categories part 28/88 until keyword expansion). Next: creator reviews proposed keyword expansion (~40–50 per category).
+- **Topic buttons (creator, 2026-10-03; overrides spec 13.1 "no forced predefined situations")**: same home screen, optional topic buttons. While the user types, the engine's guess lights up a button; the user can tap another to correct it; a picked topic wins (`generateExcuse({ …, category })`). Text may become optional when a topic is picked. Show only topics with written excuses: 聚會 social_meal, 返工 work, 遲到 late, 其他 general; add a button whenever a new category is written. Crisis + safety checks always run on the text, whatever the topic. Build in Phase 8. Labels go in locale files.
+- Keyword big expansion (approved 2026-10-03): ~20–50 keywords per category incl. synonyms, HK slang, mixed zh/en. 屋企 removed (屋企人 strong, 返屋企 weak); family person words weak; deadline/colleague(s) weak; `study` yieldsTo `late`; `date` excludes ex-boss/ex-colleague…; engine no longer double-counts a keyword inside a longer matched keyword. Fresh 15-sentence probe after expansion: 11/15 on-topic; known misses kept on purpose (take care of my mum → favor, "cash only restaurant" → borrow, 陪佢去睇醫生 → health) because topic buttons let users correct, and further tuning just overfits.
 - `health` excuses must stay mild (tired, headache, not feeling well). No fake emergencies, hospital stays or serious illness (spec Section 14).
 - Plaque text size steps down by length (`data-size`, limits in `main.js`); Phase 8 should size by the excuse's language and set `lang` on `#plaque-text`.
 

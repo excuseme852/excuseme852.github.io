@@ -6,59 +6,74 @@
     "3. When a keyword has known false positives, use phrase exclusions (exclude) or mark it as weak (weakKeywords).",
     "4. If multiple categories match, choose the strongest match, not just list order.",
     "5. general is the fallback when no sufficiently relevant category is detected.",
-    "Scoring: each keyword hit = 2 points, each weakKeywords hit = 1 point. Matching ignores upper/lower case; English keywords match whole words only.",
+    "6. Words about WHO or WHERE (同事, coworker, class, mum, 公司) are weak; words about WHAT is happening (借, late, yoga) are strong.",
+    "Scoring: each keyword hit = 2 points, each weakKeywords hit = 1 point. Matching ignores upper/lower case.",
+    "English keywords match whole words, plus common endings: -s, -es, -ed, -d, -ing (owe → owes, lend → lending, run → running).",
+    "Spaces next to Chinese characters are ignored, so 唱 K = 唱K and 個 group = 個group.",
     "exclude: phrases removed from the input before this category is scored (e.g. 'due date' for date).",
-    "yieldsTo: if any listed category also scores, this category steps aside (e.g. health yields to work).",
+    "yieldsTo: if any listed category also scores, this category steps aside (e.g. health yields to work and late; study yields to late).",
+    "A keyword found inside a longer matched keyword of the same category does not score again (屋企 inside 屋企人).",
     "Highest score wins. Tie: the category whose matched keywords are longer (more specific) wins. Still tied: listed first wins. Zero points: general."
   ],
   "categories": [
     {
       "id": "late",
-      "keywords": ["遲到", "遲咗", "趕唔切", "瞓過龍", "塞車", "late", "overslept", "traffic", "delayed", "running late", "late for"]
+      "keywords": ["遲到", "遲咗", "趕唔切", "瞓過龍", "塞車", "未出門", "巴士壞咗", "搭錯車", "搭過龍", "港鐵壞", "地鐵壞", "延誤", "壞車", "截唔到車", "等車", "要遲", "會遲", "遲少少", "先起床", "先起身", "啱啱起身", "啱啱起床", "late", "overslept", "traffic", "delayed", "running late", "late for", "running behind", "mins behind", "minutes behind", "missed my stop", "missed the bus", "missed my bus", "missed my train", "just woke up"],
+      "weakKeywords": ["遲", "起床", "起身", "就到", "港鐵", "地鐵", "的士", "mtr", "taxi", "uber", "alarm", "behind", "on my way"]
     },
     {
       "id": "reply_message",
-      "keywords": ["唔覆", "已讀不回", "訊息", "個group", "reply", "replied", "text back", "left on read", "message", "group chat"]
+      "keywords": ["唔覆", "未覆", "覆佢", "已讀不回", "已讀唔回", "回覆", "訊息", "群組", "個group", "聽電話", "語音", "留言", "whatsapp", "reply", "replied", "text back", "texted", "texting", "left on read", "on read", "message", "group chat", "calls", "voice message", "ghost", "ghosted", "ghosting", "answer my phone", "missed call", "rsvp", "mute", "inbox", "dm"],
+      "weakKeywords": ["電話", "email", "ig"]
     },
     {
       "id": "borrow_lend",
-      "keywords": ["借錢", "借車", "還錢", "欠錢", "lend", "borrow", "owe", "loan"]
+      "keywords": ["借錢", "借車", "還錢", "欠錢", "借我", "借佢", "問我借", "借俾", "借用", "夾錢", "擔保", "做擔保", "lend", "borrow", "owe", "loan", "co-sign", "cash"],
+      "weakKeywords": ["用我", "信用卡", "money", "credit card"]
     },
     {
       "id": "date",
-      "keywords": ["拍拖", "約會", "相睇", "男朋友", "女朋友", "date", "dating", "go on a date", "Tinder", "crush", "boyfriend", "girlfriend"],
-      "exclude": ["due date", "deadline"]
+      "keywords": ["拍拖", "約會", "相睇", "去相睇", "男朋友", "女朋友", "男友", "女友", "前度", "曖昧", "約我出去", "對佢冇感覺", "date", "dating", "go on a date", "second date", "Tinder", "hinge", "bumble", "crush", "boyfriend", "girlfriend", "my ex"],
+      "weakKeywords": ["睇戲", "ex", "the app", "meetup"],
+      "exclude": ["due date", "deadline", "ex-boss", "ex-colleague", "ex-coworker", "ex-manager", "ex-classmate", "ex-flatmate", "ex-roommate"]
     },
     {
       "id": "family",
-      "keywords": ["屋企", "阿媽", "老豆", "父母", "親戚", "團年", "mum", "mom", "dad", "parents", "family", "relatives"]
+      "keywords": ["屋企人", "阿媽", "老豆", "父母", "親戚", "團年", "拜年", "拜山", "掃墓", "清明", "母親節", "父親節", "parents", "family", "relatives", "in-laws", "extended family", "mother's day", "father's day"],
+      "weakKeywords": ["返屋企", "新年", "過年", "媽媽", "爸爸", "媽咪", "爹哋", "老母", "外婆", "婆婆", "嫲嫲", "爺爺", "細佬", "家姐", "阿哥", "細妹", "姨媽", "姑媽", "舅父", "mum", "mom", "dad", "cousin", "aunt", "uncle", "grandma", "grandpa", "brother", "sister", "christmas"]
     },
     {
       "id": "exercise",
-      "keywords": ["做gym", "行山", "打波", "游水", "跑步", "瑜伽", "gym", "hiking", "sports", "swimming", "running", "yoga"],
-      "exclude": ["running late"]
+      "keywords": ["做gym", "行山", "打波", "游水", "游泳", "跑步", "練跑", "瑜伽", "踩單車", "單車", "網球", "羽毛球", "籃球", "足球", "馬拉松", "健身", "拳擊", "攀石", "gym", "hiking", "sports", "swimming", "swim", "running", "run", "football", "yoga", "personal trainer", "badminton", "tennis", "cycling", "bike ride", "marathon", "basketball", "workout", "pilates", "boxing", "climbing"],
+      "weakKeywords": ["教練", "trainer", "training"],
+      "exclude": ["running late", "run late", "running behind", "running about", "running a bit"]
     },
     {
       "id": "study",
-      "keywords": ["功課", "考試", "補習", "論文", "上堂", "返學", "homework", "exam", "tutoring", "essay", "class", "school", "study"]
+      "keywords": ["功課", "考試", "補習", "論文", "上堂", "返學", "走堂", "測驗", "小測", "講堂", "期中", "期末", "交功課", "抄功課", "溫習", "溫書", "學校", "大學", "教授", "補課", "加堂", "homework", "exam", "tutoring", "essay", "school", "study", "assignment", "project", "quiz", "tutorial", "lecture", "midterm", "midterms", "finals", "professor", "tutor"],
+      "weakKeywords": ["class", "老師", "present", "presentation", "final"],
+      "yieldsTo": ["late"]
     },
     {
       "id": "favor",
-      "keywords": ["幫手", "搬屋", "接送", "湊仔", "幫人做嘢", "favor", "help out", "help me move", "moving", "pick up", "drop off", "babysit"]
+      "keywords": ["幫手", "幫我手", "搬屋", "接送", "湊仔", "幫人做嘢", "幫我寫", "幫佢寫", "幫佢睇住", "幫佢搬", "收包裹", "代收", "載我", "車我", "favor", "help out", "help me move", "moving", "pick up", "drop off", "babysit", "drive me", "give me a lift", "proofread", "water her plants", "pet sit", "house sit", "feed my cat"],
+      "weakKeywords": ["幫佢", "airport", "look after", "take care of"]
     },
     {
       "id": "social_meal",
-      "keywords": ["聚會", "生日", "飯局", "食飯", "聚舊", "唱K", "party", "birthday", "dinner", "gathering", "karaoke"]
+      "keywords": ["聚會", "生日", "飯局", "食飯", "聚舊", "同學會", "唱K", "婚宴", "派對", "燒烤", "結婚", "婚禮", "做兄弟", "做姊妹", "歡送", "飲tea", "下午茶", "宵夜", "打邊爐", "火鍋", "飲酒", "party", "birthday", "dinner", "gathering", "karaoke", "bbq", "wedding", "farewell", "brunch", "lunch", "drinks", "happy hour", "housewarming", "hang out", "hangout", "celebration"],
+      "weakKeywords": ["中秋", "聖誕"]
     },
     {
       "id": "work",
-      "keywords": ["返工", "老闆", "同事", "OT", "開OT", "加班", "放工", "返公司", "work", "boss", "coworker", "overtime", "shift", "workplace"]
+      "keywords": ["返工", "老闆", "老細", "頂更", "OT", "開OT", "加班", "放工", "返公司", "開會", "會議", "請假", "經理", "上司", "夜班", "早更", "輪班", "實習", "交report", "辭職", "work", "boss", "overtime", "shift", "workplace", "meeting", "team building", "client", "hr", "manager", "appraisal", "performance review", "half day", "job", "intern"],
+      "weakKeywords": ["同事", "公司", "客人", "coworker", "colleague", "colleagues", "deadline", "report", "presentation", "office"]
     },
     {
       "id": "health",
-      "keywords": ["唔舒服", "頭痛", "肚痛", "發燒", "睇醫生", "覆診", "sick", "not feeling well", "headache", "stomachache", "fever", "doctor"],
-      "weakKeywords": ["病", "攰", "tired", "appointment"],
-      "yieldsTo": ["work"]
+      "keywords": ["唔舒服", "頭痛", "肚痛", "發燒", "喉嚨痛", "睇醫生", "覆診", "肚屙", "肚痾", "食錯嘢", "食物中毒", "花粉症", "鼻敏感", "感冒", "傷風", "經痛", "扭親", "扭傷", "拉傷", "腰痛", "背痛", "牙痛", "頭暈", "sick", "not feeling well", "headache", "stomachache", "fever", "doctor", "flu", "got a cold", "have a cold", "caught a cold", "migraine", "sore throat", "cramps", "allergies", "sprained", "food poisoning", "nauseous", "dizzy"],
+      "weakKeywords": ["病", "攰", "咳", "嘔", "喉嚨", "暈", "tired", "appointment"],
+      "yieldsTo": ["work", "late"]
     }
   ],
   "safety": {
@@ -66,14 +81,15 @@
     "rules": [
       "1. A keyword alone never decides. Check the context cues below.",
       "2. negationCues within 15 characters before a signal cancel that signal (e.g. 'I don't want to fake a document').",
-      "3. victimCues within 15 characters before a signal, or the word 'me' within 15 characters after it, mean the user is the victim: show the victim message (no excuse, no joke), not a refusal.",
+      "3. The user is the victim (show the victim message: no excuse, no joke, no refusal) when: a victimCue is within 15 characters before a signal; or 'me' is within 15 characters after it; or a Chinese signal is directly followed by 我 (騷擾我, 跟蹤我); or a victimPhrase matches.",
       "4. strong signals refuse on their own (after rules 2-3).",
       "5. weak signals refuse only if the input also contains an intentCue and no discussionCue (talking about a film, news, a class... is not wrongdoing).",
-      "6. Refusals and victim messages are always serious; never use the funny or ridiculous style."
+      "6. Refusals and victim messages are always serious; never use the funny or ridiculous style.",
+      "7. A safety category's exclude phrases are removed before its signals are checked (e.g. 'threatened to fire me' is an everyday work situation, not extortion)."
     ],
     "intentCues": [
       "幫我", "點樣", "點先可以", "藉口", "瞞住", "唔俾人知", "唔畀人知", "唔被人發現", "我想", "我要", "我啱啱", "我琴日", "我打算", "計劃",
-      "cover up", "cover for", "get away with", "hide it", "so no one knows", "without getting caught", "help me", "how do i", "how to", "i want to", "i need to", "i'm going to", "i just", "i plan to", "excuse for"
+      "cover up", "cover for", "get away with", "hide it", "so no one knows", "without getting caught", "help me", "how do i", "how to", "i want to", "i need to", "i'm going to", "i just", "i plan to", "excuse for", "need an excuse"
     ],
     "discussionCues": [
       "套戲", "部戲", "嘅戲", "睇完", "睇緊", "電影", "新聞", "套劇", "紀錄片", "小說", "上堂講", "報導",
@@ -87,46 +103,57 @@
       "俾人", "畀人", "被", "有人",
       "someone", "somebody", "i'm being", "i am being"
     ],
+    "victimPhrases": [
+      "跟蹤我", "跟住我", "騷擾我", "監視我", "偷拍我", "恐嚇我", "對我毛手毛腳", "非禮我",
+      "following me", "follows me", "stalking me", "harassing me", "threatening me",
+      "at my work uninvited", "at my house uninvited", "at my home uninvited", "at my door uninvited", "ex keeps showing up"
+    ],
     "categories": [
       {
         "id": "fraud",
-        "strong": ["呃保險", "騙保", "呃人錢", "騙錢", "insurance fraud", "commit fraud", "scam someone", "scam for money", "deceive someone for money"],
-        "weak": ["詐騙"]
+        "strong": ["呃保險", "騙保", "呃人錢", "騙錢", "挪用公款", "偷用公司錢", "假收據", "假單據", "fake receipt", "insurance fraud", "commit fraud", "scam someone", "scam for money", "deceive someone for money", "embezzle"],
+        "weak": ["詐騙", "用咗公司啲錢"]
       },
       {
         "id": "forgery_impersonation",
-        "strong": ["偽造文件", "假病假紙", "假證件", "fake a document", "fake sick note", "fake a sick note", "fake doctor's note", "fake a doctor's note", "forge a", "forged", "forgery", "fake id", "pretend to be a police officer", "pretend to be a cop"],
-        "weak": ["冒認", "扮警察", "impersonate"]
+        "strong": ["偽造文件", "假病假紙", "假證件", "偷改成績", "改咗份成績表", "改咗成績表", "fake my grades", "change my grades", "fake a document", "fake sick note", "fake a sick note", "fake doctor's note", "fake a doctor's note", "forge a", "forged", "forgery", "fake id", "pretend to be a police officer", "pretend to be a cop"],
+        "weak": ["冒認", "扮警察", "改成績", "impersonate"]
       },
       {
         "id": "legal_evasion",
-        "strong": ["呃差佬", "騙差佬", "lie to the police", "deceive the police", "evade the police", "evade police", "launder money"],
+        "strong": ["呃差佬", "騙差佬", "撞完人走咗", "撞到人走咗", "肇事逃逸", "lie to the police", "deceive the police", "evade the police", "evade police", "launder money", "hit and run", "hit someone with my car", "drove off after hitting"],
         "weak": ["逃稅", "洗黑錢", "tax evasion", "money laundering"]
       },
       {
         "id": "theft",
         "strong": ["偷錢", "入屋偷嘢", "steal money", "help me steal", "shoplift", "shoplifting", "break into a house"],
-        "weak": ["打劫", "偷嘢", "爆竊", "robbery", "burglary"]
+        "weak": ["打劫", "偷嘢", "爆竊", "robbery", "burglary", "steal"]
       },
       {
         "id": "violence",
-        "strong": ["打傷人", "落毒", "殺咗人", "想殺死佢", "kill someone", "attack someone", "beat someone up", "seriously injure someone", "poison someone"],
+        "strong": ["打傷人", "落毒", "殺咗人", "想殺死佢", "打咗同事", "打咗佢一拳", "kill someone", "punched my", "punched someone", "punched him", "punched her", "attack someone", "beat someone up", "seriously injure someone", "poison someone"],
         "weak": ["打人", "襲擊", "assault"]
       },
       {
         "id": "stalking_harassment",
-        "strong": ["stalk someone", "secretly photograph someone"],
-        "weak": ["跟蹤", "監視", "偷拍", "騷擾", "跟住佢", "stalk", "stalking", "harass", "harassing", "monitor someone", "track someone"]
+        "strong": [
+          "stalk someone", "secretly photograph someone",
+          "偷睇佢訊息", "偷睇佢電話", "偷睇佢手機", "散播佢嘅私人相", "散播佢啲私人相", "散播私人相", "放佢啲私人相上網",
+          "read her messages without", "read his messages without", "check her phone without", "check his phone without", "messages without her knowing", "messages without him knowing", "phone without her knowing", "phone without him knowing",
+          "leak her photos", "leak his photos", "share her nudes", "share his nudes", "revenge porn"
+        ],
+        "weak": ["跟蹤", "監視", "偷拍", "騷擾", "性騷擾", "跟住佢", "stalk", "stalking", "harass", "harassing", "monitor someone", "track someone"]
       },
       {
         "id": "threats_extortion",
         "strong": ["勒索佢", "黑mail佢", "blackmail him", "blackmail her", "blackmail someone"],
-        "weak": ["勒索", "黑mail", "恐嚇", "綁架", "extort", "blackmail", "threaten", "kidnap"]
+        "weak": ["勒索", "黑mail", "恐嚇", "綁架", "extort", "blackmail", "threaten", "kidnap"],
+        "exclude": ["threatened to fire", "threatening to fire", "threaten to fire", "threatened to quit", "threatened to leave", "話要炒我", "恐嚇要炒我"]
       },
       {
         "id": "cybercrime",
-        "strong": ["入侵帳戶", "偷密碼", "盜帳戶", "整釣魚網站", "hack an account", "hack into", "steal a password", "steal an account", "fake login", "phishing site"],
-        "weak": ["駭客", "釣魚網站", "phishing"]
+        "strong": ["入侵帳戶", "偷密碼", "盜帳戶", "整釣魚網站", "入佢帳戶", "登入佢個account", "hack an account", "hack into", "steal a password", "steal an account", "fake login", "phishing site"],
+        "weak": ["駭客", "釣魚網站", "偷睇密碼", "偷睇佢密碼", "phishing"]
       },
       {
         "id": "bribery",
@@ -153,16 +180,20 @@
       "3. Calm, caring, non-judgmental. No shaming, blaming, lecturing or jokes.",
       "4. Only the specific triggers below count. 想死 / want to die alone never trigger (攰到想死, 悶到想死, 忙到想死 are everyday hyperbole).",
       "5. If a trigger matches and an urgentCue is also present, use the urgent message (999 first).",
-      "6. Separate from the safety refusal flow."
+      "6. Separate from the safety refusal flow.",
+      "7. When unsure, lean towards showing support: a caring message by mistake is far less harmful than a joke to someone in crisis. Only exclude clearly unrelated phrases (go on a date, live with my parents)."
     ],
     "categories": [
       {
         "id": "crisis_support",
         "triggers": [
-          "自殺", "自殘", "唔想活", "不想活", "不想活下去", "唔想再活落去", "唔想活落去", "想結束生命",
-          "suicide", "suicidal", "self-harm", "self harm", "hurting myself", "want to hurt myself", "hurt myself on purpose", "don't want to live", "don't want to be alive", "don't want to go on", "end my life"
+          "自殺", "自殘", "唔想活", "不想活", "不想活下去", "唔想再活落去", "唔想活落去", "想結束生命", "生存冇意義", "活落去冇意思", "唔想再撐", "撐唔落去", "想消失", "唔想存在", "想人間蒸發",
+          "suicide", "suicidal", "self-harm", "self harm", "hurting myself", "want to hurt myself", "hurt myself on purpose", "don't want to live", "don't want to be alive", "don't want to go on living", "don't want to go on anymore", "can't go on anymore", "end my life", "want to disappear", "disappear forever", "don't want to exist"
         ],
-        "exclude": ["唔想活動", "不想活動", "唔想活躍", "不想活躍"]
+        "exclude": [
+          "唔想活動", "不想活動", "唔想活躍", "不想活躍",
+          "don't want to live with", "don't want to live in", "don't want to live here", "don't want to live there"
+        ]
       }
     ],
     "excludedStandalone": ["想死", "want to die"],

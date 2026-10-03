@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Engine test (dev only)</title>
+  <!-- Developer tool, not linked from the app. English-only on purpose. -->
+  <style>
+    :root {
+      --bg: #f6ecd6;
+      --surface: #fffaf0;
+      --ink: #3b2a4a;
+      --soft: #6e5f7a;
+      --line: #d9c7a3;
+      --pass: #2e7d4f;
+      --fail: #b3261e;
+      --accent: #6b3fa0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 16px;
+      background: var(--bg);
+      color: var(--ink);
+      font: 15px/1.5 system-ui, -apple-system, "PingFang HK", "Microsoft JhengHei", sans-serif;
+    }
+    main { max-width: 980px; margin: 0 auto; }
+    h1 { margin: 0 0 4px; font-size: 1.4rem; }
+    h2 { margin: 28px 0 8px; font-size: 1.1rem; }
+    .note { margin: 0 0 16px; color: var(--soft); }
+    .summary {
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--soft);
+    }
+    .summary.pass { background: var(--pass); }
+    .summary.fail { background: var(--fail); }
+    .card {
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+    }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; background: var(--surface); }
+    th, td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { font-size: 0.85rem; color: var(--soft); }
+    td.ok { color: var(--pass); font-weight: 700; }
+    td.bad { color: var(--fail); font-weight: 700; }
+    tr.bad-row { background: #fdecea; }
+    .detail { font-size: 0.85rem; color: var(--soft); }
+    .try-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .try-row input { flex: 1 1 260px; min-height: 44px; padding: 8px 12px; font-size: 16px; border: 2px solid var(--line); border-radius: 10px; }
+    .try-row select { min-height: 44px; padding: 0 8px; font-size: 16px; border-radius: 10px; }
+    .try-output p { margin: 6px 0; }
+    .low { color: var(--fail); font-weight: 700; }
+  </style>
+  <script type="module" src="./engine-test.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Excuse engine test</h1>
+    <p class="note">Developer page. Runs every sentence in <code>engine-test-cases.json</code> through <code>js/engine.js</code>.</p>
+
+    <div id="summary" class="summary">Running…</div>
+
+    <h2>Try a sentence</h2>
+    <div class="card">
+      <div class="try-row">
+        <input id="try-input" type="text" placeholder="Type a situation, e.g. 唔想去同事飯局">
+        <select id="try-lang" aria-label="UI language">
+          <option value="zh-HK">UI: zh-HK</option>
+          <option value="en">UI: en</option>
+        </select>
+      </div>
+      <div id="try-output" class="try-output"></div>
+    </div>
+
+    <div id="results"></div>
+
+    <h2>Library coverage (excuses per style)</h2>
+    <p class="note">Red = fewer than 5 (spec 17.4 MVP minimum). Categories with none fall back to <code>general</code>.</p>
+    <div id="coverage" class="table-wrap"></div>
+  </main>
+</body>
+</html>
