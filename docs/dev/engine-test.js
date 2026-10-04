@@ -1,12 +1,13 @@
 // Developer test page for js/engine.js (spec 16.3). Not part of the app.
 
-import { loadLibrary, analyze, generateExcuse } from '../js/engine.js';
+import { loadLibrary, analyze, generateExcuse, fittingExcuses, normalize } from '../js/engine.js';
 
 const MESSAGE_KINDS = ['refused', 'victim', 'support', 'supportUrgent'];
 const STYLES = ['polite', 'funny', 'ridiculous'];
 const LANGS = ['zh-HK', 'en'];
 const TEST_UI_LANG = 'zh-HK'; // used when a test sentence has no clear language
 const MIN_PER_STYLE = 5;
+const MIN_GENERAL = 3; // untagged lines needed so vague situations still get a fitting excuse
 
 const summary = document.getElementById('summary');
 const results = document.getElementById('results');
@@ -74,6 +75,43 @@ function renderSection(section) {
   return { passed, total: section.cases.length };
 }
 
+// Sub-situation checks: which excuses may be picked for an input.
+// Each case: { input, style, include: [text starts], exclude: [text starts] }.
+function renderPoolSection(section, library) {
+  const tbody = el('tbody');
+  let passed = 0;
+  section.cases.forEach((testCase) => {
+    const result = analyze({ situation: testCase.input, uiLang: TEST_UI_LANG });
+    const entries = library.excuses[result.lang].excuses?.[result.category]?.[testCase.style] || [];
+    const pool = fittingExcuses(entries, normalize(testCase.input));
+    const has = (start) => pool.some((text) => text.startsWith(start));
+    const missing = (testCase.include || []).filter((start) => !has(start));
+    const unwanted = (testCase.exclude || []).filter(has);
+    const pass = !missing.length && !unwanted.length;
+    if (pass) passed += 1;
+    const detail = [
+      `${result.category} · ${testCase.style} · ${pool.length} possible`,
+      missing.length ? `missing: ${missing.join(' / ')}` : '',
+      unwanted.length ? `should not appear: ${unwanted.join(' / ')}` : '',
+    ].filter(Boolean).join(' · ');
+    tbody.append(
+      el('tr', { className: pass ? '' : 'bad-row' },
+        el('td', {}, testCase.input),
+        el('td', {}, `${(testCase.include || []).length} in / ${(testCase.exclude || []).length} out`),
+        el('td', {}, pass ? 'as expected' : 'wrong pool'),
+        el('td', { className: 'detail' }, detail),
+        el('td', { className: pass ? 'ok' : 'bad' }, pass ? 'PASS' : 'FAIL'),
+      ),
+    );
+  });
+  const head = el('thead', {}, el('tr', {}, ...['Input', 'Expected', 'Got', 'Details', ''].map((text) => el('th', {}, text))));
+  results.append(
+    el('h2', {}, `${section.title} (${passed}/${section.cases.length})`),
+    el('div', { className: 'table-wrap' }, el('table', {}, head, tbody)),
+  );
+  return { passed, total: section.cases.length };
+}
+
 function renderCoverage(library) {
   const ids = [...library.categories.categories.map((category) => category.id), 'general'];
   const tbody = el('tbody');
@@ -81,8 +119,11 @@ function renderCoverage(library) {
     const cells = [];
     LANGS.forEach((lang) => {
       STYLES.forEach((style) => {
-        const count = library.excuses[lang].excuses?.[id]?.[style]?.length || 0;
-        cells.push(el('td', { className: count < MIN_PER_STYLE ? 'low' : '' }, String(count)));
+        const entries = library.excuses[lang].excuses?.[id]?.[style] || [];
+        const general = entries.filter((entry) => typeof entry === 'string').length;
+        const label = general < entries.length ? `${entries.length} (${general} general)` : String(entries.length);
+        const low = entries.length < MIN_PER_STYLE || (entries.length && general < MIN_GENERAL);
+        cells.push(el('td', { className: low ? 'low' : '' }, label));
       });
     });
     tbody.append(el('tr', {}, el('td', {}, id), ...cells));
@@ -121,7 +162,7 @@ async function run() {
     let passed = 0;
     let total = 0;
     cases.sections.forEach((section) => {
-      const counts = renderSection(section);
+      const counts = section.type === 'pool' ? renderPoolSection(section, library) : renderSection(section);
       passed += counts.passed;
       total += counts.total;
     });

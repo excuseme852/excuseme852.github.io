@@ -277,6 +277,20 @@ function excusePool(lang, category, style) {
   return { pool: excuses[FALLBACK_CATEGORY]?.[style] || [], from: FALLBACK_CATEGORY };
 }
 
+// An excuse is either a plain string (fits the whole category) or
+// { text, tags } (fits only a sub-situation, e.g. tags ["搬屋", "moving"]).
+const excuseText = (entry) => (typeof entry === 'string' ? entry : entry.text);
+const excuseTags = (entry) => (typeof entry === 'string' ? [] : entry.tags || []);
+
+// Only offer sub-situation excuses when the input mentions that sub-situation:
+// "幫手搬屋" → moving excuses + general ones, never the pick-up ones.
+export function fittingExcuses(entries, text) {
+  const general = entries.filter((entry) => !excuseTags(entry).length);
+  const matching = entries.filter((entry) => excuseTags(entry).some((tag) => findAll(text, tag).length));
+  const pool = [...matching, ...general].map(excuseText);
+  return pool.length ? pool : entries.map(excuseText); // never leave nothing to say
+}
+
 // ---------- Public API ----------
 
 // Categories that have excuses in every style and every language (general last).
@@ -325,8 +339,9 @@ export function generateExcuse({ situation, style = DEFAULT_STYLE, uiLang = FALL
     return { excuse: randomItem(messages), lang: result.lang, category: null, refused: true, exhausted: false, kind: result.kind };
   }
 
-  const { pool } = excusePool(result.lang, result.category, style);
-  if (!pool.length) throw new Error(`No excuses for ${result.lang} / ${result.category} / ${style}`);
+  const { pool: entries } = excusePool(result.lang, result.category, style);
+  if (!entries.length) throw new Error(`No excuses for ${result.lang} / ${result.category} / ${style}`);
+  const pool = fittingExcuses(entries, normalize(situation));
   const { text, exhausted } = pickFresh(pool, previous);
   return { excuse: text, lang: result.lang, category: result.category, refused: false, exhausted, kind: 'excuse' };
 }

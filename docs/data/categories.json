@@ -56,8 +56,8 @@
     },
     {
       "id": "favor",
-      "keywords": ["幫手", "幫我手", "搬屋", "接送", "湊仔", "幫人做嘢", "幫我寫", "幫佢寫", "幫佢睇住", "幫佢搬", "收包裹", "代收", "載我", "車我", "favor", "help out", "help me move", "moving", "pick up", "drop off", "babysit", "drive me", "give me a lift", "proofread", "water her plants", "pet sit", "house sit", "feed my cat"],
-      "weakKeywords": ["幫佢", "airport", "look after", "take care of"]
+      "keywords": ["幫手", "幫我手", "搬屋", "接送", "湊仔", "幫人做嘢", "幫我寫", "幫佢寫", "幫佢睇住", "幫佢搬", "收包裹", "代收", "載我", "車我", "接佢", "接我", "載佢", "車佢", "favor", "help out", "help me move", "moving", "pick up", "drop off", "babysit", "drive me", "give me a lift", "proofread", "water her plants", "pet sit", "house sit", "feed my cat"],
+      "weakKeywords": ["幫佢", "機場", "airport", "look after", "take care of"]
     },
     {
       "id": "social_meal",

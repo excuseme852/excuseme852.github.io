@@ -351,6 +351,23 @@
       ]
     },
     {
+      "title": "Sub-situation tags: which excuses may be picked",
+      "type": "pool",
+      "cases": [
+        { "input": "朋友叫我幫手搬屋", "style": "funny", "include": ["我上次幫人搬屋之後"], "exclude": ["我嘅方向感差到", "我一幫人砌傢俬", "我對住寵物最叻嘅技能"] },
+        { "input": "朋友叫我幫手搬屋", "style": "polite", "include": ["我最近條腰有啲痛", "嗰日我已經有安排"], "exclude": ["我冇揸車", "我對動物有少少敏感"] },
+        { "input": "朋友叫我去機場接佢", "style": "funny", "include": ["我嘅方向感差到"], "exclude": ["我上次幫人搬屋之後"] },
+        { "input": "朋友叫我幫手", "style": "ridiculous", "include": ["我嘅inside out"], "exclude": ["我對紙皮箱", "我架車今日決定"] },
+        { "input": "Can you help me move this weekend?", "style": "ridiculous", "include": ["I have a serious phobia of cardboard boxes"], "exclude": ["My car has decided to become a potted plant"] },
+        { "input": "朋友問我借錢", "style": "funny", "include": ["我啱啱查完戶口"], "exclude": ["借車就算啦"] },
+        { "input": "表哥想借我架車", "style": "funny", "include": ["借車就算啦"], "exclude": ["我啱啱查完戶口"] },
+        { "input": "老細叫我今晚 OT", "style": "polite", "include": ["唔好意思，今晚放工之後我已經約咗人"], "exclude": ["嗰個時段我已經有另一個會"] },
+        { "input": "唔想去開會", "style": "polite", "include": ["嗰個時段我已經有另一個會"], "exclude": ["唔好意思，今晚放工之後我已經約咗人"] },
+        { "input": "新年唔想拜年", "style": "ridiculous", "include": ["我收到風今年團年飯隻雞"] },
+        { "input": "阿媽叫我陪佢去街市", "style": "ridiculous", "exclude": ["我收到風今年團年飯隻雞"] }
+      ]
+    },
+    {
       "title": "User-picked topic (Phase 8 topic buttons)",
       "cases": [
         { "input": "老細叫我今晚 OT", "category": "social_meal", "expect": "social_meal" },
