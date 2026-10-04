@@ -130,6 +130,38 @@
         "My stomach has called an emergency meeting with the bathroom. The agenda hasn't been shared, but it looks long."
       ]
     },
+    "family": {
+      "polite": [
+        "Work is really full-on this week, Mum. I need Sunday to catch up, but I'll definitely come for dinner next week!",
+        "I already promised a friend that day, sorry! I'll be there for the next family get-together, promise.",
+        "I've been running on empty lately and need a quiet day at home. I'll come and visit soon.",
+        "I really can't make it this time. Can I give you a call tonight and catch up instead?",
+        "That day doesn't work for me. How about dim sum next weekend instead? My treat!",
+        "Money's a bit tight right now, so I'll skip the family trip this time. Have fun and send me lots of photos!",
+        "My throat's a bit scratchy and I don't want to pass anything on to Grandma, so I'll stay away this time.",
+        "I've got an exam next week, so I might need to leave dinner early. Sorry in advance!"
+      ],
+      "funny": [
+        "I haven't finished preparing my answer to \"So when are you getting married?\" I'll come back once the speech is ready.",
+        "I didn't get a raise this year, and I'm not ready to improvise a salary story in front of the whole family.",
+        "I ate three bowls of rice last time. Mum says I'm still digesting and shouldn't come back for another two weeks.",
+        "If I go home, I'll be the family IT department again, and today my brain is out of tech support.",
+        "The second I walk through the front door, I turn twelve again. I'd like to be an adult a little longer.",
+        "The moment I walk in, the family group chat somehow becomes a live interview, and I'm not prepared for the questions.",
+        "My lucky money is already spent in my head, and I can't handle the emotional damage of getting none.",
+        "I set up WhatsApp for Mum, and now she sends me thirty good-morning flower pictures a day. I'm still catching up."
+      ],
+      "ridiculous": [
+        "I heard this year's reunion-dinner chicken has gained sentience and plans to fight back. I'm sitting this one out.",
+        "Every time I walk into my parents' place, all the TV remotes vanish. For the sake of family viewing, I'm staying away.",
+        "The relatives' questioning has escalated to nuclear level, and I'm not going to the front line without insurance.",
+        "My relatives have installed a financial surveillance system in their brains. They somehow know every time I buy something unnecessary.",
+        "The family mahjong table recognises me now. It says one more loss and I'm a lifetime member.",
+        "Mum's soup has a new secret ingredient that lets you see the future, and I'm not ready to find out when I'll afford a flat.",
+        "My cousins have formed a comparison league, and I'll be scored live the moment I walk in.",
+        "The family dog gives me a \"what are you doing here\" look every time, and I can't take any more psychological damage."
+      ]
+    },
     "general": {
       "polite": [
         "I've already got something on, so I can't this time. Maybe next time!",
