@@ -160,7 +160,10 @@
         "That day doesn't work for me. How about dim sum next weekend instead? My treat!",
         { "text": "Money's a bit tight right now, so I'll skip the family trip this time. Have fun and send me lots of photos!", "tags": ["旅行", "去玩", "trip", "holiday", "vacation", "travel"] },
         "My throat's a bit scratchy and I don't want to pass anything on to Grandma, so I'll stay away this time.",
-        "I've got an exam next week, so I might need to leave dinner early. Sorry in advance!"
+        "I've got an exam next week, so I might need to leave dinner early. Sorry in advance!",
+        "I'm rostered on that day and can't swap shifts. I'll give you more notice next time, promise.",
+        "I want to sort out a few things first, then I'll take a proper day off next month just to spend with you.",
+        "I can't make it this time, but I've ordered your favourite food. It's being delivered to you later!"
       ],
       "funny": [
         "I haven't finished preparing my answer to \"So when are you getting married?\" I'll come back once the speech is ready.",
@@ -170,7 +173,10 @@
         "The second I walk through the front door, I turn twelve again. I'd like to be an adult a little longer.",
         "The moment I walk in, the family group chat somehow becomes a live interview, and I'm not prepared for the questions.",
         { "text": "My lucky money is already spent in my head, and I can't handle the emotional damage of getting none.", "tags": ["團年", "年夜飯", "新年", "過年", "拜年", "利是", "lunar new year", "chinese new year", "new year", "reunion dinner", "red packet", "lucky money"] },
-        "I set up WhatsApp for Mum, and now she sends me thirty good-morning flower pictures a day. I'm still catching up."
+        "I set up WhatsApp for Mum, and now she sends me thirty good-morning flower pictures a day. I'm still catching up.",
+        "Every time I visit, Mum packs me so much food I can't carry it home. I'm still working through the last bag.",
+        "The moment I sit on the family sofa, I fall asleep. I'd rather not waste everyone's time.",
+        "Mum will tell me to put on another layer, and I'm already wearing everything I own."
       ],
       "ridiculous": [
         { "text": "I heard this year's reunion-dinner chicken has gained sentience and plans to fight back. I'm sitting this one out.", "tags": ["團年", "年夜飯", "新年", "過年", "拜年", "利是", "lunar new year", "chinese new year", "new year", "reunion dinner", "red packet", "lucky money"] },
@@ -180,7 +186,10 @@
         "The family mahjong table recognises me now. It says one more loss and I'm a lifetime member.",
         "Mum's soup has a new secret ingredient that lets you see the future, and I'm not ready to find out when I'll afford a flat.",
         "My cousins have formed a comparison league, and I'll be scored live the moment I walk in.",
-        "The family dog gives me a \"what are you doing here\" look every time, and I can't take any more psychological damage."
+        "The family dog gives me a \"what are you doing here\" look every time, and I can't take any more psychological damage.",
+        "The moment I walk in, the family TV automatically starts playing videos of me as a toddler.",
+        "My childhood bedroom has officially become Mum's storage unit. There's nowhere left for me to stand.",
+        "The family parrot has learned to say \"When are you getting married?\" and asks it every five minutes."
       ]
     },
     "reply_message": {
