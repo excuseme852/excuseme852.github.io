@@ -209,7 +209,7 @@
         "I signed up for three gym memberships and two streaming services last month. All my money is now subscribed.",
         "I just checked my bank balance, and now I want to borrow money from someone.",
         "My financial advisor (my mum) has not approved this.",
-        "I asked my accountant for permission to lend some money, and it has formally denied my request.",
+        "I've finally achieved financial freedom. My money is now so free it packed up and left.",
         "My history of lending money is basically a tragedy, and I'm not filming the sequel.",
         "Right now I'd need an IOU just to lend money to myself.",
         "My piggy bank has gone on hunger strike and won't give up a single coin.",
@@ -224,6 +224,38 @@
         "My credit card has gone into secluded meditation for the month and isn't accepting any visitors.",
         "My money has apparently become modern art. I'm allowed to admire it, but not actually use it.",
         "I've signed a non-disclosure agreement with my own money. Even I'm not allowed to know where it is."
+      ]
+    },
+    "favor": {
+      "polite": [
+        "I've already got plans that day and really can't get out of them. Sorry! Ask me next time.",
+        "My back's been playing up lately, and lifting boxes might make it worse, so I can't help with the move this time.",
+        "I'm honestly not great at this and I'd probably make it worse. Want me to put you in touch with someone who knows what they're doing?",
+        "I'm working during that time and can't get away. Can I help you figure out another option over the weekend?",
+        "I can help with part of it, like packing beforehand, but I can't make it on the day.",
+        "I've promised to help my family with a few things lately, so my time's fully booked. Sorry!",
+        "I don't drive, so I can't do the pick-up, but I'm happy to book you a taxi!",
+        "I'm a bit allergic to animals, so pet-sitting would be rough for both of us. Sorry!"
+      ],
+      "funny": [
+        "I helped someone move last time, and my back still hasn't forgiven me.",
+        "My helping skill is on cooldown. Too many friends used it in a row.",
+        "Every time I assemble furniture, there are three screws left over. Your wardrobe deserves better.",
+        "My childcare experience is limited to a Tamagotchi, and that didn't end well.",
+        "My sense of direction is so bad I get lost in taxis. Please don't trust me with a pick-up.",
+        "I can talk to animals for hours. The problem is, they never give useful instructions.",
+        "Whenever someone says \"can you do me a quick favour,\" I know it's not going to be quick.",
+        "I helped a friend tidy their flat once, and they couldn't find anything for a month. I've been banned from helping since."
+      ],
+      "ridiculous": [
+        "I have a serious phobia of cardboard boxes. The moment I see one, I vanish.",
+        "All my muscles have taken on part-time jobs, and none of them are free today.",
+        "The stairs in my building grew another hundred steps overnight. Getting downstairs might take until tomorrow.",
+        "The little emotions running my brain held an emergency meeting today and voted unanimously to pull out of all support missions.",
+        "The instructions for your furniture are written in an alien language, and I haven't finished the course yet.",
+        "I've just been given a secret mission to guard a single button for a month. I can't leave my post.",
+        "My car has decided to become a potted plant. It's not moving.",
+        "Every time I help someone, all their appliances break at once. I'm fairly sure I'm cursed."
       ]
     },
     "general": {
