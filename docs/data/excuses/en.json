@@ -361,6 +361,47 @@
         "A very polite snail invited me to its birthday party, and I didn't have the heart to say no."
       ]
     },
+    "study": {
+      "polite": [
+        "Sorry, I haven't been feeling well the last couple of days. Could I hand it in a day late?",
+        "I've got several assignments and tests at the same time, so I'd like to prioritise. Could I have a little more time?",
+        "Sorry, something came up at home and I need to take today off. I'll catch up on everything myself.",
+        "My laptop just crashed and I lost part of my work, so I need to redo it. Could I have a two-day extension?",
+        "I don't fully understand this part yet and want to get it right. Could I book a time to ask you about it?",
+        "I've got a medical appointment I booked ages ago, so I'll be absent today. I'll get the notes from a classmate.",
+        "Sorry, I misjudged how long it would take and didn't finish in time. I'll start earlier next time.",
+        "I'm pretty worn out lately and need a night's rest. I'll work much better tomorrow.",
+        "I'd like to focus on preparing for another exam first. Could this one be handed in a little later?",
+        "Sorry, my transport was delayed today and I couldn't make it in time. I'll catch up as soon as I can.",
+        { "text": "I've arranged to work on it with my group on another day, so I'll leave it for today. Sorry!", "tags": ["group project", "project", "組員", "小組", "presentation"] }
+      ],
+      "funny": [
+        "My homework said that if I don't spend tonight with it, it won't show up tomorrow.",
+        "I've been studying for three hours. Two and a half of those were colour-coding my notes.",
+        "My brain is completely full. If I add anything else, the formulas will start falling out.",
+        "My attention span has a 15-minute expiry date, and it expired a while ago.",
+        "The moment I open a textbook, I fall asleep. It's my only superpower.",
+        "My teacher says my attendance has reached endangered-species level. I have to protect it.",
+        "My pen ran out of ink today, and I think it's making a statement.",
+        "I opened the assignment file and stared at it for an hour. It didn't finish itself.",
+        "My study plan is perfect. It just doesn't mention when I'm supposed to start.",
+        "I spent most of my study time searching for the most comfortable studying position. Still searching.",
+        { "text": "My group project teammates have all mysteriously disappeared, so I'm doing four people's work.", "tags": ["group project", "project", "組員", "小組", "presentation"] },
+        { "text": "I just found out the exam is on chapter three. I studied chapter four. I need time to accept this.", "tags": ["考試", "測驗", "小測", "聽日考", "exam", "test", "quiz", "midterm", "midterms", "finals"] }
+      ],
+      "ridiculous": [
+        "My notebook grew wings and flew off this morning. I'm currently chasing it.",
+        "My backpack is so heavy it's developed its own gravity. Every time I leave, it pulls me back inside.",
+        "Half my brain cells sacrificed themselves for my studies. The other half are holding a memorial.",
+        "My calculator learned to talk, and now it just says \"work it out yourself.\" We need to sort things out first.",
+        "My shredder mistook my homework for breakfast.",
+        "My answers were so good that a museum has acquired them. I need to go and sign the paperwork.",
+        "A library shelf collapsed this morning and I'm trapped under reference books, waiting for the fire brigade.",
+        "I've discovered the deadline is a monster, and it waits under my bed every night.",
+        "My eraser got so carried away it erased my memory too.",
+        "My homework has been declared a protected heritage site. I'm legally not allowed to touch it."
+      ]
+    },
     "general": {
       "polite": [
         "I've already got something on, so I can't this time. Maybe next time!",
