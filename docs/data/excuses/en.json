@@ -162,6 +162,38 @@
         "The family dog gives me a \"what are you doing here\" look every time, and I can't take any more psychological damage."
       ]
     },
+    "reply_message": {
+      "polite": [
+        "Sorry! I was in meetings all afternoon and only just saw this.",
+        "Oops, I read this and thought I'd replied, but it never actually sent. Sorry!",
+        "My messages have been chaos lately and yours got buried. Digging it out now, sorry!",
+        "My phone died earlier and I've only just charged it. Sorry for the slow reply!",
+        "I wanted to give you a proper answer, so I waited until I had time. Sorry to keep you waiting!",
+        "I've been out and about all day and barely looked at my phone. Sorry!",
+        "I'm trying to spend less time on my phone, so I'm a bit slow to reply. Hope that's okay!",
+        "The group chat got so busy I had to mute it, which is how I missed this. Sorry!"
+      ],
+      "funny": [
+        "I typed a really long reply and then accidentally deleted the whole thing. I'm still grieving.",
+        "I replied to you three times in my head. My thumbs just haven't caught up yet.",
+        "My inbox is like rush hour at a train station right now. I only just found you in the crowd.",
+        "I'm still trying to find the perfect GIF to reply with. It's been two days. The search continues.",
+        "I opened your message to reply and somehow ended up reorganising my camera roll instead. I'm not sure where the last hour went.",
+        "My reply to you went to the work group chat by mistake. The whole department now knows what I'm having for dinner, and I need to handle the PR crisis first.",
+        "The group chat hit 300 messages before lunch, so I've put myself in witness protection from it.",
+        "I told myself I'd reply \"in a sec.\" Turns out my \"sec\" lasts about three days."
+      ],
+      "ridiculous": [
+        "My phone disappeared into the sofa for three days. Search and rescue only pulled it out this morning.",
+        "My reply button has officially retired from overuse, and the new one is still in training.",
+        "All my messages are delivered by my pet tortoise. He's on his way. Expect your reply next month.",
+        "My social energy is solar-powered now, and it's been cloudy all week.",
+        "My phone has become a philosopher. Every time I try to reply, it asks me what replying even means.",
+        "My thumbs and my brain are going through a messy divorce and haven't agreed who gets custody of my replies.",
+        "Our chat has gotten so long it crossed a border. I need a visa before I can reply.",
+        "My reply is travelling to you at the speed of light. Unfortunately, I live a few light years away."
+      ]
+    },
     "general": {
       "polite": [
         "I've already got something on, so I can't this time. Maybe next time!",
