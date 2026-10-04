@@ -5,11 +5,11 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 ## Current phase
 
-**Phase 9 — Copy / Generate Another / Share** (not started)
+**Topic expansion (before Phase 9)** (in progress: date done)
 
 ## Next step
 
-Plan Phase 9 (Copy / Generate Another with the "out of ideas" line when `exhausted` / Share). Library now: social_meal, work, late, general — 8 per style in both languages (192 excuses, ~32 KB data).
+Write the 8 remaining categories one at a time (creator reviews each): date ✅, family, reply_message, borrow_lend, favor, study, exercise, health. Topic labels already in the locale files; a button appears once a category has excuses. Then Phase 9 (Copy / Generate Another with the "out of ideas" line when `exhausted` / Share). Library now: social_meal, work, late, date, general — 8 per style in both languages (240 excuses).
 
 ## Phase checklist
 
