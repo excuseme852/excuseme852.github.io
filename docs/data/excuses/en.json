@@ -402,6 +402,44 @@
         "My homework has been declared a protected heritage site. I'm legally not allowed to touch it."
       ]
     },
+    "exercise": {
+      "polite": [
+        "Sorry, my knee's been a bit sore lately, so I'm resting it before I do anything active.",
+        "I've already got plans that day, so I can't make it. Let's work out together next time!",
+        "Work has wiped me out lately, and I don't want to slow everyone down. I'll sit this one out.",
+        "I haven't been sleeping well lately and I'm worried I'd get dizzy, so I'll wait until I'm back on track.",
+        "I've just started my own training plan and want to stick to it, so I'll pass this time.",
+        "I've got an early start that morning to deal with a few things, so I don't think I'd manage.",
+        "I feel like I'm coming down with something, so I'd rather play it safe and rest.",
+        "Money's tight this month, so I can't cover the fees or the gear right now. Sorry!",
+        "I promised my family I'd spend that day with them, so I really can't get away.",
+        "I just did a big workout and my trainer told me to rest for a few days. Sorry!"
+      ],
+      "funny": [
+        "After my last workout I had to walk downstairs backwards for two days. I'm still recovering.",
+        "My fitness watch says I've already done 10,000 steps today and has advised me not to push my limits.",
+        "I just bought a really nice workout outfit, and it's too nice to sweat in.",
+        "My athletic ability was last spotted at my primary school sports day.",
+        "I bought a year-long gym membership mainly to prove I have good intentions.",
+        "Most of my exercise comes from chasing buses, and I've already chased two today.",
+        "Whenever I exercise, I start sweating, and I take that as my body asking me to stop.",
+        "I've been warming up for three days and I'm still not warm enough.",
+        "My stamina bar is down to its last block, and I need it to get home.",
+        "I just watched a sports documentary, and honestly I feel like I've already done the workout."
+      ],
+      "ridiculous": [
+        "My treadmill has become a clothes rack. It says it loves the new job, and I don't have the heart to make it go back.",
+        "My legs told me this morning they want to be stationary legs from now on, and I respect their life choices.",
+        "Gravity is extra strong today. I need a permit just to stand up.",
+        "My heartbeat insists on staying at \"watching TV\" speed and won't let me mess with it.",
+        "My trainers ran away this morning and left a note saying they've gone to find a more committed owner.",
+        "My yoga mat and I have history. The moment it sees me, it rolls itself back up.",
+        "My stamina is a limited edition, and this year's supply has completely sold out.",
+        "My fitness app has given up on me and started recommending food videos.",
+        "My bones filed a noise complaint about all the cracking this morning, and I need to sort that out first.",
+        "I've signed a lifestyle exchange with a koala, and this month I'm learning to sleep twenty hours a day."
+      ]
+    },
     "general": {
       "polite": [
         "I've already got something on, so I can't this time. Maybe next time!",
