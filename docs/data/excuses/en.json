@@ -194,6 +194,38 @@
         "My reply is travelling to you at the speed of light. Unfortunately, I live a few light years away."
       ]
     },
+    "borrow_lend": {
+      "polite": [
+        "Sorry, things are really tight for me this month, so I don't have anything spare to lend.",
+        "I have a rule with my family about not mixing money and friendships. Hope you understand.",
+        "Most of my savings are locked in a fixed deposit right now, so I can't get to them. Sorry!",
+        "I'm saving hard for a flat deposit and every dollar is already spoken for, so I can't help this time.",
+        "I don't usually lend my things out. I'd hate for anything to get damaged and make it awkward between us.",
+        "I can't help with money, but if you want, I'm happy to help you figure out other options.",
+        "My family has asked me never to co-sign anything, so I really can't. Sorry.",
+        "I still haven't been paid back from the last time I lent money, so I'm holding off for now. Hope that's okay."
+      ],
+      "funny": [
+        "I signed up for three gym memberships and two streaming services last month. All my money is now subscribed.",
+        "I just checked my bank balance, and now I want to borrow money from someone.",
+        "My financial advisor (my mum) has not approved this.",
+        "I asked my accountant for permission to lend some money, and it has formally denied my request.",
+        "My history of lending money is basically a tragedy, and I'm not filming the sequel.",
+        "Right now I'd need an IOU just to lend money to myself.",
+        "My piggy bank has gone on hunger strike and won't give up a single coin.",
+        "I can't lend you my car. It only recognises me and throws a tantrum with anyone else."
+      ],
+      "ridiculous": [
+        "My money has emigrated to a very distant country and says it won't be back any time soon.",
+        "The last hundred-dollar note I lent out has gone independent, started its own company, and stopped returning my calls.",
+        "My bank account is undergoing major renovations. All withdrawals are suspended until further notice.",
+        "My savings have reached legend status. People say they've seen them, but no one has any proof.",
+        "My coins have formed a union and won't be lent out until they get a pay rise.",
+        "My credit card has gone into secluded meditation for the month and isn't accepting any visitors.",
+        "My money has apparently become modern art. I'm allowed to admire it, but not actually use it.",
+        "I've signed a non-disclosure agreement with my own money. Even I'm not allowed to know where it is."
+      ]
+    },
     "general": {
       "polite": [
         "I've already got something on, so I can't this time. Maybe next time!",
