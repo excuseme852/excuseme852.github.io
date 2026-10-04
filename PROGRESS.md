@@ -9,7 +9,7 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 ## Next step
 
-Write the 8 remaining categories one at a time (creator reviews each): date ✅, family ✅, reply_message ✅, borrow_lend ✅, favor ✅, study, exercise, health. Every written category has ≥10 general lines per style and language (batches A–E). Study draft must be rewritten as excuses about school itself (homework, class, exams), not "using study as an excuse". Topic labels already in the locale files; a button appears once a category has excuses. Then Phase 9 (Copy / Generate Another with the "out of ideas" line when `exhausted` / Share). Library now: 9 categories incl. general, 10–18 lines per style per language (~1,170 lines).
+Write the 8 remaining categories one at a time (creator reviews each): date ✅, family ✅, reply_message ✅, borrow_lend ✅, favor ✅, study, exercise, health. Every written category has ≥10 general lines per style and language (batches A–E). Study draft must be rewritten as excuses about school itself (homework, class, exams), not "using study as an excuse". Topic labels already in the locale files; a button appears once a category has excuses. Then Phase 9 (Copy / Generate Another with the "out of ideas" line when `exhausted` / Share). Library now: 9 categories incl. general, 10–18 lines per style per language (~650 lines in total, zh-HK + en).
 
 ## Phase checklist
 
