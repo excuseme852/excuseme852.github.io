@@ -306,7 +306,8 @@
         "Half the things I've lent out turned into boomerangs and the other half into homing pigeons, yet somehow none of them came back.",
         "My belongings have signed the lease on my flat. They're the landlords now, and I'm just the tenant.",
         "My generosity gene is in for its annual check-up and has been temporarily switched off.",
-        "The Observatory has hoisted a lending storm warning, and I'm not making any moves until it's lowered."
+        "The Observatory has hoisted a lending storm warning, and I'm not making any moves until it's lowered.",
+        "My belongings are protected by a very strict security guard. It's my mum, and she's on duty today."
       ]
     },
     "favor": {
@@ -318,7 +319,12 @@
         "I can help with part of it, like packing beforehand, but I can't make it on the day.",
         "I've promised to help my family with a few things lately, so my time's fully booked. Sorry!",
         { "text": "I don't drive, so I can't do the pick-up, but I'm happy to book you a taxi!", "tags": ["接送", "接", "送", "載", "車我", "機場", "pick up", "drop off", "drive", "lift", "airport", "ride"] },
-        { "text": "I'm a bit allergic to animals, so pet-sitting would be rough for both of us. Sorry!", "tags": ["狗", "貓", "寵物", "pet", "dog", "cat", "puppy"] }
+        { "text": "I'm a bit allergic to animals, so pet-sitting would be rough for both of us. Sorry!", "tags": ["狗", "貓", "寵物", "pet", "dog", "cat", "puppy"] },
+        "I've got a lot on my own plate right now, and I'd hate to say yes and end up slowing you down.",
+        "I'm feeling a bit off that day and worry I'd be more of a burden than a help.",
+        "Could we do another day? That day I'm completely stretched.",
+        "How about I chip in to hire someone? It'd be quicker and safer than me doing it.",
+        "I've already promised another friend I'd help them that same day, and I don't want to let them down. Sorry!"
       ],
       "funny": [
         { "text": "I helped someone move last time, and my back still hasn't forgiven me.", "tags": ["搬屋", "搬嘢", "搬", "moving", "move house", "move", "boxes"] },
@@ -329,7 +335,14 @@
         { "text": "I can talk to animals for hours. The problem is, they never give useful instructions.", "tags": ["狗", "貓", "寵物", "pet", "dog", "cat", "puppy"] },
         "Whenever someone says \"can you do me a quick favour,\" I know it's not going to be quick.",
         { "text": "I helped a friend tidy their flat once, and they couldn't find anything for a month. I've been banned from helping since.", "tags": ["執屋", "執嘢", "整理", "tidy", "clean", "declutter"] },
-        "I've already done a lot of helping today. I got myself out of bed, brushed my teeth and left the house. I'm spent."
+        "I've already done a lot of helping today. I got myself out of bed, brushed my teeth and left the house. I'm spent.",
+        "Last time I helped a friend, it ended with them helping me.",
+        "I only have enough energy left to say no. There's none left over for helping.",
+        "The words \"while you're at it\" make my hands shake, and you've said them twice.",
+        "My good-person mode hasn't booted up yet. It's still installing an update.",
+        "I'm so slow that you'd finish faster doing it yourself than waiting for me.",
+        "There's already a designated helper in our group, and their rates are better than mine.",
+        "My \"sure, no problem\" has been used so much it broke. It's in for repairs."
       ],
       "ridiculous": [
         { "text": "I have a serious phobia of cardboard boxes. The moment I see one, I vanish.", "tags": ["搬屋", "搬嘢", "搬", "moving", "move house", "move", "boxes"] },
@@ -339,7 +352,13 @@
         { "text": "The instructions for your furniture are written in an alien language, and I haven't finished the course yet.", "tags": ["傢俬", "砌", "IKEA", "furniture", "assemble", "wardrobe", "shelf", "desk"] },
         "I've just been given a secret mission to guard a single button for a month. I can't leave my post.",
         { "text": "My car has decided to become a potted plant. It's not moving.", "tags": ["接送", "接", "送", "載", "車我", "機場", "pick up", "drop off", "drive", "lift", "airport", "ride"] },
-        "Every time I help someone, all their appliances break at once. I'm fairly sure I'm cursed."
+        "Every time I help someone, all their appliances break at once. I'm fairly sure I'm cursed.",
+        "My hands have told me they want to become hand models, so they can't do anything heavy.",
+        "Heaven has informed me my good-deed points are full for today. Any more and they'll overflow.",
+        "My watch has decided to run at half speed today. By the time I get there, it'll be tomorrow.",
+        "My strength has gone on holiday and left a note saying \"Don't contact me.\"",
+        "I've just discovered there's an invisible magic barrier between your place and mine, and I can't get through it.",
+        "A very polite snail invited me to its birthday party, and I didn't have the heart to say no."
       ]
     },
     "general": {
