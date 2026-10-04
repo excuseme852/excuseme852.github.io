@@ -260,7 +260,14 @@
         { "text": "I still haven't been paid back from the last time I lent money, so I'm holding off for now. Hope that's okay.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
         "Sorry, I've got a personal rule about not lending money or things out. It's nothing personal, hope you understand.",
         "I really can't help with this one, and I'd rather not promise something I can't follow through on. Sorry!",
-        "I'd need to talk it over with my family first, so I can't say yes right now. Sorry."
+        "I'd need to talk it over with my family first, so I can't say yes right now. Sorry.",
+        "Sorry, I'm under a bit of pressure myself at the moment, so I can't help right now. Hope you understand.",
+        "I'd rather not, because I don't want anything to get in the way of our friendship.",
+        "I've lent things before and it got awkward for everyone, so I've stopped lending altogether.",
+        "I can't say yes right now, but I'm happy to ask around or help you think of another way.",
+        "It's really important to me, so I'm not comfortable lending it out. Hope you don't mind.",
+        "Let me look at my own situation first and get back to you later, okay?",
+        "This time I really can't, but if there's anything else you need, I'll be there."
       ],
       "funny": [
         { "text": "I signed up for three gym memberships and two streaming services last month. All my money is now subscribed.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
@@ -273,7 +280,14 @@
         { "text": "I can't lend you my car. It only recognises me and throws a tantrum with anyone else.", "tags": ["車", "相機", "電腦", "手機", "衫", "嘢", "書", "筆記", "laptop", "car", "camera", "phone", "clothes", "stuff", "things", "notes", "book", "charger"] },
         "Everything I've ever lent out is still out there. I suspect it's all started families and isn't coming back.",
         "I can't sleep when something of mine is out on loan. For the sake of my sleep, it's a no this time.",
-        "My lending department is closed today. Please leave a message and I'll get back to you next century."
+        "My lending department is closed today. Please leave a message and I'll get back to you next century.",
+        "The last thing I lent out came back so changed I didn't recognise it.",
+        "I lent my word \"lend\" to someone, and they never gave it back.",
+        "My friends have started calling me the \"human ATM,\" and I'm considering a career change.",
+        "My memory is so bad I'd forget who I lent it to. For everyone's sake, it's a no.",
+        "I once lent someone my umbrella and it rained for three months. I'm still recovering.",
+        "The moment I lend something out, it instantly becomes the one thing I desperately need.",
+        "\"No\" is set as my auto-reply for lending requests. It's out of my hands."
       ],
       "ridiculous": [
         { "text": "My money has emigrated to a very distant country and says it won't be back any time soon.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
@@ -286,7 +300,13 @@
         { "text": "I've signed a non-disclosure agreement with my own money. Even I'm not allowed to know where it is.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
         "Everything I own has applied for permanent residency at my place and isn't allowed to leave the country.",
         "Heaven has just issued a decree: I'm not allowed to lend anything out this year. I'm not risking defiance.",
-        "My belongings have separation anxiety. If they're away from me for more than five minutes, they start crying."
+        "My belongings have separation anxiety. If they're away from me for more than five minutes, they start crying.",
+        "Everything I own is insured, and the policy clearly states it can't leave my sight.",
+        "My front door recognises when something's about to be borrowed and locks itself automatically.",
+        "Half the things I've lent out turned into boomerangs and the other half into homing pigeons, yet somehow none of them came back.",
+        "My belongings have signed the lease on my flat. They're the landlords now, and I'm just the tenant.",
+        "My generosity gene is in for its annual check-up and has been temporarily switched off.",
+        "The Observatory has hoisted a lending storm warning, and I'm not making any moves until it's lowered."
       ]
     },
     "favor": {
