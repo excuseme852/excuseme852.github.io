@@ -52,7 +52,14 @@
         { "text": "My commute is pretty long, and getting home too late is difficult, so I need to head out on time tonight.", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
         "I'm not quite at my best today and need to rest up. I'll be back on it properly tomorrow.",
         "I've got something urgent on my plate that I need to finish first. I'll get back to you as soon as it's done.",
-        "I've got a few things going on at home at the moment. Could I have a bit of flexibility? I'll make it up."
+        "I've got a few things going on at home at the moment. Could I have a bit of flexibility? I'll make it up.",
+        "Can we check priorities? If this needs doing now, which of my current tasks can wait?",
+        "My day is fully booked already. Could we pick this up another day?",
+        "I've been going flat out lately, so I'd like to take a day off to recharge. I'll come back sharper.",
+        "I might not be the best person for this. Would it be quicker to check with the team that owns it?",
+        "I promised a colleague I'd get something to them today, and I don't want to let them down. Can this wait a little?",
+        "I've got a personal matter to take care of. Could I take a half day? I'll make sure my work is covered.",
+        "I'm taking a family member to a medical appointment then, and I've already booked the time off."
       ],
       "funny": [
         "My brain clocked out at six and didn't tell me. I'm basically a very polite screensaver now.",
@@ -62,7 +69,11 @@
         "My coffee wore off an hour ago. Anything I produce now is legally decaf.",
         "I've used up my daily allowance of pretending to be excited about meetings.",
         "The spreadsheet and I need some space. We've agreed to spend the evening apart.",
-        { "text": "My work-life balance is currently 90/10, and tonight I'm fighting for the 10.", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] }
+        { "text": "My work-life balance is currently 90/10, and tonight I'm fighting for the 10.", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
+        "I've been in three meetings today, and the minutes are now longer than my life plan.",
+        "My inbox is a black hole. Things go in and nothing ever comes back out.",
+        "I've said \"I'll follow up on that\" twenty times today. I'm no longer sure what I'm following up on.",
+        "My to-do list is so long it's been split into a two-part series, and we're only on part one."
       ],
       "ridiculous": [
         "My personality ran out at lunch, and the restock isn't due until tomorrow morning.",
@@ -72,7 +83,14 @@
         { "text": "My chair has moulded to my exact shape. If I sit any longer, we'll legally be one entity.", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
         { "text": "My calendar booked fourteen meetings today, became self-aware, and has taken control of my evening.", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
         { "text": "My liver has threatened to resign if I pull another late night, and I can't afford a replacement.", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
-        "My office access card has started rejecting me on principle. I think it's trying to tell me something."
+        "My office access card has started rejecting me on principle. I think it's trying to tell me something.",
+        "The office coffee machine has become my spiritual leader, and it's on leave today. I have no guidance.",
+        "My office chair spun around a hundred times this morning, and now it's too dizzy to let me sit down.",
+        "The loading wheel on my computer has started contemplating the meaning of life.",
+        "The office Wi-Fi broke up with me. It said we just don't have a connection anymore.",
+        "My desk plant just got promoted, and now I report to it.",
+        "My annual leave has taken annual leave, and I don't know how to get it back.",
+        "The office lift told me it no longer wants to stop at my floor, and I have to respect that."
       ]
     },
     "late": {
