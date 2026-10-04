@@ -43,7 +43,10 @@
         { "text": "I've got a class tonight that I've already paid for, so I need to head out on time.", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
         { "text": "I've got a meeting clash at that time. Would it work to move it, or I can catch up from the notes afterward.", "tags": ["開會", "會議", "meeting", "call", "zoom"] },
         { "text": "I've got a dentist appointment I booked weeks ago, so I need to leave on time today.", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
-        { "text": "My commute is pretty long, and getting home too late is difficult, so I need to head out on time tonight.", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] }
+        { "text": "My commute is pretty long, and getting home too late is difficult, so I need to head out on time tonight.", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
+        "I'm not quite at my best today and need to rest up. I'll be back on it properly tomorrow.",
+        "I've got something urgent on my plate that I need to finish first. I'll get back to you as soon as it's done.",
+        "I've got a few things going on at home at the moment. Could I have a bit of flexibility? I'll make it up."
       ],
       "funny": [
         "My brain clocked out at six and didn't tell me. I'm basically a very polite screensaver now.",
@@ -203,7 +206,10 @@
         { "text": "I don't usually lend my things out. I'd hate for anything to get damaged and make it awkward between us.", "tags": ["車", "相機", "電腦", "手機", "衫", "嘢", "書", "筆記", "laptop", "car", "camera", "phone", "clothes", "stuff", "things", "notes", "book", "charger"] },
         { "text": "I can't help with money, but if you want, I'm happy to help you figure out other options.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
         { "text": "My family has asked me never to co-sign anything, so I really can't. Sorry.", "tags": ["擔保", "co-sign", "cosign", "guarantor", "guarantee"] },
-        { "text": "I still haven't been paid back from the last time I lent money, so I'm holding off for now. Hope that's okay.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] }
+        { "text": "I still haven't been paid back from the last time I lent money, so I'm holding off for now. Hope that's okay.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
+        "Sorry, I've got a personal rule about not lending money or things out. It's nothing personal, hope you understand.",
+        "I really can't help with this one, and I'd rather not promise something I can't follow through on. Sorry!",
+        "I'd need to talk it over with my family first, so I can't say yes right now. Sorry."
       ],
       "funny": [
         { "text": "I signed up for three gym memberships and two streaming services last month. All my money is now subscribed.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
@@ -213,7 +219,10 @@
         { "text": "My history of lending money is basically a tragedy, and I'm not filming the sequel.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
         { "text": "Right now I'd need an IOU just to lend money to myself.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
         { "text": "My piggy bank has gone on hunger strike and won't give up a single coin.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
-        { "text": "I can't lend you my car. It only recognises me and throws a tantrum with anyone else.", "tags": ["車", "相機", "電腦", "手機", "衫", "嘢", "書", "筆記", "laptop", "car", "camera", "phone", "clothes", "stuff", "things", "notes", "book", "charger"] }
+        { "text": "I can't lend you my car. It only recognises me and throws a tantrum with anyone else.", "tags": ["車", "相機", "電腦", "手機", "衫", "嘢", "書", "筆記", "laptop", "car", "camera", "phone", "clothes", "stuff", "things", "notes", "book", "charger"] },
+        "Everything I've ever lent out is still out there. I suspect it's all started families and isn't coming back.",
+        "I can't sleep when something of mine is out on loan. For the sake of my sleep, it's a no this time.",
+        "My lending department is closed today. Please leave a message and I'll get back to you next century."
       ],
       "ridiculous": [
         { "text": "My money has emigrated to a very distant country and says it won't be back any time soon.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
@@ -223,7 +232,10 @@
         { "text": "My coins have formed a union and won't be lent out until they get a pay rise.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
         { "text": "My credit card has gone into secluded meditation for the month and isn't accepting any visitors.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
         { "text": "My money has apparently become modern art. I'm allowed to admire it, but not actually use it.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
-        { "text": "I've signed a non-disclosure agreement with my own money. Even I'm not allowed to know where it is.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] }
+        { "text": "I've signed a non-disclosure agreement with my own money. Even I'm not allowed to know where it is.", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
+        "Everything I own has applied for permanent residency at my place and isn't allowed to leave the country.",
+        "Heaven has just issued a decree: I'm not allowed to lend anything out this year. I'm not risking defiance.",
+        "My belongings have separation anxiety. If they're away from me for more than five minutes, they start crying."
       ]
     },
     "favor": {
@@ -245,7 +257,8 @@
         { "text": "My sense of direction is so bad I get lost in taxis. Please don't trust me with a pick-up.", "tags": ["接送", "接", "送", "載", "車我", "機場", "pick up", "drop off", "drive", "lift", "airport", "ride"] },
         { "text": "I can talk to animals for hours. The problem is, they never give useful instructions.", "tags": ["狗", "貓", "寵物", "pet", "dog", "cat", "puppy"] },
         "Whenever someone says \"can you do me a quick favour,\" I know it's not going to be quick.",
-        { "text": "I helped a friend tidy their flat once, and they couldn't find anything for a month. I've been banned from helping since.", "tags": ["執屋", "執嘢", "整理", "tidy", "clean", "declutter"] }
+        { "text": "I helped a friend tidy their flat once, and they couldn't find anything for a month. I've been banned from helping since.", "tags": ["執屋", "執嘢", "整理", "tidy", "clean", "declutter"] },
+        "I've already done a lot of helping today. I got myself out of bed, brushed my teeth and left the house. I'm spent."
       ],
       "ridiculous": [
         { "text": "I have a serious phobia of cardboard boxes. The moment I see one, I vanish.", "tags": ["搬屋", "搬嘢", "搬", "moving", "move house", "move", "boxes"] },

@@ -43,7 +43,10 @@
         { "text": "我今晚報咗堂，學費都交咗，唔想缺席，所以要準時走，唔好意思呀。", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
         { "text": "嗰個時段我已經有另一個會，可唔可以改遲少少？或者我之後睇返會議紀錄再跟進都得。", "tags": ["開會", "會議", "meeting", "call", "zoom"] },
         { "text": "我今晚約咗睇牙醫，預約咗好耐，唔想再改期，所以要準時放工。", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
-        { "text": "我住得比較遠，太夜返去會唔太方便，所以今晚要準時走，唔好意思。", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] }
+        { "text": "我住得比較遠，太夜返去會唔太方便，所以今晚要準時走，唔好意思。", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
+        "唔好意思，我今日身體有啲唔在狀態，想休息下，聽日再全力跟進。",
+        "我而家手頭上有件好急嘅嘢要先處理，處理完即刻覆返你，唔好意思。",
+        "呢排屋企有啲事要兼顧，可唔可以俾我少少彈性？我會盡快補返。"
       ],
       "funny": [
         "我個腦已經自動打咗卡放工，我追都追唔返佢。",
@@ -63,7 +66,8 @@
         { "text": "我嘅黑眼圈已經大到可以申請獨立，今晚要陪佢去辦手續。", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
         { "text": "我個 calendar 今日排咗二十個會，已經自我覺醒，宣布今晚由佢接管我人生。", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
         { "text": "我個肝話如果今晚再捱夜，佢就即刻遞信辭職，我真係冇本錢請第二個。", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
-        { "text": "我個門禁卡最近開始對我愛理不理，我驚再留低耐啲，佢會正式取消我嘅入場資格。", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] }
+        { "text": "我個門禁卡最近開始對我愛理不理，我驚再留低耐啲，佢會正式取消我嘅入場資格。", "tags": ["OT", "開OT", "返OT", "加班", "留低", "今晚", "放工", "準時走", "overtime", "stay late", "work late", "tonight", "after work", "finish on time"] },
+        "我嘅工作熱情今朝自己出咗門，話要去搵自己，到而家都未返。"
       ]
     },
     "late": {
@@ -203,7 +207,10 @@
         { "text": "我自己啲嘢一向好少借出去，驚有咩損壞大家唔開心，唔好意思呀。", "tags": ["車", "相機", "電腦", "手機", "衫", "嘢", "書", "筆記", "laptop", "car", "camera", "phone", "clothes", "stuff", "things", "notes", "book", "charger"] },
         { "text": "借錢我真係幫唔到，不過如果你需要，我可以陪你諗下其他辦法。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
         { "text": "擔保呢啲我屋企人唔俾我做，我真係唔可以簽，唔好意思。", "tags": ["擔保", "co-sign", "cosign", "guarantor", "guarantee"] },
-        { "text": "上次借出去嘅錢都未收返，我諗住暫時唔再借住，希望你明白。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] }
+        { "text": "上次借出去嘅錢都未收返，我諗住暫時唔再借住，希望你明白。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
+        "唔好意思呀，我有個原則，錢同嘢都唔借出去，唔係針對你，希望你明白。",
+        "呢件事我真係幫唔到，唔想應承咗之後又做唔到，唔好意思呀。",
+        "我想先同屋企人商量下，暫時唔可以答應你，唔好意思。"
       ],
       "funny": [
         { "text": "我上個月 sign 咗三個健身室月費同兩個串流平台，而家我啲錢已經全部被訂閱咗。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
@@ -213,7 +220,10 @@
         { "text": "我借錢出去嘅歷史已經係一部悲劇，第二集我唔想拍。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
         { "text": "我而家連借錢俾自己都要寫借據。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
         { "text": "我隻豬仔錢罌已經絕食抗議，連一個硬幣都唔肯吐出嚟。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
-        { "text": "借車就算啦，我部車只係認得我一個，第二個人揸佢會發脾氣。", "tags": ["車", "相機", "電腦", "手機", "衫", "嘢", "書", "筆記", "laptop", "car", "camera", "phone", "clothes", "stuff", "things", "notes", "book", "charger"] }
+        { "text": "借車就算啦，我部車只係認得我一個，第二個人揸佢會發脾氣。", "tags": ["車", "相機", "電腦", "手機", "衫", "嘢", "書", "筆記", "laptop", "car", "camera", "phone", "clothes", "stuff", "things", "notes", "book", "charger"] },
+        "我上次借出去嘅嘢到而家都未返嚟，我懷疑佢哋已經喺外面組織咗家庭。",
+        "我一借嘢出去就會失眠，為咗我嘅睡眠質素，今次都係唔借喇。",
+        "我嘅借出部今日休息，有需要請留言，我會喺下個世紀覆你。"
       ],
       "ridiculous": [
         { "text": "我啲錢已經移民咗去一個好遠嘅國家，佢話短期內唔會返嚟。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
@@ -223,7 +233,10 @@
         { "text": "我啲硬幣已經組成工會，佢哋要求加人工先肯被借出去。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
         { "text": "我張信用卡話佢今個月要閉關修煉，唔接受任何簽賬。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
         { "text": "我啱啱發現我啲錢集體轉行做藝術品，而家只可以欣賞，唔可以使用。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
-        { "text": "我啱啱同自己啲錢簽咗保密協議，連我都唔可以知佢喺邊。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] }
+        { "text": "我啱啱同自己啲錢簽咗保密協議，連我都唔可以知佢喺邊。", "tags": ["錢", "蚊", "money", "cash", "loan", "dollars", "bucks", "owe", "pay back"] },
+        "我屋企所有嘢都已經入咗籍，唔可以離開本地。",
+        "天庭啱啱落咗道旨，話我今年唔可以借任何嘢出去，我唔敢抗旨。",
+        "我啲嘢有分離焦慮，一離開我超過五分鐘就會喊。"
       ]
     },
     "favor": {
@@ -245,7 +258,8 @@
         { "text": "我嘅方向感差到搭的士都會蕩失路，接送真係唔好搵我。", "tags": ["接送", "接", "送", "載", "車我", "機場", "pick up", "drop off", "drive", "lift", "airport", "ride"] },
         { "text": "我對住寵物最叻嘅技能係同佢哋講秘密，真係要幫手照顧就完全係另一回事。", "tags": ["狗", "貓", "寵物", "pet", "dog", "cat", "puppy"] },
         "我一聽到「可唔可以幫個小忙」，就知道呢個忙一定唔細。",
-        { "text": "我上次幫朋友執屋，執完佢成個月都搵唔返任何嘢，我已經被禁止再幫手。", "tags": ["執屋", "執嘢", "整理", "tidy", "clean", "declutter"] }
+        { "text": "我上次幫朋友執屋，執完佢成個月都搵唔返任何嘢，我已經被禁止再幫手。", "tags": ["執屋", "執嘢", "整理", "tidy", "clean", "declutter"] },
+        "我今日已經幫咗自己好多，例如起身、刷牙、出門口，力氣已經用晒。"
       ],
       "ridiculous": [
         { "text": "我對紙皮箱有嚴重恐懼症，一見到就會自動消失。", "tags": ["搬屋", "搬嘢", "搬", "moving", "move house", "move", "boxes"] },
