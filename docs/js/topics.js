@@ -120,6 +120,45 @@ function onTopicClick(event) {
   onPickChange?.();
 }
 
+// Phones swipe the row natively; with a mouse, the wheel and click-drag scroll it too.
+function enableMouseScroll(row) {
+  row.addEventListener('wheel', (event) => {
+    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return; // trackpad sideways swipe already works
+    const max = row.scrollWidth - row.clientWidth;
+    const atEnd = event.deltaY > 0 ? row.scrollLeft >= max - 1 : row.scrollLeft <= 0;
+    if (max <= 0 || atEnd) return; // let the page scroll instead
+    event.preventDefault();
+    row.scrollLeft += event.deltaY;
+  }, { passive: false });
+
+  let drag = null;
+  row.addEventListener('pointerdown', (event) => {
+    if (event.pointerType !== 'mouse' || event.button !== 0) return;
+    drag = { x: event.clientX, left: row.scrollLeft, moved: false };
+  });
+  row.addEventListener('pointermove', (event) => {
+    if (!drag) return;
+    const dx = event.clientX - drag.x;
+    if (!drag.moved && Math.abs(dx) < 6) return; // small wobble is still a click
+    if (!drag.moved) {
+      drag.moved = true;
+      row.dataset.dragging = 'true';
+      row.setPointerCapture(event.pointerId);
+    }
+    row.scrollLeft = drag.left - dx;
+  });
+  const endDrag = () => {
+    if (drag?.moved) setTimeout(() => delete row.dataset.dragging, 0); // after the click below
+    drag = null;
+  };
+  row.addEventListener('pointerup', endDrag);
+  row.addEventListener('pointercancel', endDrag);
+  // A drag must not also pick the topic it ended on.
+  row.addEventListener('click', (event) => {
+    if (row.dataset.dragging) event.stopPropagation();
+  }, true);
+}
+
 // When nothing is typed or picked, he peeks now and then with the next topic as a hint.
 function idlePeek() {
   if (state.topic || elements.input.value.trim() || document.hidden) return;
@@ -158,6 +197,7 @@ export function initTopics({ fieldset, container, input, askButton, cloud, onCha
   });
 
   container.addEventListener('click', onTopicClick);
+  enableMouseScroll(container);
   input.addEventListener('input', scheduleGuess);
   input.addEventListener('blur', () => setTimeout(updateGuess, GUESS_DELAY)); // keyboard closed: room to peek
   setTimeout(() => {

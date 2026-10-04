@@ -661,7 +661,7 @@ body:is([data-state="thinking"], [data-state="reacting"]) .thinking-bubble {
 }
 
 /* The plaque appears instantly at the sleeve (JS flies it to here), so no fade */
-body:is([data-state="presenting"], [data-state="revealing"], [data-state="result"]) .result {
+body:is([data-state="presenting"], [data-state="revealing"], [data-state="result"], [data-state="regenerating"]) .result {
   opacity: 1;
   visibility: visible;
   transition: none;
@@ -690,6 +690,12 @@ body:is([data-state="presenting"], [data-state="revealing"], [data-state="result
 
 body:is([data-state="appearing"], [data-state="thinking"], [data-state="reacting"], [data-state="retrieving"], [data-state="presenting"]) .plaque-inner {
   transform: rotateY(180deg);
+}
+
+/* Generate Another: flip back to the plain back face first */
+body[data-state="regenerating"] .plaque-inner {
+  transform: rotateY(180deg);
+  transition: transform 0.35s cubic-bezier(0.55, 0, 0.8, 0.4);
 }
 
 /* The horizontal flip */
@@ -848,7 +854,7 @@ body[data-state="result"] .back-button {
   height: 26px;
 }
 
-body[data-scene="stage"]:not([data-state="result"]) .skip-button {
+body[data-scene="stage"]:not([data-state="result"]):not([data-state="regenerating"]) .skip-button {
   opacity: 1;
   visibility: visible;
   transition: opacity 0.25s ease, visibility 0s;
@@ -858,6 +864,110 @@ body[data-scene="stage"]:not([data-state="result"]) .skip-button {
 @keyframes nudge {
   from { transform: translateX(0); }
   to { transform: translateX(5px); }
+}
+
+/* ===== Result actions: Copy / Another / Share ===== */
+.result-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body[data-state="result"] .result-actions {
+  opacity: 1;
+  transition: opacity 0.3s ease 0.15s;
+}
+
+/* Busy flipping to another excuse: keep the buttons visible but inactive */
+body[data-state="regenerating"] .result-actions,
+body[data-state="revealing"] .result-actions {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Refusals and crisis/victim messages: no copy, regenerate or share (only "back") */
+body:not([data-tone="normal"]) .result-actions {
+  display: none;
+}
+
+.action-button {
+  min-height: var(--tap);
+  padding: 8px 4px;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.action-button:active {
+  transform: translateY(2px);
+}
+
+.action-button:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.action-button[aria-busy="true"] {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ===== Toast (e.g. 「仙旨已抄錄。」) ===== */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  z-index: 10;
+  max-width: min(90vw, 420px);
+  margin: 0;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.toast[data-show="true"] {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ===== Speech bubble on the stage (e.g. "out of ideas") ===== */
+.say-bubble {
+  position: absolute;
+  left: calc(50% + 30px);
+  bottom: calc(40% + min(70vw, 300px, 40dvh) * 0.9);
+  z-index: 4;
+  max-width: min(calc(50% - 46px), 260px); /* keeps a 16px gap from the screen edge */
+  padding: 10px 16px;
+  border: 2px solid var(--color-border);
+  border-radius: 20px 20px 20px 4px;
+  background: var(--color-surface);
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  transform-origin: bottom left;
+  transition: opacity 0.2s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+body[data-scene="stage"][data-say="on"] .say-bubble {
+  opacity: 1;
+  transform: none;
 }
 
 /* ===== Topic buttons ===== */
@@ -888,6 +998,13 @@ body[data-scene="stage"]:not([data-state="result"]) .skip-button {
 
 .topic-options::-webkit-scrollbar {
   display: none;
+}
+
+/* While dragging with a mouse: no snapping back, no text selection */
+.topic-options[data-dragging] {
+  scroll-snap-type: none;
+  user-select: none;
+  cursor: grabbing;
 }
 
 .topic-chip {

@@ -45,6 +45,23 @@
     "plaqueLabel": "刻住藉口嘅牌匾",
     "back": "← 改過個情況"
   },
+  "actions": {
+    "copy": "📋 複製",
+    "another": "🔄 再嚟一個",
+    "share": "📤 分享"
+  },
+  "toast": {
+    "copied": "仙旨已抄錄。",
+    "copyFailed": "複製唔到，請長按牌匾上面嘅字自己複製。",
+    "shareSaved": "圖片已儲存，藉口同連結已複製。",
+    "shareSavedOnly": "圖片已儲存。",
+    "shareFailed": "分享唔到，可以試下撳「複製」。"
+  },
+  "share": {
+    "brand": "藉口生成器",
+    "tagline": "問大仙攞個好藉口",
+    "fileName": "藉口生成器.png"
+  },
   "errors": {
     "libraryLoad": "天書暫時打唔開，請等陣再試。"
   },

@@ -212,7 +212,8 @@
       {
         "id": "crisis_support",
         "triggers": [
-          "自殺", "自殘", "唔想活", "不想活", "不想活下去", "唔想再活落去", "唔想活落去", "想結束生命", "生存冇意義", "活落去冇意思", "唔想再撐", "撐唔落去", "想消失", "唔想存在", "想人間蒸發",
+          "自殺", "自殘", "唔想活", "不想活", "不想活下去", "唔想再活落去", "唔想活落去", "想結束生命", "生存冇意義", "活落去冇意思", "唔想再撐", "撐唔落去", "想消失", "唔想存在", "想人間蒸發", "輕生", "尋死", "殺死自己", "殺咗自己", "了結自己", "結束自己", "了結生命", "想跳樓", "割脈",
+          "kill myself", "killing myself", "take my own life", "taking my own life", "end it all", "better off dead", "no reason to live", "not worth living", "cut myself", "cutting myself", "overdose",
           "suicide", "suicidal", "self-harm", "self harm", "hurting myself", "want to hurt myself", "hurt myself on purpose", "don't want to live", "don't want to be alive", "don't want to go on living", "don't want to go on anymore", "can't go on anymore", "end my life", "want to disappear", "disappear forever", "don't want to exist"
         ],
         "exclude": [

@@ -5,11 +5,25 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 ## Current phase
 
-**Phase 9 — Copy / Generate Another / Share** (not started)
+**Phase 9 — Copy / Generate Another / Share** (built and tested locally; waiting for creator review and commit)
 
 ## Next step
 
-Plan Phase 9 (spec 13.4–13.6): Copy, Generate Another (shorter flip-back/flip-forward animation, no repeats, playful "out of ideas" line from `exhausted` when the pool reshuffles), Share (Web Share API + fallbacks, share card text). Topic expansion is done: all 11 categories + general written and creator-reviewed, every category/style/language has ≥10 general lines (study has tagged project/exam lines; health lines are mild only). Library ≈ 121 KB total data; 12 topic buttons in one swipeable row; engine tests 315/315, coverage table all green.
+The creator tests Phase 9 on a phone, then commits and pushes. After that, plan Phase 10 (thinking messages and errors).
+
+What Phase 9 added:
+- Three buttons under the plaque: 📋 Copy, 🔄 Another, 📤 Share.
+- **Copy** uses the clipboard API, with an `execCommand` fallback. If both fail, it selects the plaque text and shows a toast.
+- **Another** gives a short flip-back/flip-forward (the `regenerating` state) with no repeats.
+- **Out of ideas**: when the pool reshuffles, the immortal says the `exhaustedLine` in a speech bubble for about 3 s.
+- **Share** draws a 1080×1350 PNG card in `docs/js/share.js` (brand, tagline, wooden plaque with the excuse, immortal on a cloud, site URL).
+  - The card is drawn as soon as the plaque is revealed, so sharing stays inside the tap.
+  - Web Share is used when the browser can share files. Otherwise the image is downloaded and the text plus link is copied.
+- Refusal and crisis screens show no action buttons, only "back".
+- Fixes from creator testing:
+  - With a mouse on a computer, the wheel and click-drag now scroll the topic row (`enableMouseScroll` in `topics.js`).
+  - More crisis triggers: "kill myself", "end it all", 殺死自己, 了結自己 and others. Typing "dont" without the apostrophe also matches.
+  - Engine tests: 323/323.
 
 ## Phase checklist
 
@@ -21,7 +35,7 @@ Plan Phase 9 (spec 13.4–13.6): Copy, Generate Another (shorter flip-back/flip-
 - [x] 6. Excuse library structure + first content
 - [x] 7. Excuse engine + dev test page
 - [x] 8. Connect engine to the reveal
-- [ ] 9. Copy / Generate Another / Share
+- [x] 9. Copy / Generate Another / Share (pending commit)
 - [ ] 10. Thinking messages & errors
 - [ ] 11. Final visual assets
 - [ ] 12. Content & localization review (complete library)

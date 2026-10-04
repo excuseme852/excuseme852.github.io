@@ -45,6 +45,23 @@
     "plaqueLabel": "A plaque engraved with your excuse",
     "back": "← Change the story"
   },
+  "actions": {
+    "copy": "📋 Copy",
+    "another": "🔄 Another",
+    "share": "📤 Share"
+  },
+  "toast": {
+    "copied": "Decree copied.",
+    "copyFailed": "Couldn't copy. Press and hold the words on the plaque to copy them yourself.",
+    "shareSaved": "Image saved, and the excuse and link are copied.",
+    "shareSavedOnly": "Image saved.",
+    "shareFailed": "Couldn't share. Try \"Copy\" instead."
+  },
+  "share": {
+    "brand": "Excuse Me",
+    "tagline": "Ask the immortal for the perfect excuse",
+    "fileName": "excuse-me.png"
+  },
   "errors": {
     "libraryLoad": "The heavenly scrolls won't open right now. Please try again in a moment."
   },

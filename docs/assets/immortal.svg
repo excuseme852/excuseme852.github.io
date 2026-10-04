@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" aria-hidden="true" focusable="false">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" width="300" height="340" aria-hidden="true" focusable="false">
   <!-- Placeholder immortal (Phase 4). Layers are named so they can animate separately.
        Final artwork replaces this file in Phase 11. -->
 
@@ -65,7 +65,7 @@
 
   <!-- Small plaque (back side). Sits hidden at the cuff of the *raised* left sleeve
        (beside the head); CSS slides it up out of the cuff. -->
-  <g id="plaque">
+  <g id="plaque" opacity="0">
     <rect x="25" y="121" width="32" height="44" rx="4" fill="#b77a3f" stroke="#7a4a22" stroke-width="3"/>
     <rect x="29" y="125" width="24" height="36" rx="2" fill="none" stroke="#f0c14b" stroke-width="1.5"/>
     <circle cx="41" cy="143" r="7" fill="none" stroke="#f0c14b" stroke-width="2"/>

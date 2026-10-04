@@ -118,12 +118,15 @@ export function detectLanguage(text, uiLang) {
   return uiLang;
 }
 
+// "don't" → also "dont", so triggers still match when the apostrophe is skipped.
+const withApostropheFree = (phrases = []) => [...phrases, ...phrases.filter((p) => p.includes("'")).map((p) => p.replace(/'/g, ''))];
+
 function checkSupport(text) {
   const support = library.categories.support;
   if (!support) return null;
   for (const group of support.categories || []) {
-    const cleaned = withoutPhrases(text, group.exclude);
-    if (containsKeyword(cleaned, group.triggers)) {
+    const cleaned = withoutPhrases(text, withApostropheFree(group.exclude));
+    if (containsKeyword(cleaned, withApostropheFree(group.triggers))) {
       return containsKeyword(text, support.urgentCues) ? 'supportUrgent' : 'support';
     }
   }
@@ -343,5 +346,7 @@ export function generateExcuse({ situation, style = DEFAULT_STYLE, uiLang = FALL
   if (!entries.length) throw new Error(`No excuses for ${result.lang} / ${result.category} / ${style}`);
   const pool = fittingExcuses(entries, normalize(situation));
   const { text, exhausted } = pickFresh(pool, previous);
-  return { excuse: text, lang: result.lang, category: result.category, refused: false, exhausted, kind: 'excuse' };
+  // When the pool has just reshuffled, also hand back a playful "out of ideas" line (spec 13.4).
+  const exhaustedLine = exhausted && file.exhausted?.length ? randomItem(file.exhausted) : null;
+  return { excuse: text, lang: result.lang, category: result.category, refused: false, exhausted, exhaustedLine, kind: 'excuse' };
 }

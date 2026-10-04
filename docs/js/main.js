@@ -3,10 +3,12 @@
 import { detectLang, setLang, getLang, t } from './i18n.js';
 import { state, setState } from './state.js';
 import {
-  loadImmortal, playAskSequence, showCalmResult, skipToResult, stopSequence, startKoiSwimming, hidePeek,
+  loadImmortal, playAskSequence, playAnother, showCalmResult, skipToResult, stopSequence, startKoiSwimming,
+  hidePeek, say,
 } from './animation.js';
 import { loadLibrary, analyze, generateExcuse } from './engine.js';
 import { initTopics, topicLabel } from './topics.js';
+import { copyText, prepareCard, shareExcuse } from './share.js';
 
 const MAX_LENGTH = 100;
 const COUNTER_FROM = 50; // show the counter once input reaches this length
@@ -29,6 +31,16 @@ const topicsFieldset = document.getElementById('topics');
 const topicOptions = document.getElementById('topic-options');
 const askButton = form.querySelector('.ask-button');
 const cloud = document.querySelector('.cloud');
+const copyButton = document.getElementById('copy-button');
+const anotherButton = document.getElementById('another-button');
+const shareButton = document.getElementById('share-button');
+const toast = document.getElementById('toast');
+
+const TOAST_TIME = 2600;
+let toastTimer = null;
+
+// The excuse currently on the plaque (used by Copy / Another / Share).
+let currentResult = null;
 
 // How each engine result is presented (see state.tone).
 const TONE_BY_KIND = {
@@ -148,6 +160,71 @@ function setThinkingText(result) {
   thinkingBubble.textContent = label ? t('stage.thinkingTopic', { topic: label }) : t('stage.thinking');
 }
 
+function showToast(key) {
+  toast.textContent = t(key);
+  toast.dataset.show = 'true';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.dataset.show = 'false';
+  }, TOAST_TIME);
+}
+
+function cardDetails() {
+  return {
+    excuse: currentResult.excuse,
+    lang: currentResult.lang,
+    label: t('stage.resultLabel'),
+    brand: t('share.brand'),
+    tagline: t('share.tagline'),
+    fileName: t('share.fileName'),
+  };
+}
+
+// Runs whenever a plaque is fully revealed.
+function afterReveal() {
+  plaque.focus();
+  if (currentResult?.kind !== 'excuse') return;
+  prepareCard(cardDetails()); // draw the share card now, so sharing is instant later
+  if (currentResult.exhaustedLine) say(currentResult.exhaustedLine);
+}
+
+async function onCopy() {
+  if (!currentResult) return;
+  if (await copyText(currentResult.excuse)) {
+    showToast('toast.copied');
+    return;
+  }
+  // Last resort: select the words so the user can copy them by hand.
+  const range = document.createRange();
+  range.selectNodeContents(plaqueText);
+  const selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+  showToast('toast.copyFailed');
+}
+
+function onAnother() {
+  if (state.status !== 'result' || currentResult?.kind !== 'excuse') return;
+  const result = pickExcuse(state.situation);
+  currentResult = result;
+  playAnother({ update: () => renderPlaque(result), onResult: afterReveal });
+}
+
+async function onShare() {
+  if (!currentResult) return;
+  shareButton.setAttribute('aria-busy', 'true');
+  try {
+    const outcome = await shareExcuse(cardDetails());
+    if (outcome === 'saved') showToast('toast.shareSaved');
+    else if (outcome === 'savedOnly') showToast('toast.shareSavedOnly');
+  } catch (error) {
+    console.error(error);
+    showToast('toast.shareFailed');
+  } finally {
+    shareButton.removeAttribute('aria-busy');
+  }
+}
+
 function readSavedStyle() {
   try {
     return localStorage.getItem(STYLE_STORAGE_KEY);
@@ -217,16 +294,17 @@ async function onSubmit(event) {
   }
 
   input.blur(); // closes the phone keyboard so the stage is visible
+  currentResult = result;
   setState({ situation, tone: TONE_BY_KIND[result.kind] || 'normal' });
   renderPlaque(result);
   setThinkingText(result);
-  const onResult = () => plaque.focus();
-  if (state.tone === 'calm') showCalmResult({ onResult });
-  else playAskSequence({ onResult, quick: state.tone === 'serious' }); // refusals think briefly
+  if (state.tone === 'calm') showCalmResult({ onResult: afterReveal });
+  else playAskSequence({ onResult: afterReveal, quick: state.tone === 'serious' }); // refusals think briefly
 }
 
 function onBack() {
   stopSequence();
+  toast.dataset.show = 'false';
   setState({ status: input.value.trim() ? 'input' : 'idle', tone: 'normal' });
   input.focus();
 }
@@ -275,6 +353,9 @@ async function init() {
   langToggle.addEventListener('click', onLangToggle);
   skipButton.addEventListener('click', skipToResult);
   backButton.addEventListener('click', onBack);
+  copyButton.addEventListener('click', onCopy);
+  anotherButton.addEventListener('click', onAnother);
+  shareButton.addEventListener('click', onShare);
 }
 
 init();

@@ -21,6 +21,7 @@
       <div class="puff" aria-hidden="true"><span></span><span></span><span></span></div>
       <img class="cloud" src="./assets/cloud.svg" alt="">
       <div class="thought" aria-hidden="true"><span id="thought-text" class="thought-text"></span></div>
+      <div class="say-bubble" role="status" aria-live="polite"><span id="say-text"></span></div>
       <div class="koi-track" aria-hidden="true">
         <div class="koi-x"><div class="koi-y"><img class="koi" src="./assets/koi.svg" alt=""></div></div>
       </div>
@@ -100,8 +101,15 @@
             </div>
           </div>
         </div>
+        <div class="result-actions">
+          <button id="copy-button" class="action-button" type="button" data-i18n="actions.copy"></button>
+          <button id="another-button" class="action-button" type="button" data-i18n="actions.another"></button>
+          <button id="share-button" class="action-button" type="button" data-i18n="actions.share"></button>
+        </div>
         <button id="back-button" class="back-button" type="button" data-i18n="stage.back"></button>
       </div>
+
+      <p id="toast" class="toast" role="status" aria-live="polite"></p>
 
       <button id="skip-button" class="skip-button" type="button" data-i18n-aria-label="stage.skip">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">

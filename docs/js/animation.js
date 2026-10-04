@@ -1,6 +1,7 @@
 // Immortal performance sequence.
 // This module only decides *when* each state starts; CSS decides how it looks.
 //   appearing → thinking → reacting → retrieving → presenting → revealing → result
+//   Generate Another: result → regenerating → revealing → result
 // The one exception is the plaque's flight from the sleeve to the centre: its start
 // point depends on screen size, so it uses the Web Animations API.
 
@@ -108,6 +109,7 @@ export function playAskSequence({ onResult, quick = false } = {}) {
   clearTimers();
   cancelFlight();
   hidePeek();
+  hideSay();
   onResultCallback = onResult;
   const base = reducedMotion.matches ? TIMING.reduced : TIMING.full;
   const timing = quick && base.react ? { ...base, react: QUICK_REACT } : base;
@@ -131,6 +133,44 @@ export function playAskSequence({ onResult, quick = false } = {}) {
     at += wait;
     if (start) later(at, start);
   }
+}
+
+// Generate Another (spec 13.4): a short version — the plaque flips to its back,
+// `update` swaps in the new excuse while it can't be read, then it flips forward again.
+const FLIP_BACK = 350;
+
+export function playAnother({ update, onResult } = {}) {
+  clearTimers();
+  cancelFlight();
+  hideSay();
+  onResultCallback = onResult;
+  if (reducedMotion.matches) {
+    update();
+    showResult();
+    return;
+  }
+  setState({ status: 'regenerating' });
+  later(FLIP_BACK, () => {
+    update();
+    setState({ status: 'revealing' });
+  });
+  later(FLIP_BACK + TIMING.full.reveal, showResult);
+}
+
+// The immortal says something in a speech bubble on the stage (e.g. "out of ideas").
+const SAY_HOLD = 3000;
+let sayTimer = null;
+
+export function say(text, { hold = SAY_HOLD } = {}) {
+  document.getElementById('say-text').textContent = text;
+  document.body.dataset.say = 'on';
+  clearTimeout(sayTimer);
+  sayTimer = setTimeout(hideSay, hold);
+}
+
+export function hideSay() {
+  clearTimeout(sayTimer);
+  delete document.body.dataset.say;
 }
 
 // Crisis / victim messages: no performance at all, just show the message calmly.
@@ -170,5 +210,6 @@ export function skipToResult() {
 export function stopSequence() {
   clearTimers();
   cancelFlight();
+  hideSay();
   onResultCallback = null;
 }
