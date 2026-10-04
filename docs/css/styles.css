@@ -865,18 +865,36 @@ body[data-scene="stage"]:not([data-state="result"]) .skip-button {
   margin: 0;
   padding: 0;
   border: 0;
+  min-width: 0; /* fieldsets otherwise grow to fit the whole row instead of scrolling it */
 }
 
-/* Equal-width grid: 4 per row on phones, wraps as more topics are added */
+.home,
+.ask-form {
+  min-width: 0;
+}
+
+/* One row that swipes sideways; it runs to the screen edge so the next button
+   peeks in, hinting that there's more to swipe */
 .topic-options {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  display: flex;
   gap: 6px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  margin-right: calc(-16px - env(safe-area-inset-right));
+  padding-right: calc(16px + env(safe-area-inset-right));
+}
+
+.topic-options::-webkit-scrollbar {
+  display: none;
 }
 
 .topic-chip {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
   min-height: var(--tap);
-  padding: 6px 4px;
+  padding: 6px 12px;
   font-size: 0.9375rem;
   white-space: nowrap;
   border: 2px solid var(--color-border);

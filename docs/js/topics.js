@@ -62,9 +62,21 @@ function render() {
   elements.container.querySelectorAll('.topic-chip').forEach((button) => {
     const id = button.dataset.topic;
     const picked = state.topic === id;
-    button.dataset.state = picked ? 'picked' : !state.topic && guess === id ? 'suggested' : '';
+    const highlighted = picked || (!state.topic && guess === id);
+    button.dataset.state = picked ? 'picked' : highlighted ? 'suggested' : '';
     button.setAttribute('aria-pressed', String(picked));
+    if (highlighted) scrollIntoRow(button);
   });
+}
+
+// Keep the highlighted button visible in the sideways-scrolling row
+// (without scrolling the page itself).
+function scrollIntoRow(button) {
+  const row = elements.container;
+  const left = button.offsetLeft - row.offsetLeft;
+  const right = left + button.offsetWidth;
+  if (left < row.scrollLeft) row.scrollTo({ left: left - 8, behavior: 'smooth' });
+  else if (right > row.scrollLeft + row.clientWidth) row.scrollTo({ left: right - row.clientWidth + 24, behavior: 'smooth' });
 }
 
 // The engine's guess, limited to topics that have a button.

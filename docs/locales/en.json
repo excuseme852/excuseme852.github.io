@@ -24,6 +24,14 @@
     "social_meal": "🍻 Social",
     "work": "💼 Work",
     "late": "⏰ Late",
+    "date": "❤️ Dating",
+    "family": "🏠 Family",
+    "reply_message": "💬 Texts",
+    "borrow_lend": "💸 Money",
+    "favor": "🤝 Favours",
+    "study": "📚 School",
+    "exercise": "🏃 Exercise",
+    "health": "🤒 Unwell",
     "general": "✨ Other"
   },
   "stage": {

@@ -98,6 +98,38 @@
         "I took a shortcut through a parallel universe. It was not, in fact, shorter."
       ]
     },
+    "date": {
+      "polite": [
+        "Something came up at work tonight and I need to deal with it. Can we move it to another day? I'd still love to see you.",
+        "I'm honestly wiped out today and wouldn't be good company. Can we reschedule so I can actually enjoy it?",
+        "Something's come up at home that I need to help with, so I have to cancel. I'm really sorry, let me make it up to you.",
+        "I think I'd like to take things a bit slower, so I'll sit this one out. Hope that's okay.",
+        "Thanks so much for asking. You're great, but I think we work better as friends.",
+        "I've already got plans with friends that day. Could we find another time?",
+        "Money's a little tight right now. Could we do something low-key instead, like a walk?",
+        "I need a quiet night to myself this time. Nothing personal. Rain check?"
+      ],
+      "funny": [
+        "I've got a breakout so dramatic it deserves its own date. I'm not letting it steal your spotlight.",
+        "My wardrobe and I had a fight, and it says nothing I own is good enough for tonight.",
+        "My dating skills are still at level 1. I'd like to grind a bit more before the boss fight.",
+        "I just realised I have absolutely no idea how long eye contact is supposed to last. I'm not risking a public experiment tonight.",
+        "I'm so nervous I've forgotten how walking works. I'll come once I've relearned it.",
+        "I just ate an alarming amount of garlic. For your safety, I'm keeping my distance tonight.",
+        "I accidentally put on the perfume I usually use when I want mosquitoes to stay away. This feels like a poor dating strategy.",
+        "My mum has scheduled a mandatory K-drama night, and she says I'll regret it forever if I skip."
+      ],
+      "ridiculous": [
+        "Cupid is on strike in my area tonight, and I'm not going out uninsured.",
+        "My heart's still in the lost and found from my last date. They said someone has to come and claim it.",
+        "My couch and I are in a committed relationship, and it gets jealous when I leave the house.",
+        "My dating license expired without warning, and apparently the renewal office is closed until further notice.",
+        "My mirror told me this morning not to go out and frighten anyone, and I respect its professional opinion.",
+        "My outfit has been classified as emotionally unavailable by the mirror, and I don't have the paperwork to appeal.",
+        "My lamp has threatened to flash all night if I go out, and I can't risk another complaint from the neighbours.",
+        "My stomach has called an emergency meeting with the bathroom. The agenda hasn't been shared, but it looks long."
+      ]
+    },
     "general": {
       "polite": [
         "I've already got something on, so I can't this time. Maybe next time!",
