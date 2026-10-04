@@ -11,7 +11,9 @@
         "It's been a really busy stretch lately, and I could use a quiet night to recharge. Hope you have an amazing time!",
         "I'm trying to keep my spending under control this month, so I'm taking a break from going out for a bit.",
         "I've got an early start the next morning, so I probably shouldn't stay out late. I'll catch you next time!",
-        "My schedule's a bit packed lately, and I don't want to show up only to leave early. I'll have to pass this time."
+        "My schedule's a bit packed lately, and I don't want to show up only to leave early. I'll have to pass this time.",
+        "I'm taking my grandma to a check-up that day, so I can't make it. Have a great time!",
+        "I'm trying to cut back on late nights for a while. Could we do a daytime catch-up instead?"
       ],
       "funny": [
         "My wallet has officially filed a complaint about my social calendar. I have to respect its wishes.",
@@ -21,7 +23,9 @@
         "I started cleaning one tiny corner of my room, and now I'm emotionally invested in finishing the whole thing.",
         "I just got a haircut that needs a few days to calm down before it meets the public.",
         "I was going to come out, but my bed made a very convincing counteroffer.",
-        "I only have enough small talk left for one conversation, and I need to save it for an emergency."
+        "I only have enough small talk left for one conversation, and I need to save it for an emergency.",
+        "I lost my voice at the last karaoke night, and it still hasn't come back to work.",
+        "I'm always the designated photographer at these things. I'd like to request a day off."
       ],
       "ridiculous": [
         "I promised my houseplants a family meeting that night, and they've been very clear about attendance.",
@@ -31,7 +35,9 @@
         "I'm legally dead inside and the paperwork hasn't cleared yet, so I can't attend social events.",
         "My toaster has developed a trust issue with me, and tonight we've agreed to work through it.",
         "The universe sent me a warning to stay home tonight. It didn't explain why, but I'm not going to argue with the universe.",
-        "I've been asked to be the official witness at my microwave's vow renewal. I can't let it down."
+        "I've been asked to be the official witness at my microwave's vow renewal. I can't let it down.",
+        "My robot vacuum has decided to go for its first walk outside tonight, and I need to follow it so it doesn't get lost.",
+        "I received a letter from my future self telling me not to eat chicken wings tonight. I'm not taking the chance."
       ]
     },
     "work": {
@@ -78,7 +84,9 @@
         "I've somehow taken the wrong exit and I'm doubling back. Give me a few more minutes!",
         "My alarm didn't go off this morning. I'm out the door now and moving fast.",
         "The rain's slowed everything down out here. I'm running a bit behind, so go ahead and order.",
-        "I got halfway there and realised I'd forgotten something, so I had to turn back. Sorry!"
+        "I got halfway there and realised I'd forgotten something, so I had to turn back. Sorry!",
+        "Sorry, I got caught on a phone call just as I was leaving. On my way now!",
+        "Sorry, I'm circling for a parking spot. Give me a few more minutes."
       ],
       "funny": [
         "My alarm and I are going through something. It decided not to speak to me this morning.",
@@ -88,7 +96,9 @@
         "My cat was sitting on my shoes, and I'm not brave enough to ask him to move.",
         "Every traffic light on my way here seems to be personally against me. I think I've been stopped by all of them.",
         "I got to the stop right after the bus left. We technically met, just not for very long.",
-        "I left the house in slippers and only noticed at the station. Fashion has delayed me."
+        "I left the house in slippers and only noticed at the station. Fashion has delayed me.",
+        "I missed my stop because the song in my headphones was too good to interrupt.",
+        "I was on time, but the convenience store downstairs had a buy-one-get-one deal and I had to make some decisions."
       ],
       "ridiculous": [
         "A pigeon stopped me outside my building and demanded to see some ID. I didn't want any trouble.",
@@ -98,7 +108,9 @@
         "My front door locked me in and said I could only leave if I answered three riddles.",
         "My punctuality officially retired last year. All I have left is a very sincere apology.",
         "I got stuck on an escalator going the wrong way and refused to admit defeat for far too long.",
-        "I took a shortcut through a parallel universe. It was not, in fact, shorter."
+        "I took a shortcut through a parallel universe. It was not, in fact, shorter.",
+        "My shoelaces tied themselves into a knot so complex I've had to call in the bomb squad.",
+        "Someone moved my usual road somewhere else overnight, and I'm still trying to find it."
       ]
     },
     "date": {
@@ -110,7 +122,9 @@
         "Thanks so much for asking. You're great, but I think we work better as friends.",
         "I've already got plans with friends that day. Could we find another time?",
         "Money's a little tight right now. Could we do something low-key instead, like a walk?",
-        "I need a quiet night to myself this time. Nothing personal. Rain check?"
+        "I need a quiet night to myself this time. Nothing personal. Rain check?",
+        "Things are hectic right now and I don't want to be distracted when we meet. Can we wait until things calm down?",
+        "I just realised it clashes with a family birthday, so I really need to be there. Sorry!"
       ],
       "funny": [
         "I've got a breakout so dramatic it deserves its own date. I'm not letting it steal your spotlight.",
@@ -120,7 +134,9 @@
         "I'm so nervous I've forgotten how walking works. I'll come once I've relearned it.",
         "I just ate an alarming amount of garlic. For your safety, I'm keeping my distance tonight.",
         "I accidentally put on the perfume I usually use when I want mosquitoes to stay away. This feels like a poor dating strategy.",
-        "My mum has scheduled a mandatory K-drama night, and she says I'll regret it forever if I skip."
+        "My mum has scheduled a mandatory K-drama night, and she says I'll regret it forever if I skip.",
+        "On my last date I talked about my hamster for three hours. I need some time to reflect.",
+        "My one good date outfit is still at the dry cleaner's and refuses to come out until next week."
       ],
       "ridiculous": [
         "Cupid is on strike in my area tonight, and I'm not going out uninsured.",
@@ -130,7 +146,9 @@
         "My mirror told me this morning not to go out and frighten anyone, and I respect its professional opinion.",
         "My goldfish just went through a breakup, and I promised to be there for him tonight. He's not taking it well.",
         "My lamp has threatened to flash all night if I go out, and I can't risk another complaint from the neighbours.",
-        "My stomach has called an emergency meeting with the bathroom. The agenda hasn't been shared, but it looks long."
+        "My stomach has called an emergency meeting with the bathroom. The agenda hasn't been shared, but it looks long.",
+        "The god of matchmaking just called to say my red string of fate has a knot in it, and he's sending someone to untangle it.",
+        "My trouser zip has refused to cooperate today, and we're now in high-level diplomatic talks."
       ]
     },
     "family": {
@@ -174,7 +192,9 @@
         "I wanted to give you a proper answer, so I waited until I had time. Sorry to keep you waiting!",
         "I've been out and about all day and barely looked at my phone. Sorry!",
         "I'm trying to spend less time on my phone, so I'm a bit slow to reply. Hope that's okay!",
-        "The group chat got so busy I had to mute it, which is how I missed this. Sorry!"
+        "The group chat got so busy I had to mute it, which is how I missed this. Sorry!",
+        "Sorry, I had my phone off at the cinema and only just switched it back on.",
+        "Sorry for the slow reply, I was driving and couldn't check my phone."
       ],
       "funny": [
         "I typed a really long reply and then accidentally deleted the whole thing. I'm still grieving.",
@@ -184,7 +204,9 @@
         "I opened your message to reply and somehow ended up reorganising my camera roll instead. I'm not sure where the last hour went.",
         "My reply to you went to the work group chat by mistake. The whole department now knows what I'm having for dinner, and I need to handle the PR crisis first.",
         "The group chat hit 300 messages before lunch, so I've put myself in witness protection from it.",
-        "I told myself I'd reply \"in a sec.\" Turns out my \"sec\" lasts about three days."
+        "I told myself I'd reply \"in a sec.\" Turns out my \"sec\" lasts about three days.",
+        "I've read your message, but my reply is still in a queue. There are about forty people ahead of you.",
+        "I tried to send you a voice note, but my neighbour's dog started barking halfway through and turned it into a solo."
       ],
       "ridiculous": [
         "My phone disappeared into the sofa for three days. Search and rescue only pulled it out this morning.",
@@ -194,7 +216,9 @@
         "My phone has become a philosopher. Every time I try to reply, it asks me what replying even means.",
         "My thumbs and my brain are going through a messy divorce and haven't agreed who gets custody of my replies.",
         "Our chat has gotten so long it crossed a border. I need a visa before I can reply.",
-        "My reply is travelling to you at the speed of light. Unfortunately, I live a few light years away."
+        "My reply is travelling to you at the speed of light. Unfortunately, I live a few light years away.",
+        "My reply is coming by slow boat. It's only just reached international waters.",
+        "All the letters on my keyboard ran away this morning. The only thing I can type now is \"hmm\"."
       ]
     },
     "borrow_lend": {
@@ -280,7 +304,9 @@
         "Can I have a bit of time to think it over? I don't want to commit before I'm sure.",
         "Money's a bit tight at the moment, so I'll sit this one out. Sorry!",
         "I already promised someone else, and I don't want to go back on my word.",
-        "Thanks for thinking of me! I'm keeping some time for myself right now, so it's a no from me this time."
+        "Thanks for thinking of me! I'm keeping some time for myself right now, so it's a no from me this time.",
+        "Sorry, I've been feeling a bit under the weather lately and need to rest a little longer.",
+        "Thanks for thinking of me, but I'm going to say no this time. It's not about you, I just need a bit of space."
       ],
       "funny": [
         "My customer service department is closed for the day. Please try again tomorrow.",
@@ -290,7 +316,9 @@
         "My brain has switched to autopilot today. Please don't ask me to make any major decisions.",
         "I've decided to start practising saying no, and congratulations, you're my first customer.",
         "I've interacted with enough humans for one day. I'm considering becoming a houseplant.",
-        "I held a meeting with myself, and the motion to skip this passed unanimously."
+        "I held a meeting with myself, and the motion to skip this passed unanimously.",
+        "My life GPS has been saying \"recalculating route\" all day. I'm not moving until it figures it out.",
+        "I used all of today's energy deciding what to have for breakfast. There's nothing left."
       ],
       "ridiculous": [
         "My luck has called in sick today and asked me not to move until it gets back.",
@@ -300,7 +328,9 @@
         "My shadow refused to come out with me today, and I'm not going anywhere without backup.",
         "My horoscope, my feng shui and my fortune cookie all agree for once: do nothing.",
         "A mosquito has declared war on me, and I can't leave the battlefield until there's a winner.",
-        "I've just realised I'm an NPC, and I wasn't programmed for this quest."
+        "I've just realised I'm an NPC, and I wasn't programmed for this quest.",
+        "My photocopier went out in my place today, and I have to wait at home for the shift change.",
+        "I've been chosen as a temporary babysitter for a cloud. I can't leave until it learns to float on its own."
       ]
     }
   },
