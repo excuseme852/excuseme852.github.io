@@ -5,11 +5,11 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 ## Current phase
 
-**Topic expansion (before Phase 9)** (in progress: 5 of 8 new categories done)
+**Phase 9 — Copy / Generate Another / Share** (not started)
 
 ## Next step
 
-Write the 8 remaining categories one at a time (creator reviews each): date ✅, family ✅, reply_message ✅, borrow_lend ✅, favor ✅, study, exercise, health. Every written category has ≥10 general lines per style and language (batches A–E). Study draft must be rewritten as excuses about school itself (homework, class, exams), not "using study as an excuse". Topic labels already in the locale files; a button appears once a category has excuses. Then Phase 9 (Copy / Generate Another with the "out of ideas" line when `exhausted` / Share). Library now: 9 categories incl. general, 10–18 lines per style per language (~650 lines in total, zh-HK + en).
+Plan Phase 9 (spec 13.4–13.6): Copy, Generate Another (shorter flip-back/flip-forward animation, no repeats, playful "out of ideas" line from `exhausted` when the pool reshuffles), Share (Web Share API + fallbacks, share card text). Topic expansion is done: all 11 categories + general written and creator-reviewed, every category/style/language has ≥10 general lines (study has tagged project/exam lines; health lines are mild only). Library ≈ 121 KB total data; 12 topic buttons in one swipeable row; engine tests 315/315, coverage table all green.
 
 ## Phase checklist
 
