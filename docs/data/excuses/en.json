@@ -440,6 +440,44 @@
         "I've signed a lifestyle exchange with a koala, and this month I'm learning to sleep twenty hours a day."
       ]
     },
+    "health": {
+      "polite": [
+        "Sorry, I'm not feeling great today and want to rest at home. Can we catch up another time?",
+        "I woke up with a headache and wouldn't be much fun, so I'll skip this one.",
+        "I've got a slight temperature and don't want to pass anything on, so I'll stay in today.",
+        "My stomach's been a bit off the last couple of days, so I'm sticking to plain food and resting.",
+        "My throat's sore and talking is a struggle, so I'd like a quiet day.",
+        "I've just seen the doctor and been told to rest for a couple of days. Sorry to cancel.",
+        "I slept badly last night and feel pretty foggy, so I need to catch up on rest.",
+        "My allergies are acting up and I can't stop sneezing, so I'll spare everyone this time.",
+        "I'd like to rest up and get back to full strength. I'll make it up to you next time!",
+        "My immune system's been weak lately, and the doctor said to avoid crowds for a bit. Sorry!"
+      ],
+      "funny": [
+        "My nose is running with real dedication today, and I don't want it performing in public.",
+        "My headache is so bad that even thinking up an excuse hurts, so the immortal came up with this one for me.",
+        "I'm sneezing with such rhythm today that people might think I'm putting on a concert.",
+        "My voice has turned into a late-night radio DJ version, and I don't want to scare anyone.",
+        "I took my temperature and the thermometer shook its head at me. I think I'd better stay in.",
+        "My stomach is in a mood today. Even plain congee needs approval before it's allowed in.",
+        "My medicine makes me so sleepy I might nod off mid-sentence.",
+        "My duvet has informed me that today, it's the best place for me.",
+        "My throat is so sore I'd have to communicate in sign language, but I don't know sign language.",
+        "I'm so pale today I'm practically see-through."
+      ],
+      "ridiculous": [
+        "My white blood cells are fighting a war today and told me to stay well behind the front line.",
+        "My head feels like it's carrying two watermelons. I'd lose my balance outside.",
+        "My nose has turned into a tap, and I'm waiting for a plumber.",
+        "My temperature is perfect for making soup today, and I'm not going out to be mistaken for an ingredient.",
+        "A duck borrowed my voice this morning and still hasn't given it back.",
+        "My nose and my mouth have fallen out. One refuses to breathe and the other refuses to talk, so I'm staying home to mediate.",
+        "The germs in my body are having a team-building day and don't want me going out and disturbing them.",
+        "My cold wants to go travelling today, and I'm not taking it anywhere.",
+        "The doctor said I need to rest, and my body has treated it as an imperial decree.",
+        "My body temperature is competing with the weather forecast today, and I don't want to add to the competition."
+      ]
+    },
     "general": {
       "polite": [
         "I've already got something on, so I can't this time. Maybe next time!",
