@@ -259,8 +259,9 @@ export function prepareCard(details) {
 }
 
 // Returns 'shared' | 'cancelled' | 'saved' (image downloaded + text copied) | 'savedOnly'.
-export async function shareExcuse({ excuse, lang, label, brand, tagline, fileName }) {
-  const text = `${excuse}\n\n${SITE_URL}`;
+// The excuse travels in the image only; the text is an invite + link.
+export async function shareExcuse({ excuse, lang, label, brand, tagline, invite, fileName }) {
+  const text = `${invite}\n${SITE_URL}`;
   const blob = await prepareCard({ excuse, lang, label, brand, tagline });
   const file = new File([blob], fileName, { type: 'image/png' });
 

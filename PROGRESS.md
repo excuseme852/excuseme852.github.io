@@ -5,11 +5,11 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 ## Current phase
 
-**Phase 9 — Copy / Generate Another / Share** (built and tested locally; waiting for creator review and commit)
+**Phase 9 — Copy / Generate Another / Share** (done, pushed in f458bb8)
 
 ## Next step
 
-The creator tests Phase 9 on a phone, then commits and pushes. After that, plan Phase 10 (thinking messages and errors).
+Creator tests Share on a phone (live site). Then plan Phase 10 (thinking messages and errors).
 
 What Phase 9 added:
 - Three buttons under the plaque: 📋 Copy, 🔄 Another, 📤 Share.
@@ -35,7 +35,7 @@ What Phase 9 added:
 - [x] 6. Excuse library structure + first content
 - [x] 7. Excuse engine + dev test page
 - [x] 8. Connect engine to the reveal
-- [x] 9. Copy / Generate Another / Share (pending commit)
+- [x] 9. Copy / Generate Another / Share
 - [ ] 10. Thinking messages & errors
 - [ ] 11. Final visual assets
 - [ ] 12. Content & localization review (complete library)

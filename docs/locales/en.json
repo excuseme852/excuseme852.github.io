@@ -53,13 +53,14 @@
   "toast": {
     "copied": "Decree copied.",
     "copyFailed": "Couldn't copy. Press and hold the words on the plaque to copy them yourself.",
-    "shareSaved": "Image saved, and the excuse and link are copied.",
+    "shareSaved": "Image saved, and the invite and link are copied.",
     "shareSavedOnly": "Image saved.",
     "shareFailed": "Couldn't share. Try \"Copy\" instead."
   },
   "share": {
     "brand": "Excuse Me",
     "tagline": "Ask the immortal for the perfect excuse",
+    "invite": "Got a situation? Ask the immortal — he's never stuck for an excuse.",
     "fileName": "excuse-me.png"
   },
   "errors": {

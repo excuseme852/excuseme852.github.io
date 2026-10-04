@@ -176,6 +176,7 @@ function cardDetails() {
     label: t('stage.resultLabel'),
     brand: t('share.brand'),
     tagline: t('share.tagline'),
+    invite: t('share.invite'),
     fileName: t('share.fileName'),
   };
 }
