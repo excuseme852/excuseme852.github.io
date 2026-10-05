@@ -1,10 +1,10 @@
 // Wiring & events for the home screen.
 
-import { detectLang, setLang, getLang, t } from './i18n.js';
+import { detectLang, setLang, getLang, t, keysOf } from './i18n.js';
 import { state, setState } from './state.js';
 import {
-  loadImmortal, playAskSequence, playAnother, showCalmResult, skipToResult, stopSequence, startKoiSwimming,
-  hidePeek, say,
+  loadImmortal, playAskSequence, playAnother, playError, showCalmResult, skipToResult, stopSequence,
+  startKoiSwimming, hidePeek, say,
 } from './animation.js';
 import { loadLibrary, analyze, generateExcuse } from './engine.js';
 import { initTopics, topicLabel } from './topics.js';
@@ -24,10 +24,11 @@ const langToggle = document.getElementById('lang-toggle');
 const immortal = document.getElementById('immortal');
 const skipButton = document.getElementById('skip-button');
 const backButton = document.getElementById('back-button');
+const errorBackButton = document.getElementById('error-back-button');
+const retryButton = document.getElementById('retry-button');
 const plaque = document.getElementById('result-plaque');
 const plaqueLabel = document.getElementById('plaque-label');
 const plaqueText = document.getElementById('plaque-text');
-const thinkingBubble = document.getElementById('thinking-bubble');
 const topicsFieldset = document.getElementById('topics');
 const topicOptions = document.getElementById('topic-options');
 const askButton = form.querySelector('.ask-button');
@@ -156,11 +157,23 @@ function renderPlaque(result) {
   sizePlaqueText(result.lang);
 }
 
-// "💼 返工……🤔" while thinking, when the topic has a label (not for 其他 / general).
-function setThinkingText(result) {
-  const topic = result.kind === 'excuse' ? state.topic || result.category : null;
+function shuffled(items) {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+// Thinking bubble lines (spec 13.7): the topic first ("💼 返工……🤔", not for 其他 / general),
+// then playful thoughts in random order. Refusals get one serious line.
+function thoughtsFor(result) {
+  if (result.kind === 'refused') return [t('stage.thinkingRefused')];
+  const topic = state.topic || result.category;
   const label = topic && topic !== 'general' ? topicLabel(topic) : '';
-  thinkingBubble.textContent = label ? t('stage.thinkingTopic', { topic: label }) : t('stage.thinking');
+  const lines = shuffled(keysOf('thoughts').map((key) => t(`thoughts.${key}`)));
+  return label ? [t('stage.thinkingTopic', { topic: label }), ...lines] : lines;
 }
 
 function showToast(key) {
@@ -219,7 +232,14 @@ async function onCopy() {
 
 function onAnother() {
   if (state.status !== 'result' || currentResult?.kind !== 'excuse') return;
-  const result = pickExcuse(state.situation);
+  let result;
+  try {
+    result = pickExcuse(state.situation);
+  } catch (error) {
+    console.error(error);
+    showToast('toast.anotherFailed'); // keep the current excuse on the plaque
+    return;
+  }
   currentResult = result;
   playAnother({ update: () => renderPlaque(result), onResult: afterReveal });
 }
@@ -295,28 +315,52 @@ async function onSubmit(event) {
   }
 
   showMessage(null);
+  input.blur(); // closes the phone keyboard so the stage is visible
+  await ask(situation);
+}
+
+// Bumped by "back", so a slow load that finishes afterwards doesn't start a show.
+let askId = 0;
+
+// Loads the library if needed, picks an excuse and starts the show.
+// If anything fails, the immortal says so and offers Retry (spec 13.8).
+async function ask(situation) {
+  const id = ++askId;
+  setState({ situation });
   let result;
+  let errorKey = 'errors.libraryLoad';
   try {
     await ensureLibrary();
+    if (id !== askId) return;
+    errorKey = 'errors.unexpected'; // loaded fine; anything after this is a bug
     setUpTopics();
     result = pickExcuse(situation);
+    renderPlaque(result);
   } catch (error) {
     console.error(error);
-    setState({ status: 'invalid' });
-    showMessage('errors.libraryLoad', 'error');
+    if (id !== askId) return;
+    setState({ tone: 'normal' });
+    playError(t(errorKey));
     return;
   }
 
-  input.blur(); // closes the phone keyboard so the stage is visible
   currentResult = result;
-  setState({ situation, tone: TONE_BY_KIND[result.kind] || 'normal' });
-  renderPlaque(result);
-  setThinkingText(result);
+  setState({ tone: TONE_BY_KIND[result.kind] || 'normal' });
   if (state.tone === 'calm') showCalmResult({ onResult: afterReveal });
-  else playAskSequence({ onResult: afterReveal, quick: state.tone === 'serious' }); // refusals think briefly
+  else playAskSequence({ onResult: afterReveal, quick: state.tone === 'serious', thoughts: thoughtsFor(result) });
+}
+
+async function onRetry() {
+  retryButton.setAttribute('aria-busy', 'true');
+  try {
+    await ask(state.situation);
+  } finally {
+    retryButton.removeAttribute('aria-busy');
+  }
 }
 
 function onBack() {
+  askId += 1;
   stopSequence();
   toast.dataset.show = 'false';
   setState({ status: input.value.trim() ? 'input' : 'idle', tone: 'normal' });
@@ -351,6 +395,8 @@ async function init() {
       await setLang('en');
     } catch (fallbackError) {
       console.error(fallbackError);
+      document.getElementById('boot-error').hidden = false; // no words to show the app with
+      return;
     }
   }
 
@@ -367,6 +413,8 @@ async function init() {
   langToggle.addEventListener('click', onLangToggle);
   skipButton.addEventListener('click', skipToResult);
   backButton.addEventListener('click', onBack);
+  errorBackButton.addEventListener('click', onBack);
+  retryButton.addEventListener('click', onRetry);
   copyButton.addEventListener('click', onCopy);
   anotherButton.addEventListener('click', onAnother);
   shareButton.addEventListener('click', onShare);

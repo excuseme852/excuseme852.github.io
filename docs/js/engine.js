@@ -41,8 +41,22 @@ export async function loadLibrary(baseUrl = new URL('../', import.meta.url)) {
     fetchJson(DATA_FILES['zh-HK']),
     fetchJson(DATA_FILES.en),
   ]);
+  checkLibrary(categories, { 'zh-HK': zh, en });
   library = { categories, excuses: { 'zh-HK': zh, en } };
   return library;
+}
+
+// A damaged or half-edited data file should fail here (and show the friendly error),
+// not halfway through picking an excuse.
+function checkLibrary(categories, excuses) {
+  const isObject = (value) => value && typeof value === 'object' && !Array.isArray(value);
+  if (!Array.isArray(categories?.categories)) throw new Error('categories.json: "categories" missing');
+  for (const [lang, file] of Object.entries(excuses)) {
+    const general = file?.excuses?.general;
+    if (!isObject(general) || !Object.values(general).some((lines) => Array.isArray(lines) && lines.length)) {
+      throw new Error(`excuses/${lang}.json: no general excuses`);
+    }
+  }
 }
 
 // ---------- Text helpers ----------

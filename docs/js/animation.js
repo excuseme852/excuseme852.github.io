@@ -2,10 +2,11 @@
 // This module only decides *when* each state starts; CSS decides how it looks.
 //   appearing → thinking → reacting → retrieving → presenting → revealing → result
 //   Generate Another: result → regenerating → revealing → result
+//   Errors: appearing → error (Retry goes straight to thinking)
 // The one exception is the plaque's flight from the sleeve to the centre: its start
 // point depends on screen size, so it uses the Web Animations API.
 
-import { setState } from './state.js';
+import { state, setState } from './state.js';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -22,6 +23,7 @@ const QUICK_REACT = 700;
 let timers = [];
 let onResultCallback = null;
 let flight = null;
+let pendingError = null; // an error waiting for his entrance to finish
 
 function later(ms, fn) {
   timers.push(setTimeout(fn, ms));
@@ -30,6 +32,7 @@ function later(ms, fn) {
 function clearTimers() {
   timers.forEach(clearTimeout);
   timers = [];
+  pendingError = null;
 }
 
 function cancelFlight() {
@@ -104,8 +107,20 @@ export function startKoiSwimming() {
   });
 }
 
+// The thinking bubble moves on to the next thought every so often (spec 13.7).
+const THOUGHT_EVERY = 900;
+
+function showThoughts(thoughts, think) {
+  const bubble = document.getElementById('thinking-bubble');
+  thoughts.forEach((text, index) => {
+    const at = index * THOUGHT_EVERY;
+    if (at < think) later(at, () => { bubble.textContent = text; });
+  });
+}
+
 // `quick`: shorter thinking (used for refusals: he doesn't need to ponder those).
-export function playAskSequence({ onResult, quick = false } = {}) {
+// `thoughts`: lines for the thinking bubble, shown in order.
+export function playAskSequence({ onResult, quick = false, thoughts = [] } = {}) {
   clearTimers();
   cancelFlight();
   hidePeek();
@@ -116,10 +131,15 @@ export function playAskSequence({ onResult, quick = false } = {}) {
   const think = quick
     ? QUICK_THINK
     : timing.thinkMin + Math.random() * (timing.thinkMax - timing.thinkMin);
+  // After an error he's already on stage, so he doesn't pop up again.
+  const appear = state.status === 'error' ? 0 : timing.appear;
 
   // Each step: [how long the previous step lasts, what starts next]
   const steps = [
-    [timing.appear, () => setState({ status: 'thinking' })],
+    [appear, () => {
+      setState({ status: 'thinking' });
+      showThoughts(thoughts, think);
+    }],
     [think, timing.react && (() => setState({ status: 'reacting' }))],
     [timing.react, timing.retrieve && (() => setState({ status: 'retrieving' }))],
     [timing.retrieve, timing.present && (() => presentPlaque(timing.present))],
@@ -127,12 +147,34 @@ export function playAskSequence({ onResult, quick = false } = {}) {
     [timing.reveal, showResult],
   ];
 
-  setState({ status: 'appearing' });
+  if (appear) setState({ status: 'appearing' });
   let at = 0;
   for (const [wait, start] of steps) {
     at += wait;
     if (start) later(at, start);
   }
+}
+
+// Something went wrong (spec 13.8): he comes out and says so; the stage offers Retry.
+// If he's already showing an error, he just says the new line.
+export function playError(text) {
+  clearTimers();
+  cancelFlight();
+  hidePeek();
+  hideSay();
+  onResultCallback = null;
+  const showError = () => {
+    clearTimers();
+    setState({ status: 'error' });
+    say(text, { hold: null });
+  };
+  if (state.status === 'error') {
+    later(250, showError); // the bubble pops again, so a failed Retry is visible
+    return;
+  }
+  setState({ status: 'appearing' });
+  pendingError = showError; // the skip arrow jumps straight to it
+  later((reducedMotion.matches ? TIMING.reduced : TIMING.full).appear, showError);
 }
 
 // Generate Another (spec 13.4): a short version — the plaque flips to its back,
@@ -161,11 +203,12 @@ export function playAnother({ update, onResult } = {}) {
 const SAY_HOLD = 3000;
 let sayTimer = null;
 
+// `hold`: ms before the bubble goes, or null to keep it until hideSay().
 export function say(text, { hold = SAY_HOLD } = {}) {
   document.getElementById('say-text').textContent = text;
   document.body.dataset.say = 'on';
   clearTimeout(sayTimer);
-  sayTimer = setTimeout(hideSay, hold);
+  if (hold !== null) sayTimer = setTimeout(hideSay, hold);
 }
 
 export function hideSay() {
@@ -204,7 +247,8 @@ export function hidePeek() {
 }
 
 export function skipToResult() {
-  showResult();
+  if (pendingError) pendingError();
+  else showResult();
 }
 
 export function stopSequence() {

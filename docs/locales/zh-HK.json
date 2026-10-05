@@ -36,14 +36,25 @@
   },
   "stage": {
     "immortalLabel": "卡通大仙坐喺雲上面",
-    "thinking": "仙人正在思考……",
     "thinkingTopic": "{topic}……🤔",
+    "thinkingRefused": "嗯……呢件事唔係咁啱……",
+    "retry": "🔄 再試一次",
     "skip": "跳去結果",
     "resultLabel": "大仙賜你一個藉口：",
     "seriousLabel": "大仙想認真同你講：",
     "refusedLabel": "⚠️ 大仙唔幫呢個忙",
     "plaqueLabel": "刻住藉口嘅牌匾",
     "back": "← 改過個情況"
+  },
+  "thoughts": {
+    "thinking": "仙人正在思考……",
+    "scrolls": "正在翻閱天書……",
+    "believable": "正在尋找一個比較可信嘅理由……",
+    "complicated": "仙人表示此事有啲複雜……",
+    "fingers": "掐指一算……",
+    "phone": "打緊電話問隔籬山頭嘅師兄……",
+    "page38": "天書第 38 頁好似有講過……",
+    "throat": "仙人清一清喉嚨，再諗多陣……"
   },
   "actions": {
     "copy": "📋 複製",
@@ -55,7 +66,8 @@
     "copyFailed": "複製唔到，請長按牌匾上面嘅字自己複製。",
     "shareSaved": "圖片已儲存，邀請同連結已複製。",
     "shareSavedOnly": "圖片已儲存。",
-    "shareFailed": "分享唔到，可以試下撳「複製」。"
+    "shareFailed": "分享唔到，可以試下撳「複製」。",
+    "anotherFailed": "大仙一時諗唔到，再撳一次試下。"
   },
   "feedback": {
     "button": "🐞 回報／建議",
@@ -69,7 +81,8 @@
     "fileName": "藉口生成器.png"
   },
   "errors": {
-    "libraryLoad": "天書暫時打唔開，請等陣再試。"
+    "libraryLoad": "哎呀，天書暫時打唔開……等陣再試下？",
+    "unexpected": "大仙一時失手，跌咗本天書……再嚟一次？"
   },
   "style": {
     "polite": "😇 禮貌",

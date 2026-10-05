@@ -606,8 +606,6 @@ body[data-scene="stage"] .stage {
   pointer-events: auto;
 }
 
-/* Thinking bubble and result share the same top slot */
-.thinking-bubble,
 .result {
   grid-area: 1 / 1;
 }
@@ -620,34 +618,57 @@ body[data-scene="stage"] .stage {
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
 }
 
+/* Thought cloud right above his head (it lives in .cloud-group, so it bobs with him).
+   His head top is ~0.95 × his width above his feet; the trailing dots fill the gap. */
 .thinking-bubble {
-  position: relative;
-  align-self: start;
-  margin: 12px 0 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(40% + min(70vw, 300px, 40dvh) * 0.95 + 26px);
+  z-index: 4;
+  width: max-content;
+  max-width: min(calc(100vw - 32px), 320px);
+  margin: 0 auto; /* centred without transform, which reduced motion switches off */
   padding: 10px 18px;
-  border-radius: var(--radius);
+  border: 2px solid var(--color-border);
+  border-radius: 22px;
   background: var(--color-surface);
-  box-shadow: 0 3px 0 var(--color-border);
   font-weight: 700;
-  transform: translateY(6px);
+  text-align: center;
+  transform: translateY(8px) scale(0.9);
+  transform-origin: bottom center;
+  pointer-events: none;
 }
 
+/* Little bubbles trailing down to his head, like the home-screen peek */
+.thinking-bubble::before,
 .thinking-bubble::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -8px;
-  width: 16px;
-  height: 16px;
-  margin-left: -8px;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
   background: var(--color-surface);
-  transform: rotate(45deg);
+}
+
+.thinking-bubble::before {
+  bottom: -15px;
+  width: 12px;
+  height: 12px;
+  margin-left: -10px;
+}
+
+.thinking-bubble::after {
+  bottom: -25px;
+  width: 7px;
+  height: 7px;
+  margin-left: -4px;
 }
 
 body:is([data-state="thinking"], [data-state="reacting"]) .thinking-bubble {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: none;
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s;
 }
 
@@ -813,6 +834,46 @@ body[data-state="result"] .back-button {
   transition: opacity 0.3s ease 0.2s, visibility 0s;
 }
 
+/* Error (spec 13.8): he explains in his speech bubble; Retry and Back sit up top */
+.error-actions {
+  grid-area: 1 / 1;
+  align-self: start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+}
+
+.error-actions .action-button {
+  padding: 8px 20px;
+}
+
+body[data-state="error"] .error-actions,
+body[data-state="error"] .error-actions .back-button {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease 0.2s, visibility 0s;
+}
+
+.error-actions [aria-busy="true"] {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.boot-error {
+  position: fixed;
+  inset: 40% 16px auto;
+  z-index: 20;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.8;
+  text-align: center;
+}
+
 .back-button {
   min-height: var(--tap);
   padding: 0 20px;
@@ -854,7 +915,7 @@ body[data-state="result"] .back-button {
   height: 26px;
 }
 
-body[data-scene="stage"]:not([data-state="result"]):not([data-state="regenerating"]) .skip-button {
+body[data-scene="stage"]:not([data-state="result"]):not([data-state="regenerating"]):not([data-state="error"]) .skip-button {
   opacity: 1;
   visibility: visible;
   transition: opacity 0.25s ease, visibility 0s;

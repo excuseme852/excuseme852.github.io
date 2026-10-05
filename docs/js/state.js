@@ -2,12 +2,13 @@
 // setState() merges changes and mirrors `status` onto <body data-state>,
 // plus <body data-scene="home|stage">, so CSS can react to state changes.
 
-const STAGE_STATUSES = ['appearing', 'thinking', 'reacting', 'retrieving', 'presenting', 'revealing', 'result', 'regenerating'];
+const STAGE_STATUSES = ['appearing', 'thinking', 'reacting', 'retrieving', 'presenting', 'revealing', 'result', 'regenerating', 'error'];
 
 export const state = {
   // Home:  loading | idle | input | invalid
   // Stage: appearing | thinking | reacting | retrieving | presenting | revealing | result
   //        regenerating (Generate Another: plaque flips back, then revealing → result)
+  //        error (data failed to load or the engine broke: he says so, Retry is offered)
   status: 'loading',
   situation: '',
   style: 'polite',

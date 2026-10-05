@@ -5,11 +5,26 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 ## Current phase
 
-**Phase 9 — Copy / Generate Another / Share** (done, pushed in f458bb8)
+**Phase 10 — Thinking messages & errors** (done)
 
 ## Next step
 
-Creator tests Share on a phone (live site). Then plan Phase 10 (thinking messages and errors).
+Plan Phase 11 (final visual assets).
+
+What Phase 10 added (creator chose 1A 2A 3B):
+- **Thinking bubble** rotates about every 0.9 s.
+  - The topic line comes first (「💼 返工……🤔」), then 8 playful thoughts in random order. They live in the `thoughts.*` locale group, and the creator approved the Cantonese.
+  - Refusals show one serious line instead (`stage.thinkingRefused`).
+  - The bubble is a thought cloud right above his head, with trailing dots like the home peek. It lives in `.cloud-group` (creator request).
+- **Errors** use a new stage status, `error`.
+  - The immortal pops out and says the error in his speech bubble, which stays up. 🔄 Try again and ← Back appear at the top.
+  - Messages: `errors.libraryLoad` when data fails to load; `errors.unexpected` when something breaks after loading.
+  - Retry goes straight to thinking without a second entrance. A failed retry makes the bubble pop again.
+  - The skip arrow during the entrance jumps to the error, not to an empty plaque.
+- **Damaged data**: `checkLibrary` in `engine.js` rejects data files that are broken or missing their general excuses, at load time.
+- **Another failing**: a toast appears (`toast.anotherFailed`) and the current excuse stays on the plaque.
+- **No language file loads**: a bilingual fallback line shows (`#boot-error`). It is hard-coded in the HTML on purpose (creator approved 2A).
+- Tested on a broken copy of the site: missing data, damaged data, engine error, missing locales, retry recovery. Engine tests: 323/323.
 
 Testing-phase feedback link (creator approved option A, 2026-10-05):
 - What it is: a 🐞 button beside "back" on excuse results only, opening a Google Form in a new tab. The form is pre-filled with the situation (or the picked topic) and the excuse.
@@ -20,19 +35,11 @@ Testing-phase feedback link (creator approved option A, 2026-10-05):
   - Pre-filling is verified.
 - Before launch (Phase 14): empty `FORM_TEMPLATE` again, or decide to keep it.
 
-What Phase 9 added:
-- Three buttons under the plaque: 📋 Copy, 🔄 Another, 📤 Share.
-- **Copy** uses the clipboard API, with an `execCommand` fallback. If both fail, it selects the plaque text and shows a toast.
-- **Another** gives a short flip-back/flip-forward (the `regenerating` state) with no repeats.
-- **Out of ideas**: when the pool reshuffles, the immortal says the `exhaustedLine` in a speech bubble for about 3 s.
-- **Share** draws a 1080×1350 PNG card in `docs/js/share.js` (brand, tagline, wooden plaque with the excuse, immortal on a cloud, site URL).
-  - The card is drawn as soon as the plaque is revealed, so sharing stays inside the tap.
-  - Web Share is used when the browser can share files. Otherwise the image is downloaded and the text plus link is copied.
-- Refusal and crisis screens show no action buttons, only "back".
-- Fixes from creator testing:
-  - With a mouse on a computer, the wheel and click-drag now scroll the topic row (`enableMouseScroll` in `topics.js`).
-  - More crisis triggers: "kill myself", "end it all", 殺死自己, 了結自己 and others. Typing "dont" without the apostrophe also matches.
-  - Engine tests: 323/323.
+Phase 9 summary (done):
+- Copy, Another (no repeats, "out of ideas" bubble) and Share.
+- The share card is a 1080×1350 PNG in `share.js`. The share text is an invite line plus the link; the excuse appears only on the image.
+- With a mouse, the topic row scrolls by wheel and drag.
+- Added crisis triggers ("kill myself" and others).
 
 ## Phase checklist
 
@@ -45,7 +52,7 @@ What Phase 9 added:
 - [x] 7. Excuse engine + dev test page
 - [x] 8. Connect engine to the reveal
 - [x] 9. Copy / Generate Another / Share
-- [ ] 10. Thinking messages & errors
+- [x] 10. Thinking messages & errors
 - [ ] 11. Final visual assets
 - [ ] 12. Content & localization review (complete library)
 - [ ] 13. Cross-browser & device testing
