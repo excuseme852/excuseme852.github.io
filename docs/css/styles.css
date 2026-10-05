@@ -281,6 +281,19 @@ body[data-state="invalid"] #situation {
   background: linear-gradient(to bottom, var(--color-sky) 0%, var(--color-bg) 55%);
 }
 
+/* Faint misty mountains and pines behind everything, rising from just above the cloud */
+.scene::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom) + var(--cloud-h) * 0.45);
+  height: min(40vh, 340px);
+  background: url("../assets/mountains.svg") center bottom / cover no-repeat;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 30%);
+  mask-image: linear-gradient(to top, transparent 0%, #000 30%);
+}
+
 /* Starlight beams shining down onto the cloud */
 .ray {
   position: absolute;
@@ -529,8 +542,35 @@ body:is([data-state="thinking"], [data-state="reacting"]) #immortal #head {
 }
 
 body[data-state="thinking"] #immortal #pupils {
-  transform: translate(4px, -5px);
+  transform: translate(3px, -3px);
 }
+
+/* Expressions. Default: laughing (eyes shut, big grin).
+   Thinking, refusing and errors: eyes open, mouth flat; errors add a sweat drop.
+   (The SVG hides the alternates with opacity="0", which the share card relies on.) */
+#immortal :is(#eyes-happy, #eyes-open, #mouth-happy, #mouth-flat, #sweat) {
+  transition: opacity 0.15s ease;
+}
+
+body:is([data-state="thinking"], [data-state="error"]) #immortal :is(#eyes-open, #mouth-flat),
+body[data-scene="stage"][data-tone="serious"] #immortal :is(#eyes-open, #mouth-flat),
+body[data-state="error"] #immortal #sweat {
+  opacity: 1;
+}
+
+body:is([data-state="thinking"], [data-state="error"]) #immortal :is(#eyes-happy, #mouth-happy),
+body[data-scene="stage"][data-tone="serious"] #immortal :is(#eyes-happy, #mouth-happy) {
+  opacity: 0;
+}
+
+/* Brows: stern (inner ends down) when refusing, worried (inner ends up) after an error */
+#immortal #brow-left { transform-origin: 122px 102px; transition: transform 0.2s ease; }
+#immortal #brow-right { transform-origin: 178px 102px; transition: transform 0.2s ease; }
+
+body[data-scene="stage"][data-tone="serious"] #immortal #brow-left { transform: translateY(3px) rotate(20deg); }
+body[data-scene="stage"][data-tone="serious"] #immortal #brow-right { transform: translateY(3px) rotate(-20deg); }
+body[data-state="error"] #immortal #brow-left { transform: rotate(-12deg); }
+body[data-state="error"] #immortal #brow-right { transform: rotate(12deg); }
 
 body[data-state="thinking"] #immortal #beard {
   animation: beard-sway 0.9s ease-in-out infinite alternate;
@@ -728,8 +768,11 @@ body[data-state="revealing"] .plaque-inner {
 .plaque-face {
   border: 6px solid var(--wood-dark);
   border-radius: 14px;
+  /* Carved frame: gold inlay, a thin dark groove, then a second faint gold line */
   box-shadow:
     inset 0 0 0 3px var(--color-gold),
+    inset 0 0 0 5px rgba(90, 52, 23, 0.55),
+    inset 0 0 0 7px rgba(240, 193, 75, 0.45),
     0 6px 0 #5b3517,
     0 10px 24px rgba(59, 42, 74, 0.25);
   -webkit-backface-visibility: hidden;
@@ -740,9 +783,14 @@ body[data-state="revealing"] .plaque-inner {
 .plaque-front {
   position: relative;
   min-height: 150px;
-  padding: 18px 22px 22px;
+  padding: 18px 26px 22px;
   text-align: center;
+  /* Gold cloud-curl ornaments in the four corners, over the wood grain */
   background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 21V9q0-6 6-6h12M7 21v-8q0-6 6-6h8' fill='none' stroke='%23d4a03c' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='13' cy='13' r='2.5' fill='%23d4a03c'/%3E%3C/svg%3E") left 8px top 8px / 22px no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(90 12 12)'%3E%3Cpath d='M3 21V9q0-6 6-6h12M7 21v-8q0-6 6-6h8' fill='none' stroke='%23d4a03c' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='13' cy='13' r='2.5' fill='%23d4a03c'/%3E%3C/g%3E%3C/svg%3E") right 8px top 8px / 22px no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(180 12 12)'%3E%3Cpath d='M3 21V9q0-6 6-6h12M7 21v-8q0-6 6-6h8' fill='none' stroke='%23d4a03c' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='13' cy='13' r='2.5' fill='%23d4a03c'/%3E%3C/g%3E%3C/svg%3E") right 8px bottom 8px / 22px no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='M3 21V9q0-6 6-6h12M7 21v-8q0-6 6-6h8' fill='none' stroke='%23d4a03c' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='13' cy='13' r='2.5' fill='%23d4a03c'/%3E%3C/g%3E%3C/svg%3E") left 8px bottom 8px / 22px no-repeat,
     repeating-linear-gradient(
       100deg,
       rgba(122, 74, 34, 0.07) 0 2px,
@@ -782,7 +830,7 @@ body[data-state="revealing"] .plaque-inner {
 /* Engraved look: dark text, light edge below, shadow edge above */
 .plaque-text {
   margin: 0;
-  font-family: "Kaiti TC", "STKaiti", "BiauKai", "DFKai-SB", "KaiTi", var(--font);
+  font-family: "LXGW WenKai TC", "Kaiti TC", "STKaiti", "BiauKai", "DFKai-SB", "KaiTi", var(--font);
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.45;

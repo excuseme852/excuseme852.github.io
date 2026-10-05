@@ -1,66 +1,145 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" width="300" height="340" aria-hidden="true" focusable="false">
-  <!-- Placeholder immortal (Phase 4). Layers are named so they can animate separately.
-       Final artwork replaces this file in Phase 11. -->
+  <!-- The immortal (Phase 11 art). Original character: bald, bushy white brows, long beard,
+       purple robe with gold trim, gnarled staff with a gourd, jade pendant on his belt.
+       Layers are named so CSS can animate them; pivots (in viewBox units) live in styles.css:
+       head 150,190 · beard 150,150 · eyes 150,122 · sleeve shoulder 96,214 · plaque 41,143. -->
+  <defs>
+    <!-- Small gold "endless knot" motif used on the robe -->
+    <g id="knot" fill="none" stroke="#e8b84a" stroke-width="2" stroke-linejoin="round">
+      <path d="M0 -8 L8 0 L0 8 L-8 0 Z"/>
+      <path d="M-4 -4 L4 4 M4 -4 L-4 4"/>
+      <circle cx="0" cy="-10" r="2.5"/>
+      <circle cx="10" cy="0" r="2.5"/>
+      <circle cx="0" cy="10" r="2.5"/>
+      <circle cx="-10" cy="0" r="2.5"/>
+    </g>
+  </defs>
 
-  <!-- Staff with gourd (behind the body) -->
+  <!-- Gnarled staff with a gourd hanging from its hook (behind the body) -->
   <g id="staff">
-    <path d="M246 70 C 240 150, 238 240, 236 335" fill="none" stroke="#7a4a2a" stroke-width="10" stroke-linecap="round"/>
-    <path d="M246 72 C 250 52, 272 50, 274 66 C 276 80, 258 82, 258 70" fill="none" stroke="#7a4a2a" stroke-width="9" stroke-linecap="round"/>
-    <line x1="266" y1="78" x2="266" y2="92" stroke="#c0392b" stroke-width="3"/>
-    <circle cx="266" cy="100" r="9" fill="#e8a33d" stroke="#a8652a" stroke-width="2"/>
-    <circle cx="266" cy="121" r="14" fill="#e8a33d" stroke="#a8652a" stroke-width="2"/>
-    <path d="M266 135 L 262 156 M266 135 L 270 156" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/>
+    <path d="M246 72 C 250 110, 238 140, 244 180 C 248 214, 236 250, 240 290 C 242 310, 236 324, 236 336"
+          fill="none" stroke="#5e3b22" stroke-width="13" stroke-linecap="round"/>
+    <path d="M246 72 C 250 110, 238 140, 244 180 C 248 214, 236 250, 240 290 C 242 310, 236 324, 236 336"
+          fill="none" stroke="#8a5a34" stroke-width="8" stroke-linecap="round"/>
+    <path d="M246 74 C 240 50, 262 36, 282 46 C 296 54, 292 72, 278 74"
+          fill="none" stroke="#5e3b22" stroke-width="12" stroke-linecap="round"/>
+    <path d="M246 74 C 240 50, 262 36, 282 46 C 296 54, 292 72, 278 74"
+          fill="none" stroke="#8a5a34" stroke-width="7" stroke-linecap="round"/>
+    <ellipse cx="243" cy="150" rx="6" ry="4" fill="#5e3b22"/>
+    <ellipse cx="240" cy="262" rx="5" ry="3.5" fill="#5e3b22"/>
+    <!-- red cord + gourd -->
+    <path d="M278 74 L 278 88" stroke="#c0392b" stroke-width="3"/>
+    <circle cx="278" cy="98" r="10" fill="#e3a63d" stroke="#8a5a2b" stroke-width="2.5"/>
+    <path d="M270 107 Q 278 111 286 107" fill="none" stroke="#c0392b" stroke-width="3"/>
+    <ellipse cx="278" cy="126" rx="16" ry="18" fill="#e3a63d" stroke="#8a5a2b" stroke-width="2.5"/>
+    <path d="M278 116 L 286 124 L 278 132 L 270 124 Z M274 120 L 282 128 M282 120 L 274 128"
+          fill="none" stroke="#c0392b" stroke-width="2"/>
+    <ellipse cx="271" cy="118" rx="3" ry="5" fill="#fff" opacity="0.4"/>
+    <circle cx="278" cy="148" r="3.5" fill="#6fb59a" stroke="#3f7f66" stroke-width="1.5"/>
+    <circle cx="278" cy="156" r="3" fill="#6fb59a" stroke="#3f7f66" stroke-width="1.5"/>
+    <path d="M278 160 L 278 164 M274 164 L 274 184 M278 164 L 278 188 M282 164 L 282 184"
+          stroke="#c0392b" stroke-width="3" stroke-linecap="round"/>
   </g>
 
-  <!-- Body: robe, belt, sash -->
+  <!-- Body: robe, collar, belt, sash, jade pendant -->
   <g id="body">
-    <path d="M70 340 C 62 262, 84 204, 116 190 L 184 190 C 216 204, 238 262, 230 340 Z" fill="#7b4fb0" stroke="#4a2c6e" stroke-width="3"/>
-    <path d="M78 318 C 120 330, 180 330, 222 318" fill="none" stroke="#f0c14b" stroke-width="6"/>
-    <rect x="96" y="246" width="108" height="16" rx="6" fill="#4a2c6e" stroke="#f0c14b" stroke-width="3"/>
-    <path d="M136 262 L 164 262 L 168 330 L 150 342 L 132 330 Z" fill="#2f7f86" stroke="#f0c14b" stroke-width="3"/>
+    <path d="M66 340 C 58 262, 82 204, 116 188 L 184 188 C 218 204, 242 262, 234 340 Z"
+          fill="#7b4fb0" stroke="#4a2c6e" stroke-width="3"/>
+    <!-- collar: white inner layer under a gold-trimmed V -->
+    <path d="M122 188 L 150 232 L 178 188 Z" fill="#f5efe4"/>
+    <path d="M116 188 L 150 240 L 184 188" fill="none" stroke="#e8b84a" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M116 188 L 150 240 L 184 188" fill="none" stroke="#8a5a2b" stroke-width="1.5" stroke-linejoin="round" opacity="0.6"/>
+    <!-- hem trim -->
+    <path d="M74 318 C 120 332, 180 332, 226 318" fill="none" stroke="#e8b84a" stroke-width="7"/>
+    <use href="#knot" x="104" y="290"/>
+    <use href="#knot" x="198" y="292"/>
+    <!-- belt with a gold key pattern -->
+    <rect x="94" y="244" width="112" height="18" rx="6" fill="#2d2a4a" stroke="#e8b84a" stroke-width="3"/>
+    <path d="M104 257 v-8 h6 v5 h6 v-5 h6 v8 M178 257 v-8 h6 v5 h6 v-5 h6 v8"
+          fill="none" stroke="#e8b84a" stroke-width="1.6"/>
+    <rect x="140" y="243" width="20" height="20" rx="3" fill="#e8b84a" stroke="#8a5a2b" stroke-width="2"/>
+    <!-- sash -->
+    <path d="M136 263 L 164 263 L 170 332 L 150 344 L 130 332 Z" fill="#2f6f8f" stroke="#e8b84a" stroke-width="3"/>
+    <use href="#knot" x="150" y="296"/>
+    <!-- jade pendant: his own touch -->
+    <path d="M196 262 L 196 278" stroke="#c0392b" stroke-width="2.5"/>
+    <circle cx="196" cy="286" r="9" fill="#6fb59a" stroke="#3f7f66" stroke-width="2"/>
+    <circle cx="196" cy="286" r="3" fill="#7b4fb0"/>
+    <path d="M192 295 L 191 312 M196 295 L 196 314 M200 295 L 201 312" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>
   </g>
 
-  <!-- Left sleeve resting on the lap (the plaque comes out of here in Phase 5) -->
+  <!-- Left sleeve resting on the lap; CSS swings it up beside his head to fetch the plaque.
+       Straight along one axis (shoulder 96,214 → hand 138,294) so it stays straight when raised. -->
   <g id="sleeve">
-    <!-- Straight bell sleeve along one axis (shoulder 96,214 → hand 138,294),
-         so it stays a straight arm when CSS rotates it up -->
-    <path d="M108 208 L 156 273 Q 137 292 110 297 L 84 221 Q 90 210 108 208 Z" fill="#8d62c4" stroke="#4a2c6e" stroke-width="3"/>
-    <path d="M156 273 Q 137 292 110 297" fill="none" stroke="#f0c14b" stroke-width="5"/>
-    <circle cx="138" cy="294" r="11" fill="#f6c9a8" stroke="#c98d6b" stroke-width="2"/>
+    <path d="M108 206 L 158 272 Q 138 294 108 299 L 82 221 Q 88 208 108 206 Z"
+          fill="#8d62c4" stroke="#4a2c6e" stroke-width="3"/>
+    <path d="M158 272 Q 138 294 108 299" fill="none" stroke="#e8b84a" stroke-width="7"/>
+    <path d="M152 277 Q 136 290 114 294" fill="none" stroke="#f5efe4" stroke-width="3"/>
+    <use href="#knot" x="112" y="246" transform="rotate(-36 112 246)"/>
+    <circle cx="138" cy="294" r="11" fill="#f6c9a8" stroke="#a86f55" stroke-width="2"/>
   </g>
 
-  <!-- Head: face, eyes, brows, beard, moustache, mouth -->
+  <!-- Head: face, ears, brows, eyes, beard, mouth, moustache -->
   <g id="head">
-    <circle cx="90" cy="124" r="12" fill="#f3b995" stroke="#c98d6b" stroke-width="2"/>
-    <circle cx="210" cy="124" r="12" fill="#f3b995" stroke="#c98d6b" stroke-width="2"/>
-    <circle cx="150" cy="118" r="62" fill="#f6c9a8" stroke="#c98d6b" stroke-width="3"/>
-    <ellipse cx="128" cy="78" rx="18" ry="9" fill="#fff" opacity="0.45" transform="rotate(-20 128 78)"/>
-    <ellipse cx="116" cy="140" rx="10" ry="6" fill="#f28c8c" opacity="0.55"/>
-    <ellipse cx="184" cy="140" rx="10" ry="6" fill="#f28c8c" opacity="0.55"/>
+    <circle cx="89" cy="126" r="13" fill="#f3b995" stroke="#a86f55" stroke-width="2.5"/>
+    <circle cx="211" cy="126" r="13" fill="#f3b995" stroke="#a86f55" stroke-width="2.5"/>
+    <path d="M85 122 Q 90 128 87 134 M215 122 Q 210 128 213 134" fill="none" stroke="#d99a7c" stroke-width="2"/>
+    <circle cx="150" cy="118" r="62" fill="#f6c9a8" stroke="#a86f55" stroke-width="3"/>
+    <ellipse cx="128" cy="76" rx="20" ry="9" fill="#fff" opacity="0.5" transform="rotate(-20 128 76)"/>
+    <path d="M132 92 Q 150 88 168 92" fill="none" stroke="#e3a98a" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="113" cy="142" rx="11" ry="6.5" fill="#f28c8c" opacity="0.55"/>
+    <ellipse cx="187" cy="142" rx="11" ry="6.5" fill="#f28c8c" opacity="0.55"/>
 
     <g id="eyes">
-      <g id="pupils">
-        <ellipse cx="128" cy="122" rx="6" ry="8" fill="#3b2a4a"/>
-        <ellipse cx="172" cy="122" rx="6" ry="8" fill="#3b2a4a"/>
-        <circle cx="130" cy="118" r="2" fill="#fff"/>
-        <circle cx="174" cy="118" r="2" fill="#fff"/>
+      <!-- Default: laughing, eyes squeezed shut -->
+      <g id="eyes-happy" fill="none" stroke="#3b2a4a" stroke-width="4" stroke-linecap="round">
+        <path d="M117 125 Q 128 113 139 125"/>
+        <path d="M161 125 Q 172 113 183 125"/>
+        <path d="M112 128 l -6 2 M188 128 l 6 2" stroke="#c98d6b" stroke-width="2"/>
+      </g>
+      <!-- Open eyes (thinking, refusing, oops); pupils move on their own -->
+      <g id="eyes-open" opacity="0">
+        <ellipse cx="128" cy="122" rx="9" ry="10" fill="#fff" stroke="#a86f55" stroke-width="1.5"/>
+        <ellipse cx="172" cy="122" rx="9" ry="10" fill="#fff" stroke="#a86f55" stroke-width="1.5"/>
+        <g id="pupils">
+          <ellipse cx="128" cy="123" rx="5.5" ry="7" fill="#3b2a4a"/>
+          <ellipse cx="172" cy="123" rx="5.5" ry="7" fill="#3b2a4a"/>
+          <circle cx="130" cy="119" r="2" fill="#fff"/>
+          <circle cx="174" cy="119" r="2" fill="#fff"/>
+        </g>
       </g>
     </g>
 
-    <g id="brows">
-      <path d="M110 108 C 116 96, 134 94, 142 104 C 132 102, 120 104, 110 108 Z" fill="#fff" stroke="#d8d0c4" stroke-width="2"/>
-      <path d="M190 108 C 184 96, 166 94, 158 104 C 168 102, 180 104, 190 108 Z" fill="#fff" stroke="#d8d0c4" stroke-width="2"/>
+    <!-- Bushy white brows with drooping tufts -->
+    <g id="brows" fill="#fff" stroke="#cfc6b8" stroke-width="2" stroke-linejoin="round">
+      <path id="brow-left" d="M102 108 C 106 92, 128 86, 144 98 C 136 101, 126 103, 116 106 C 110 108, 106 112, 100 120 C 98 114, 99 110, 102 108 Z"/>
+      <path id="brow-right" d="M198 108 C 194 92, 172 86, 156 98 C 164 101, 174 103, 184 106 C 190 108, 194 112, 200 120 C 202 114, 201 110, 198 108 Z"/>
     </g>
 
-    <circle cx="150" cy="138" r="8" fill="#eba98a"/>
+    <circle cx="150" cy="139" r="9" fill="#eda98a" stroke="#c98d6b" stroke-width="1.5"/>
 
     <g id="beard">
-      <path d="M104 146 C 96 200, 118 262, 150 306 C 182 262, 204 200, 196 146 C 180 170, 120 170, 104 146 Z" fill="#fff" stroke="#d8d0c4" stroke-width="3"/>
-      <path d="M130 190 C 132 220, 140 250, 148 278 M170 190 C 168 220, 160 250, 152 278" fill="none" stroke="#e4ddd2" stroke-width="3" stroke-linecap="round"/>
+      <path d="M98 140 C 86 190, 104 250, 132 290 C 140 302, 146 312, 150 328 C 154 312, 160 302, 168 290 C 196 250, 214 190, 202 140 C 192 168, 172 178, 150 178 C 128 178, 108 168, 98 140 Z"
+            fill="#fff" stroke="#cfc6b8" stroke-width="3"/>
+      <path d="M126 196 C 128 230, 138 262, 146 290 M174 196 C 172 230, 162 262, 154 290 M150 200 L 150 300 M110 180 C 114 210, 122 236, 132 258 M190 180 C 186 210, 178 236, 168 258"
+            fill="none" stroke="#e7e0d5" stroke-width="3" stroke-linecap="round"/>
     </g>
 
-    <path d="M137 166 Q 150 184 163 166 Z" fill="#9b3344"/>
-    <path d="M150 158 C 136 148, 114 150, 104 166 C 120 172, 138 168, 150 162 C 162 168, 180 172, 196 166 C 186 150, 164 148, 150 158 Z" fill="#fff" stroke="#d8d0c4" stroke-width="2"/>
+    <!-- Mouth: a big laugh by default, a flat line when serious -->
+    <g id="mouth-happy">
+      <path d="M127 162 Q 150 204 173 162 Z" fill="#8e2f3f" stroke="#6b1f2d" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M130 163 Q 150 170 170 163 L 169 168 Q 150 175 131 168 Z" fill="#fff"/>
+      <path d="M138 180 Q 150 173 162 180 Q 150 192 138 180 Z" fill="#e57b7b"/>
+    </g>
+    <path id="mouth-flat" opacity="0" d="M138 174 Q 150 170 162 174" fill="none" stroke="#6b1f2d" stroke-width="3.5" stroke-linecap="round"/>
+
+    <!-- Moustache, curling up at the ends -->
+    <path d="M150 154 C 136 144, 112 146, 100 162 C 96 168, 92 170, 85 167 C 91 177, 105 179, 117 172 C 129 166, 140 162, 150 160 C 160 162, 171 166, 183 172 C 195 179, 209 177, 215 167 C 208 170, 204 168, 200 162 C 188 146, 164 144, 150 154 Z"
+          fill="#fff" stroke="#cfc6b8" stroke-width="2"/>
+
+    <!-- Sweat drop for "oops" (errors) -->
+    <path id="sweat" opacity="0" d="M210 84 C 216 94, 220 100, 214 104 C 208 108, 202 102, 206 96 Z"
+          fill="#a9dcf2" stroke="#5aa6c9" stroke-width="1.5"/>
   </g>
 
   <!-- Small plaque (back side). Sits hidden at the cuff of the *raised* left sleeve
@@ -68,12 +147,15 @@
   <g id="plaque" opacity="0">
     <rect x="25" y="121" width="32" height="44" rx="4" fill="#b77a3f" stroke="#7a4a22" stroke-width="3"/>
     <rect x="29" y="125" width="24" height="36" rx="2" fill="none" stroke="#f0c14b" stroke-width="1.5"/>
-    <circle cx="41" cy="143" r="7" fill="none" stroke="#f0c14b" stroke-width="2"/>
+    <path d="M41 136 L 48 143 L 41 150 L 34 143 Z" fill="none" stroke="#f0c14b" stroke-width="2"/>
   </g>
 
   <!-- Right hand holding the staff (in front) -->
   <g id="arm">
-    <path d="M196 206 C 222 214, 240 232, 246 252 C 236 262, 220 262, 212 254 C 206 240, 200 228, 190 222 Z" fill="#8d62c4" stroke="#4a2c6e" stroke-width="3"/>
-    <circle cx="238" cy="236" r="12" fill="#f6c9a8" stroke="#c98d6b" stroke-width="2"/>
+    <path d="M194 204 C 222 212, 242 230, 250 252 C 240 263, 222 263, 213 255 C 206 240, 200 228, 188 222 Z"
+          fill="#8d62c4" stroke="#4a2c6e" stroke-width="3"/>
+    <path d="M250 252 C 240 263, 222 263, 213 255" fill="none" stroke="#e8b84a" stroke-width="6"/>
+    <circle cx="239" cy="238" r="12" fill="#f6c9a8" stroke="#a86f55" stroke-width="2"/>
+    <path d="M232 232 Q 240 228 247 233 M231 238 Q 240 234 248 239" fill="none" stroke="#c98d6b" stroke-width="1.8" stroke-linecap="round"/>
   </g>
 </svg>

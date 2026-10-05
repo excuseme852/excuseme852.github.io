@@ -1,27 +1,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" width="400" height="160">
-  <!-- Outline pass: stroked shapes drawn first, then covered by fills so only the outer edge shows -->
-  <g fill="#fbf1dc" stroke="#d9b98a" stroke-width="6">
-    <circle cx="70" cy="104" r="44"/>
-    <circle cx="132" cy="78" r="54"/>
-    <circle cx="200" cy="66" r="60"/>
-    <circle cx="268" cy="78" r="54"/>
-    <circle cx="330" cy="104" r="44"/>
-    <ellipse cx="200" cy="124" rx="192" ry="34"/>
+  <!-- Auspicious cloud (Phase 11): cream puffs with a gold-brown rim and curling swirls.
+       Outline pass first (stroked shapes), then the same shapes filled on top, so only the
+       outer edge of the whole cloud keeps its outline. -->
+  <g fill="#fbf1dc" stroke="#c99f62" stroke-width="6">
+    <circle cx="62" cy="108" r="40"/>
+    <circle cx="104" cy="84" r="44"/>
+    <circle cx="150" cy="66" r="50"/>
+    <circle cx="200" cy="58" r="56"/>
+    <circle cx="250" cy="66" r="50"/>
+    <circle cx="296" cy="84" r="44"/>
+    <circle cx="338" cy="108" r="40"/>
+    <ellipse cx="200" cy="126" rx="194" ry="32"/>
   </g>
   <g fill="#fbf1dc">
-    <circle cx="70" cy="104" r="44"/>
-    <circle cx="132" cy="78" r="54"/>
-    <circle cx="200" cy="66" r="60"/>
-    <circle cx="268" cy="78" r="54"/>
-    <circle cx="330" cy="104" r="44"/>
-    <ellipse cx="200" cy="124" rx="192" ry="34"/>
+    <circle cx="62" cy="108" r="40"/>
+    <circle cx="104" cy="84" r="44"/>
+    <circle cx="150" cy="66" r="50"/>
+    <circle cx="200" cy="58" r="56"/>
+    <circle cx="250" cy="66" r="50"/>
+    <circle cx="296" cy="84" r="44"/>
+    <circle cx="338" cy="108" r="40"/>
+    <ellipse cx="200" cy="126" rx="194" ry="32"/>
   </g>
-  <!-- Swirls -->
-  <g fill="none" stroke="#d9b98a" stroke-width="4" stroke-linecap="round">
-    <path d="M96 118 C 96 100, 122 100, 122 116 C 122 128, 106 128, 106 118"/>
-    <path d="M186 104 C 186 82, 218 82, 218 102 C 218 116, 198 116, 198 104"/>
-    <path d="M280 118 C 280 100, 306 100, 306 116 C 306 128, 290 128, 290 118"/>
-    <path d="M40 132 C 60 138, 80 138, 96 132"/>
-    <path d="M304 132 C 320 138, 340 138, 360 132"/>
+  <!-- Soft shade along the bottom -->
+  <ellipse cx="200" cy="140" rx="180" ry="16" fill="#f1dfbd" opacity="0.7"/>
+  <!-- Puff edges inside the cloud -->
+  <g fill="none" stroke="#dcc08f" stroke-width="3" stroke-linecap="round">
+    <path d="M70 130 C 66 112, 80 100, 96 104"/>
+    <path d="M128 118 C 120 96, 140 80, 162 88"/>
+    <path d="M238 88 C 260 80, 280 96, 272 118"/>
+    <path d="M304 104 C 320 100, 334 112, 330 130"/>
+  </g>
+  <!-- Curling swirls -->
+  <g fill="none" stroke="#c99f62" stroke-width="4" stroke-linecap="round">
+    <path d="M178 104 C 176 80, 212 76, 216 96 C 219 110, 200 114, 196 104 C 193 97, 202 93, 205 99"/>
+    <path d="M96 126 C 92 108, 120 104, 122 120 C 123 130, 108 132, 106 124"/>
+    <path d="M278 120 C 280 104, 308 108, 304 126 C 302 132, 290 130, 292 124"/>
+    <path d="M30 136 C 54 144, 80 144, 100 136"/>
+    <path d="M300 136 C 320 144, 346 144, 370 136"/>
+    <path d="M150 146 C 170 152, 230 152, 250 146"/>
   </g>
 </svg>

@@ -1,0 +1,15 @@
+{
+  "name": "藉口生成器 Excuse Me",
+  "short_name": "藉口生成器",
+  "description": "講個情況，大仙即刻賜你一個藉口。Tell the immortal your situation and get a ready-made excuse.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6ecd6",
+  "theme_color": "#6b3fa0",
+  "icons": [
+    { "src": "./assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

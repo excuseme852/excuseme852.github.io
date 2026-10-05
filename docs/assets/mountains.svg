@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" preserveAspectRatio="xMidYMax slice">
+  <!-- Faint misty peaks with pines at the sides (Phase 11 background). Kept light and
+       flat so it stays behind the immortal and the plaque. -->
+  <!-- Far peaks -->
+  <path d="M0 300 L 0 170 C 40 150, 60 90, 100 80 C 130 74, 140 130, 170 140 C 200 150, 220 60, 260 50 C 300 42, 310 120, 350 130 C 380 138, 400 160, 440 150
+           C 480 140, 500 70, 540 60 C 580 52, 600 120, 640 128 C 680 136, 700 90, 740 96 C 770 100, 790 130, 800 140 L 800 300 Z"
+        fill="#e2d8ea"/>
+  <!-- Near peaks -->
+  <path d="M0 300 L 0 220 C 50 210, 80 150, 120 160 C 160 170, 170 210, 220 214 C 270 218, 300 180, 340 190 C 380 200, 420 230, 470 226
+           C 520 222, 560 170, 610 176 C 660 182, 690 220, 740 214 C 770 210, 790 200, 800 196 L 800 300 Z"
+        fill="#ece4ee"/>
+  <!-- Pines: left -->
+  <g fill="#d8cde3">
+    <path d="M40 300 L 46 180 L 52 300 Z"/>
+    <path d="M10 200 C 30 186, 60 186, 84 196 C 62 200, 32 204, 10 200 Z"/>
+    <path d="M18 176 C 34 164, 58 164, 76 172 C 58 178, 36 180, 18 176 Z"/>
+    <path d="M28 154 C 38 146, 56 146, 66 152 C 54 158, 40 158, 28 154 Z"/>
+  </g>
+  <!-- Pines: right -->
+  <g fill="#d8cde3">
+    <path d="M748 300 L 754 196 L 760 300 Z"/>
+    <path d="M716 214 C 736 202, 768 202, 792 210 C 770 216, 740 218, 716 214 Z"/>
+    <path d="M726 192 C 740 182, 764 182, 780 190 C 764 196, 742 196, 726 192 Z"/>
+    <path d="M736 172 C 746 166, 762 166, 770 170 C 760 176, 746 176, 736 172 Z"/>
+  </g>
+  <!-- Mist bands -->
+  <g fill="#f6ecd6" opacity="0.7">
+    <ellipse cx="200" cy="236" rx="220" ry="14"/>
+    <ellipse cx="600" cy="250" rx="240" ry="16"/>
+  </g>
+</svg>

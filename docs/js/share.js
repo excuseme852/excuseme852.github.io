@@ -22,7 +22,7 @@ const COLORS = {
 };
 
 const FONT_UI = 'system-ui, -apple-system, "PingFang HK", "Microsoft JhengHei", "Noto Sans HK", sans-serif';
-const FONT_ZH = '"Kaiti TC", "STKaiti", "BiauKai", "DFKai-SB", "KaiTi", ' + FONT_UI;
+const FONT_ZH = '"LXGW WenKai TC", "Kaiti TC", "STKaiti", "BiauKai", "DFKai-SB", "KaiTi", ' + FONT_UI;
 const FONT_EN = 'Georgia, "Times New Roman", serif';
 
 // ---------- Copy ----------
@@ -192,9 +192,11 @@ export async function renderCard({ excuse, lang, label, brand, tagline }) {
   const ctx = canvas.getContext('2d');
 
   // Same-origin images only, so the canvas can still be exported.
+  // The web font must be loaded for these characters before canvas can draw with it.
   const [immortal, cloud] = await Promise.all([
     loadImage('./assets/immortal.svg').catch(() => null),
     loadImage('./assets/cloud.svg').catch(() => null),
+    lang === 'en' ? null : document.fonts?.load('700 64px "LXGW WenKai TC"', excuse).catch(() => null),
   ]);
 
   drawBackground(ctx);

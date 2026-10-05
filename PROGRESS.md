@@ -5,11 +5,38 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 ## Current phase
 
-**Phase 10 — Thinking messages & errors** (done)
+**Phase 11 — Final visual assets** (done)
 
 ## Next step
 
-Plan Phase 11 (final visual assets).
+Phase 11 decisions (creator: 1A 2OK 3A 4B, 2026-10-05):
+- I redraw the art as SVG, following `spec/reference/immortal-reference.jpeg`.
+- Kept original: no peach, a normal round head, and a jade pendant as his own touch.
+- Faint mountain/pine silhouettes in the background (no cranes).
+- Plaque font: LXGW WenKai TC from Google Fonts.
+
+Order: (1) immortal → (2) cloud, koi, plaque, background, font → (3) favicon, app icons, OG preview image. The creator reviews after each step.
+
+- Step 1 (immortal): **done.**
+  - New layered `immortal.svg` (~10 KB): bushy brows, laughing face, gold-trimmed robe with knot motifs, sash, jade pendant, gnarled staff, gourd with knot and tassel.
+  - Expressions are swapped by CSS:
+    - laughing by default;
+    - thinking: eyes open, looking up, flat mouth;
+    - refusing: stern brows;
+    - error: worried brows plus a sweat drop.
+  - The alternate expressions are hidden by `opacity="0"` in the SVG, so the share card shows him laughing.
+- Step 2 (scene): **done.**
+  - New swirl cloud (same size and outline as before).
+  - Koi with gradient, scales, flowing tail and whiskers.
+  - `mountains.svg`: faint peaks and pines, drawn in `.scene::before`, fading out above the cloud.
+  - Plaque: carved double frame, gold cloud-curl corners (inline SVG in CSS), Chinese-knot medallion on the back.
+  - LXGW WenKai TC is loaded from Google Fonts in `index.html` and used for the plaque and the share card. `share.js` waits for the glyphs before drawing.
+- Step 3 (icons + preview): **done.**
+  - Icons: `favicon.svg` (laughing face on a purple disc), `favicon-32.png`, `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png` (also used as maskable).
+  - `og-image.png`: 1200×630, 242 KB, under WhatsApp's ~300 KB limit.
+  - The PNGs were rendered from scratch HTML pages with headless Chrome, then downscaled with System.Drawing. The sources are not in the repo; ask Claude to regenerate them.
+  - `manifest.webmanifest` added (light PWA, spec 8.6).
+  - Open Graph and Twitter tags are static and bilingual in `index.html`, because crawlers don't run JS. This is an approved exception to the "strings in locales" rule.
 
 What Phase 10 added (creator chose 1A 2A 3B):
 - **Thinking bubble** rotates about every 0.9 s.
@@ -53,7 +80,7 @@ Phase 9 summary (done):
 - [x] 8. Connect engine to the reveal
 - [x] 9. Copy / Generate Another / Share
 - [x] 10. Thinking messages & errors
-- [ ] 11. Final visual assets
+- [x] 11. Final visual assets
 - [ ] 12. Content & localization review (complete library)
 - [ ] 13. Cross-browser & device testing
 - [ ] 14. Launch
