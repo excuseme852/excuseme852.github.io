@@ -57,6 +57,11 @@
     "shareSavedOnly": "Image saved.",
     "shareFailed": "Couldn't share. Try \"Copy\" instead."
   },
+  "feedback": {
+    "button": "🐞 Feedback",
+    "note": "Testing: the form includes what you asked and this excuse",
+    "topicOnly": "(No text typed. Topic picked: {topic})"
+  },
   "share": {
     "brand": "Excuse Me",
     "tagline": "Ask the immortal for the perfect excuse",

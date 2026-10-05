@@ -57,6 +57,11 @@
     "shareSavedOnly": "圖片已儲存。",
     "shareFailed": "分享唔到，可以試下撳「複製」。"
   },
+  "feedback": {
+    "button": "🐞 回報／建議",
+    "note": "測試中：表單會附上你問嘅嘢同呢個藉口",
+    "topicOnly": "（冇打字，揀咗主題：{topic}）"
+  },
   "share": {
     "brand": "藉口生成器",
     "tagline": "問大仙攞個好藉口",

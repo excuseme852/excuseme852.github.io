@@ -9,6 +9,7 @@ import {
 import { loadLibrary, analyze, generateExcuse } from './engine.js';
 import { initTopics, topicLabel } from './topics.js';
 import { copyText, prepareCard, shareExcuse } from './share.js';
+import { feedbackEnabled, feedbackUrl } from './feedback.js';
 
 const MAX_LENGTH = 100;
 const COUNTER_FROM = 50; // show the counter once input reaches this length
@@ -35,6 +36,8 @@ const copyButton = document.getElementById('copy-button');
 const anotherButton = document.getElementById('another-button');
 const shareButton = document.getElementById('share-button');
 const toast = document.getElementById('toast');
+const feedbackParts = document.querySelectorAll('.feedback');
+const feedbackLink = document.getElementById('feedback-link');
 
 const TOAST_TIME = 2600;
 let toastTimer = null;
@@ -186,7 +189,17 @@ function afterReveal() {
   plaque.focus();
   if (currentResult?.kind !== 'excuse') return;
   prepareCard(cardDetails()); // draw the share card now, so sharing is instant later
+  updateFeedbackLink();
   if (currentResult.exhaustedLine) say(currentResult.exhaustedLine);
+}
+
+// Pre-fills the testing feedback form with what was asked and the excuse shown.
+function updateFeedbackLink() {
+  if (!feedbackEnabled) return;
+  const situation = state.situation
+    || (state.topic ? t('feedback.topicOnly', { topic: topicLabel(state.topic) }) : '');
+  feedbackLink.href = feedbackUrl({ situation, excuse: currentResult.excuse });
+  feedbackParts.forEach((part) => { part.hidden = false; });
 }
 
 async function onCopy() {

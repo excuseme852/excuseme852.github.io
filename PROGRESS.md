@@ -11,6 +11,15 @@ Keep it short: replace old "Next step" text rather than appending forever.
 
 Creator tests Share on a phone (live site). Then plan Phase 10 (thinking messages and errors).
 
+Testing-phase feedback link (creator approved option A, 2026-10-05):
+- What it is: a 🐞 button beside "back" on excuse results only, opening a Google Form in a new tab. The form is pre-filled with the situation (or the picked topic) and the excuse.
+- Privacy: nothing is sent unless the tester submits the form, and a short note under the button says what the form includes.
+- Code: `docs/js/feedback.js`. `FORM_TEMPLATE` holds the creator's bilingual form.
+  - Q1 situation is `entry.845016753`.
+  - Q2 excuse is `entry.1998491214`.
+  - Pre-filling is verified.
+- Before launch (Phase 14): empty `FORM_TEMPLATE` again, or decide to keep it.
+
 What Phase 9 added:
 - Three buttons under the plaque: 📋 Copy, 🔄 Another, 📤 Share.
 - **Copy** uses the clipboard API, with an `execCommand` fallback. If both fail, it selects the plaque text and shows a toast.

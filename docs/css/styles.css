@@ -893,6 +893,63 @@ body:not([data-tone="normal"]) .result-actions {
   display: none;
 }
 
+/* "Back" and the testing-phase feedback link share one row */
+.result-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px 8px;
+}
+
+/* Testing-phase feedback link (only for excuses, after the reveal) */
+.feedback {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+}
+
+body[data-state="result"][data-tone="normal"] .feedback:not([hidden]) {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease 0.3s, visibility 0s;
+}
+
+.feedback[hidden],
+body:not([data-tone="normal"]) .feedback {
+  display: none;
+}
+
+.feedback-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 16px;
+  border: 2px dashed var(--color-accent);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.feedback-link:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Sits over the scene on short screens, so it gets its own background */
+.feedback-note {
+  flex-basis: 100%;
+  max-width: max-content;
+  margin: 0;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-surface) 85%, transparent);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
 .action-button {
   min-height: var(--tap);
   padding: 8px 4px;
